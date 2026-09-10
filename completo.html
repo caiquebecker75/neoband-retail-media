@@ -285,14 +285,14 @@ em{font-style:normal;color:var(--red-hi)}
 #menu{position:absolute;inset:0;z-index:95;background:rgba(10,10,11,.975);display:none;
   padding:92px var(--pad) 78px;flex-direction:column;gap:22px}
 #menu.on{display:flex;animation:trFadeIn .3s both}
-#menuList{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:6px 40px;flex:1;
-  grid-auto-flow:column;grid-template-rows:repeat(5,1fr)}
+#menuList{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:4px 30px;flex:1;
+  grid-auto-flow:column;grid-template-rows:repeat(8,1fr)}
 #menuList button{width:100%;display:flex;align-items:center;gap:13px;padding:9px 12px;border-radius:10px;transition:.22s}
 #menuList button:hover{background:rgba(210,10,17,.2)}
 #menuList button.cur{background:var(--red)}
-#menuList b{font-size:12px;font-weight:900;color:var(--red-hi);width:22px;flex:0 0 22px}
+#menuList b{font-size:11px;font-weight:900;color:var(--red-hi);width:22px;flex:0 0 22px}
 #menuList button.cur b{color:#fff}
-#menuList span{font-family:Roboto,sans-serif;font-size:16px;font-weight:400;flex:1;line-height:1.25}
+#menuList span{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;flex:1;line-height:1.25}
 #menuList i{font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute2)}
 #menuList button.cur i{color:rgba(255,255,255,.78)}
 #hint{position:absolute;right:var(--pad);bottom:68px;z-index:71;font-size:10px;font-weight:800;
@@ -413,24 +413,23 @@ em{font-style:normal;color:var(--red-hi)}
       <h1 class="xl" data-a style="--d:1;margin-top:20px">A sua loja<br>já é um<br><em>veículo<br>de mídia</em>.</h1>
       <p class="lede" data-a style="--d:4;font-size:21px;max-width:50ch;margin-top:22px">Falta cobrar por isso. Displays inteligentes por assinatura: a rede vende a semana, a NeoBand instala, mantém e mede.</p>
       <div class="btns" data-a style="--d:5;margin-top:28px">
-        <button class="btn pri" data-go="3">Ver a virada <svg><use href="#i-r"/></svg></button>
-        <button class="btn snd" data-go="7">Ver os números</button>
-        <button class="btn gho" data-go="9">Começar pelo piloto</button>
+        <button class="btn pri" data-go="5">Ver a virada <svg><use href="#i-r"/></svg></button>
+        <button class="btn snd" data-go="14">Ver os números</button>
+        <button class="btn gho" data-go="20">Começar pelo piloto</button>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══ 02 · O MOMENTO E O PROBLEMA ═══ -->
+  <!-- ═══ 02 · A VERBA MUDOU DE LUGAR ═══ -->
   <section class="slide" data-tr="push" data-tone="dark">
     <div class="circ" style="right:-230px;top:-170px;width:640px;height:640px;background:var(--plum);opacity:.22"></div>
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 01 · O que mudou</div>
-        <h2 data-a style="--d:1">A verba desceu para o corredor.<br>O espaço <em>ainda não está pronto</em>.</h2>
+        <h2 data-a style="--d:1">A verba de mídia está<br><em>descendo do digital</em> para o corredor.</h2>
       </div>
       <div class="body">
-        <svg viewBox="0 0 1480 310" style="width:100%;max-height:268px;height:auto;overflow:visible" aria-hidden="true">
+        <svg viewBox="0 0 1480 310" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
           <defs>
             <linearGradient id="gA" x1="0" x2="1"><stop offset="0" stop-color="#66256D"/><stop offset="1" stop-color="#D20A11"/></linearGradient>
             <linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#3A3A42"/><stop offset="1" stop-color="#F3A800"/></linearGradient>
@@ -453,35 +452,66 @@ em{font-style:normal;color:var(--red-hi)}
             <text x="1116" y="204" font-size="32" font-weight="900" fill="#F3A800">+37% ao ano</text>
           </g>
         </svg>
-        <div data-a="fade" style="--d:5;display:flex;align-items:center;gap:16px;margin-top:26px">
-          <span style="font-size:19px;font-weight:800;letter-spacing:-.02em;white-space:nowrap">Quatro travas separam a sua loja dessa verba</span>
-          <span style="flex:1;height:1px;background:var(--line)"></span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px">
+          <div class="card" data-a style="--d:5;padding:20px 24px;flex-direction:row;align-items:center;gap:16px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-target"/></svg>
+            <p style="color:#fff;font-family:'Maven Pro';font-weight:700;font-size:15px">A marca quer estar a um passo da mão que escolhe.</p></div>
+          <div class="card" data-a style="--d:6;padding:20px 24px;flex-direction:row;align-items:center;gap:16px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-users"/></svg>
+            <p style="color:#fff;font-family:'Maven Pro';font-weight:700;font-size:15px">439 mil lojas de alimentar disputam essa mesma verba.</p></div>
+          <div class="card" data-a style="--d:7;padding:20px 24px;flex-direction:row;align-items:center;gap:16px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-award"/></svg>
+            <p style="color:#fff;font-family:'Maven Pro';font-weight:700;font-size:15px">Ganha quem tiver inventário organizado para vender.</p></div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px">
-          <div class="card" data-a style="--d:6;padding:17px 19px;gap:9px">
-            <svg class="ico" style="width:23px;height:23px"><use href="#i-tag"/></svg>
-            <h3 style="font-size:17px;margin-top:3px">Espaço sem pacote</h3>
-            <p style="font-size:13px;line-height:1.45">Ponta e corredor negociados caso a caso, sem tabela nem calendário.</p></div>
-          <div class="card" data-a style="--d:7;padding:17px 19px;gap:9px">
-            <svg class="ico" style="width:23px;height:23px"><use href="#i-box"/></svg>
-            <h3 style="font-size:17px;margin-top:3px">Material sem padrão</h3>
-            <p style="font-size:13px;line-height:1.45">Cada indústria manda um formato. A loja perde estética e previsibilidade.</p></div>
-          <div class="card" data-a style="--d:8;padding:17px 19px;gap:9px">
-            <svg class="ico" style="width:23px;height:23px"><use href="#i-doc"/></svg>
-            <h3 style="font-size:17px;margin-top:3px">Sem comprovação</h3>
-            <p style="font-size:13px;line-height:1.45">A marca paga e não recebe evidência. Sem prova não existe segunda compra.</p></div>
-          <div class="card" data-a style="--d:9;padding:17px 19px;gap:9px">
-            <svg class="ico" style="width:23px;height:23px"><use href="#i-wrench"/></svg>
-            <h3 style="font-size:17px;margin-top:3px">Manutenção vira atrito</h3>
-            <p style="font-size:13px;line-height:1.45">Mobiliário quebrado derruba o valor percebido e trava a renovação.</p></div>
-        </div>
-        <div class="note" data-a style="--d:10;margin-top:18px">Fontes: IAB Brasil e Propmark, Digital Adspend 2026. ABRAS, Ranking 2026. Contexto de mercado, não projeção desta proposta.</div>
+        <div class="note" data-a style="--d:8;margin-top:22px">Fontes: IAB Brasil e Propmark, Digital Adspend 2026. ABRAS, Ranking 2026. Contexto de mercado, não projeção desta proposta.</div>
       </div>
     </div>
   </section>
 
+  <!-- ═══ 03 · O ESPAÇO NÃO ESTÁ PRONTO ═══ -->
+  <section class="slide sand" data-tr="curtain" data-tone="light">
+    <div class="circ" style="right:-130px;bottom:-210px;width:540px;height:540px;background:var(--sand-deep);opacity:.42"></div>
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 01 · O problema</div>
+        <h2 data-a style="--d:1">Só que o espaço<br>ainda <em>não está pronto</em> para receber.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:330px 1fr;gap:50px;align-items:center">
+          <div data-a="pop" style="--d:2;position:relative;display:grid;place-items:center;height:330px">
+            <div class="rings" style="left:50%;top:50%;width:330px;height:330px;transform:translate(-50%,-50%);color:var(--on-sand)">
+              <i style="width:118px;height:118px;--k:0"></i><i style="width:190px;height:190px;--k:1"></i>
+              <i style="width:262px;height:262px;--k:2"></i><i style="width:330px;height:330px;--k:3"></i>
+            </div>
+            <div style="position:relative;z-index:2;text-align:center">
+              <div style="font-size:112px;font-weight:900;letter-spacing:-.055em;line-height:.84;color:var(--red)">4</div>
+              <div style="font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-top:10px">travas<br>de sempre</div>
+            </div>
+          </div>
+          <div>
+            <div data-a="left" style="--d:3;display:flex;gap:22px;align-items:flex-start;padding:19px 0;border-bottom:1px solid var(--line-sand)">
+              <svg class="ico" style="width:28px;height:28px;margin-top:3px"><use href="#i-tag"/></svg>
+              <div><h3 style="font-size:26px">Espaço sem pacote comercial</h3>
+              <p class="lede" style="font-size:15px;margin-top:5px">Ponta, corredor e checkout são negociados caso a caso. Sem tabela, sem calendário, sem escala.</p></div></div>
+            <div data-a="left" style="--d:4;display:flex;gap:22px;align-items:flex-start;padding:19px 0;border-bottom:1px solid var(--line-sand)">
+              <svg class="ico" style="width:28px;height:28px;margin-top:3px"><use href="#i-box"/></svg>
+              <div><h3 style="font-size:26px">Material sem padrão</h3>
+              <p class="lede" style="font-size:15px;margin-top:5px">Cada indústria manda um formato diferente. A loja perde estética e perde previsibilidade.</p></div></div>
+            <div data-a="left" style="--d:5;display:flex;gap:22px;align-items:flex-start;padding:19px 0;border-bottom:1px solid var(--line-sand)">
+              <svg class="ico" style="width:28px;height:28px;margin-top:3px"><use href="#i-doc"/></svg>
+              <div><h3 style="font-size:26px">Campanha sem comprovação</h3>
+              <p class="lede" style="font-size:15px;margin-top:5px">A marca paga e não recebe evidência. Sem prova, não existe segunda compra.</p></div></div>
+            <div data-a="left" style="--d:6;display:flex;gap:22px;align-items:flex-start;padding:19px 0">
+              <svg class="ico" style="width:28px;height:28px;margin-top:3px"><use href="#i-wrench"/></svg>
+              <div><h3 style="font-size:26px">Manutenção vira atrito</h3>
+              <p class="lede" style="font-size:15px;margin-top:5px">Mobiliário quebrado derruba a percepção de valor e trava a renovação do contrato.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ═══ 03 · O CUSTO DE NÃO AGIR ═══ -->
+  <!-- ═══ 04 · O CUSTO DE NÃO AGIR ═══ -->
   <section class="slide" data-tr="iris" data-tone="dark">
     <div class="circ" style="left:50%;top:50%;transform:translate(-50%,-50%);width:800px;height:800px;
       background:radial-gradient(circle,rgba(210,10,17,.45) 0%,rgba(210,10,17,0) 68%)"></div>
@@ -499,19 +529,40 @@ em{font-style:normal;color:var(--red-hi)}
       </div>
       <div data-a style="--d:4;font-size:23px;font-weight:800;letter-spacing:.01em;color:var(--red-hi)">por ano. Todo ano.</div>
       <div class="btns" data-a style="--d:5;margin-top:36px;justify-content:center">
-        <button class="btn pri" data-go="3">Como virar esse jogo <svg><use href="#i-r"/></svg></button>
+        <button class="btn pri" data-go="4">Como virar esse jogo <svg><use href="#i-r"/></svg></button>
       </div>
-      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:76ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 1.500, já descontada a assinatura. Detalhamento na tela 08.</div>
+      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:76ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 1.500, já descontada a assinatura. Detalhamento nas telas 14 a 16.</div>
     </div>
   </section>
 
+  <!-- ═══ 05 · DIVISOR VERMELHO: A VIRADA ═══ -->
+  <section class="slide red" data-tr="blinds" data-tone="onred">
+    <div class="burst" style="right:17%;top:50%">
+      <i style="--r:0deg;--o:-262px;height:168px;--k:0;background:rgba(255,255,255,.92);width:7px"></i>
+      <i style="--r:36deg;--o:-216px;height:102px;--k:1;background:rgba(255,255,255,.55);width:7px"></i>
+      <i style="--r:72deg;--o:-268px;height:182px;--k:2;background:rgba(255,255,255,.92);width:7px"></i>
+      <i style="--r:108deg;--o:-220px;height:108px;--k:3;background:rgba(255,255,255,.55);width:7px"></i>
+      <i style="--r:144deg;--o:-262px;height:170px;--k:4;background:rgba(255,255,255,.92);width:7px"></i>
+      <i style="--r:180deg;--o:-218px;height:106px;--k:5;background:rgba(255,255,255,.55);width:7px"></i>
+      <i style="--r:216deg;--o:-266px;height:178px;--k:6;background:rgba(255,255,255,.92);width:7px"></i>
+      <i style="--r:252deg;--o:-214px;height:98px;--k:7;background:rgba(255,255,255,.55);width:7px"></i>
+      <i style="--r:288deg;--o:-264px;height:174px;--k:8;background:rgba(255,255,255,.92);width:7px"></i>
+      <i style="--r:324deg;--o:-216px;height:104px;--k:9;background:rgba(255,255,255,.55);width:7px"></i>
+    </div>
+    <div class="circ" style="right:17%;top:50%;transform:translate(50%,-50%);width:310px;height:310px;background:var(--amber);z-index:1"></div>
+    <div class="pad" style="justify-content:center">
+      <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 02 · A virada</div>
+      <h1 class="lg" data-a style="--d:1;margin-top:22px;max-width:15ch">E se cada ponta<br>de gôndola fosse<br><em>um espaço<br>vendável</em>?</h1>
+      <p class="lede" data-a style="--d:4;margin-top:26px;font-size:20px;max-width:44ch">Não é comprar mobiliário. É assinar uma infraestrutura que já nasce pronta para gerar receita.</p>
+    </div>
+  </section>
 
-  <!-- ═══ 04 · A SOLUÇÃO ═══ -->
+  <!-- ═══ 06 · DISPLAY AS A SERVICE ═══ -->
   <section class="slide" data-tr="rise" data-tone="dark">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 02 · A solução</div>
-        <h2 data-a style="--d:1">E se cada ponta fosse um espaço vendável?<br>Três compras separadas, <em>agora uma assinatura</em>.</h2>
+        <h2 data-a style="--d:1">Três coisas sempre compradas separadas,<br><em>agora em uma assinatura</em>.</h2>
       </div>
       <div class="body">
         <div style="display:grid;grid-template-columns:548px 1fr;gap:64px;align-items:center">
@@ -549,15 +600,14 @@ em{font-style:normal;color:var(--red-hi)}
               <div><h3 style="font-size:23px">Evidência que renova</h3>
               <p style="font-family:Roboto;font-size:15px;color:var(--mute);font-weight:300;line-height:1.55;margin-top:6px">Prova de instalação, período ativo e sinais de interação para a indústria comprar de novo.</p></div></div>
             <div class="btns" data-a style="--d:8;margin-top:6px">
-              <button class="btn pri" data-go="4">Como isso roda na prática <svg><use href="#i-r"/></svg></button></div>
+              <button class="btn pri" data-go="6">Como isso roda na prática <svg><use href="#i-r"/></svg></button></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══ 05 · COMO FUNCIONA ═══ -->
+  <!-- ═══ 07 · COMO FUNCIONA ═══ -->
   <section class="slide paper" data-tr="push" data-tone="light">
     <div class="pad">
       <div class="hd">
@@ -576,8 +626,56 @@ em{font-style:normal;color:var(--red-hi)}
     </div>
   </section>
 
+  <!-- ═══ 08 · ANATOMIA DO DISPLAY ═══ -->
+  <section class="slide" data-tr="zoom" data-tone="dark">
+    <div class="circ" style="left:50%;top:58%;transform:translate(-50%,-50%);width:560px;height:560px;background:var(--amber);opacity:.92"></div>
+    <div class="circ" style="left:calc(50% - 215px);top:80%;transform:translate(-50%,-50%);width:200px;height:200px;background:var(--red)"></div>
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 03 · O produto</div>
+        <h2 data-a style="--d:1">Um corpo mecânico.<br><em>Todas as configurações</em>.</h2>
+      </div>
+      <div class="body" style="justify-content:flex-start">
+        <div style="position:relative;flex:1;min-height:0;display:grid;place-items:center">
+          <img src="assets/fmt-ponta.jpg" alt="Display modular NeoBand" data-a="pop" style="--d:2;
+            height:100%;max-height:376px;width:auto;object-fit:contain;position:relative;z-index:3;
+            border-radius:26px;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+          <svg viewBox="0 0 1480 420" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:4;overflow:visible" aria-hidden="true">
+            <g stroke="rgba(255,255,255,.34)" stroke-width="1.4" fill="none">
+              <path class="draw" style="--len:420;--d:2" d="M596 58 H300"/>
+              <path class="draw" style="--len:420;--d:3" d="M596 164 H300"/>
+              <path class="draw" style="--len:420;--d:4" d="M596 288 H300"/>
+              <path class="draw" style="--len:420;--d:3" d="M884 106 H1186"/>
+              <path class="draw" style="--len:420;--d:4" d="M884 218 H1186"/>
+              <path class="draw" style="--len:420;--d:5" d="M884 334 H1186"/></g>
+            <g fill="#E7D0B1" class="fadein" style="--d:2">
+              <circle cx="596" cy="58" r="4.5"/><circle cx="596" cy="164" r="4.5"/><circle cx="596" cy="288" r="4.5"/>
+              <circle cx="884" cy="106" r="4.5"/><circle cx="884" cy="218" r="4.5"/><circle cx="884" cy="334" r="4.5"/></g>
+            <g class="fadein" style="--d:3" font-family="Maven Pro">
+              <text x="294" y="52" text-anchor="end" font-size="20" font-weight="900" fill="#fff">TESTEIRA</text>
+              <text x="294" y="74" text-anchor="end" font-size="12.5" font-family="Roboto" fill="#9C9CA6">a marca em altura de olhar</text>
+              <text x="294" y="158" text-anchor="end" font-size="20" font-weight="900" fill="#fff">LATERAL DE COMUNICAÇÃO</text>
+              <text x="294" y="180" text-anchor="end" font-size="12.5" font-family="Roboto" fill="#9C9CA6">impacto de quem vem pelo corredor</text>
+              <text x="294" y="282" text-anchor="end" font-size="20" font-weight="900" fill="#fff">BASE ESTRUTURAL</text>
+              <text x="294" y="304" text-anchor="end" font-size="12.5" font-family="Roboto" fill="#9C9CA6">carga, nivelamento e transporte</text>
+              <text x="1192" y="100" font-size="20" font-weight="900" fill="#fff">MONTANTE PERFURADO</text>
+              <text x="1192" y="122" font-size="12.5" font-family="Roboto" fill="#9C9CA6">altura de prateleira ajustável</text>
+              <text x="1192" y="212" font-size="20" font-weight="900" fill="#fff">FRENTE DE PRATELEIRA</text>
+              <text x="1192" y="234" font-size="12.5" font-family="Roboto" fill="#9C9CA6">preço, claim e categoria</text>
+              <text x="1192" y="328" font-size="20" font-weight="900" fill="#fff">ALOJAMENTO DE MÓDULO</text>
+              <text x="1192" y="350" font-size="12.5" font-family="Roboto" fill="#9C9CA6">sensor, tela e conectividade</text></g>
+          </svg>
+        </div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:16px" data-a="fade">
+          <span class="tag s">Altura ajustável</span><span class="tag s">Largura ajustável</span>
+          <span class="tag s">Acessórios intercambiáveis</span><span class="tag s">Montagem sem ferramenta especial</span>
+          <span class="tag s">Peças de reposição no Brasil</span><span class="tag s">Selo FSC</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ═══ 06 · SEIS FORMATOS ═══ -->
+  <!-- ═══ 09 · SEIS FORMATOS ═══ -->
   <section class="slide" data-tr="push" data-tone="dark">
     <div class="circ" id="fmtCirc" style="right:7%;top:50%;transform:translateY(-50%);width:500px;height:500px;
       background:var(--red);transition:background .5s var(--ease)"></div>
@@ -607,8 +705,7 @@ em{font-style:normal;color:var(--red-hi)}
     </div>
   </section>
 
-
-  <!-- ═══ 07 · TRÊS PLANOS ═══ -->
+  <!-- ═══ 10 · TRÊS PLANOS ═══ -->
   <section class="slide sand" data-tr="curtain" data-tone="light">
     <div class="pad">
       <div class="hd">
@@ -617,34 +714,155 @@ em{font-style:normal;color:var(--red-hi)}
       </div>
       <div class="body">
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch" id="tiers"></div>
-        <div style="display:grid;grid-template-columns:1.25fr 1fr auto;gap:22px;align-items:center;margin-top:26px" data-a style="--d:6">
-          <div style="display:flex;align-items:center;gap:16px">
-            <svg class="ico" style="width:26px;height:26px"><use href="#i-layers"/></svg>
-            <div style="font-size:18px;font-weight:800;letter-spacing:-.02em">O mesmo corpo evolui de Essencial para Media sem trocar o display inteiro.</div></div>
-          <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:14px;background:rgba(210,10,17,.08);border-left:3px solid var(--red)">
-            <svg class="ico" style="width:26px;height:26px"><use href="#i-money"/></svg>
-            <div><div style="font-size:16px;font-weight:800;letter-spacing:-.015em">Assinar é despesa. Comprar imobiliza.</div>
-            <div style="font-family:Roboto;font-size:12.5px;font-weight:300;color:var(--on-sand-2);margin-top:2px">No Lucro Real, R$ 12.000 de assinatura podem sair por R$ 9.000.</div></div></div>
-          <button class="btn pri" data-go="7">Ver a conta <svg><use href="#i-r"/></svg></button>
+        <div style="display:flex;align-items:center;gap:22px;margin-top:28px" data-a style="--d:6">
+          <svg class="ico" style="width:28px;height:28px"><use href="#i-layers"/></svg>
+          <div style="font-size:21px;font-weight:800;letter-spacing:-.02em;flex:1">O mesmo corpo evolui de Essencial para Media sem trocar o display inteiro.</div>
+          <button class="btn pri" data-go="10">Onde instalar <svg><use href="#i-r"/></svg></button>
         </div>
-        <div class="note" data-a style="--d:7;margin-top:16px">Valores mensais por display, com manutenção programada inclusa. Implantação cobrada por instalação. Balanças por SKU, sell-out, visão computacional e temperatura entram por projeto. Efeito fiscal sujeito ao regime da rede e à validação da contabilidade.</div>
+        <div class="note" data-a style="--d:7;margin-top:16px">Valores mensais por display, com manutenção programada inclusa. Implantação cobrada por instalação. Balanças por SKU, RFID, câmeras e projetos especiais exigem orçamento à parte.</div>
       </div>
     </div>
   </section>
 
+  <!-- ═══ 11 · ONDE APLICAR ═══ -->
+  <section class="slide" data-tr="rise" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 03 · O produto</div>
+        <h2 data-a style="--d:1">Nem todo metro quadrado <em>vale o mesmo</em>.</h2>
+      </div>
+      <div class="body" style="justify-content:flex-start">
+        <div style="display:grid;grid-template-columns:1fr 420px;gap:34px;flex:1;min-height:0;margin-top:14px">
+          <svg viewBox="0 0 900 500" id="storeMap" style="width:100%;height:100%;overflow:visible" aria-hidden="true">
+            <rect x="10" y="10" width="880" height="480" rx="22" fill="#111113" stroke="rgba(255,255,255,.1)"/>
+            <g fill="rgba(255,255,255,.05)">
+              <rect x="215" y="140" width="40" height="220" rx="6"/><rect x="315" y="140" width="40" height="220" rx="6"/>
+              <rect x="415" y="140" width="40" height="220" rx="6"/><rect x="515" y="140" width="40" height="220" rx="6"/>
+              <rect x="60" y="52" width="600" height="28" rx="8"/><rect x="646" y="404" width="200" height="44" rx="8"/></g>
+            <g font-family="Maven Pro" font-size="11" font-weight="800" fill="rgba(255,255,255,.26)" letter-spacing="2">
+              <text x="70" y="71">GÔNDOLAS</text><text x="658" y="431">CAIXAS</text></g>
+            <g id="zoneNodes"></g>
+          </svg>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:18px">
+            <div>
+              <div class="num" id="zNum"></div>
+              <h3 id="zTitle" style="font-size:46px;letter-spacing:-.04em;line-height:1;margin:8px 0 12px"></h3>
+              <p class="lede" id="zDesc" style="font-size:16px"></p></div>
+            <div style="display:flex;align-items:center;gap:12px;padding:16px 22px;border-radius:14px;
+              background:var(--red-soft);border-left:3px solid var(--red)">
+              <span style="font-family:Roboto;font-size:12.5px;color:var(--mute);font-weight:300;flex:1">Índice de valor da cota</span>
+              <span id="zIdx" style="font-size:38px;font-weight:900;letter-spacing:-.04em;color:var(--red-hi)"></span></div>
+            <div class="rows" id="zRows"></div>
+          </div>
+        </div>
+        <div class="note" data-a style="--d:6">Clique em cada zona da loja. O índice compara o potencial relativo da cota semanal e é ajustado com o fluxo real de cada rede.</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ═══ 08 · A CONTA QUE FECHA ═══ -->
+  <!-- ═══ 12 · CAMADA DE INTELIGÊNCIA ═══ -->
+  <section class="slide" data-tr="iris" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 03 · O produto</div>
+        <h2 data-a style="--d:1">Sensor só entra quando <em>gera uma decisão</em>.</h2>
+      </div>
+      <div class="body" style="justify-content:flex-start">
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:34px;flex:1;min-height:0;align-items:center">
+          <svg viewBox="0 0 760 470" id="orbit" style="width:100%;height:100%;overflow:visible" aria-hidden="true">
+            <g fill="none" stroke="rgba(255,255,255,.13)">
+              <circle class="draw" style="--len:810;--d:0" cx="380" cy="235" r="128"/>
+              <circle class="draw" style="--len:1240;--d:1" cx="380" cy="235" r="196"/></g>
+            <circle cx="380" cy="235" r="58" fill="#D20A11"/>
+            <circle cx="380" cy="235" r="58" fill="none" stroke="#F42730" stroke-width="1.6" class="pulse" style="--k:0"/>
+            <text x="380" y="230" text-anchor="middle" font-family="Maven Pro" font-size="17" font-weight="900" fill="#fff">DISPLAY</text>
+            <text x="380" y="250" text-anchor="middle" font-family="Roboto" font-size="11" fill="rgba(255,255,255,.84)">conectado</text>
+            <g id="orbitNodes"></g>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div>
+              <div class="num" id="orbNum"></div>
+              <h3 id="orbTitle" style="font-size:32px;letter-spacing:-.03em;margin:8px 0 10px;line-height:1.06"></h3>
+              <p class="lede" id="orbDesc" style="font-size:15.5px"></p></div>
+            <div class="rows" id="orbRows"></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:16px 20px;border-radius:14px;
+              background:var(--sand-soft);border-left:3px solid var(--sand)">
+              <svg class="ico" style="width:24px;height:24px;stroke:var(--sand)"><use href="#i-lock"/></svg>
+              <p style="font-family:Roboto;font-size:13px;color:var(--mute);font-weight:300;line-height:1.45">
+                Contagem agregada, sem reconhecimento facial e sem identificar o shopper.</p></div>
+          </div>
+        </div>
+        <div class="note" data-a style="--d:6">Clique em cada módulo em órbita. A camada interna entra nos planos Essencial e Sense. A externa entra no Media ou por projeto.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 13 · DIVISOR: A CONTA ═══ -->
   <section class="slide" data-tr="blinds" data-tone="dark">
+    <div class="bleed"><img src="assets/amb-rede.jpg" alt="Rede de displays conectados dentro da loja"></div>
+    <div class="scrim r"></div>
+    <div class="circ" style="left:-170px;top:50%;transform:translateY(-50%);width:580px;height:580px;background:var(--red);z-index:1"></div>
+    <div class="pad" style="justify-content:center;align-items:flex-end;text-align:right">
+      <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · A prova</div>
+      <h1 class="lg" data-a style="--d:1;margin-top:22px">Agora<br>a <em>conta</em>.</h1>
+      <p class="lede" data-a style="--d:3;margin-top:24px;font-size:20px;max-width:38ch">Quatro números que decidem se este projeto entra ou não no orçamento da rede.</p>
+    </div>
+  </section>
+
+  <!-- ═══ 14 · 4 PONTOS VIRAM 104 COTAS ═══ -->
+  <section class="slide paper" data-tr="rise" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · O inventário</div>
+        <h2 data-a style="--d:1">Quatro pontos viram <em>104 cotas</em> vendáveis.</h2>
+      </div>
+      <div class="body">
+        <div style="display:flex;align-items:center;gap:26px">
+          <div data-a="pop" style="--d:2;text-align:center">
+            <div style="font-size:86px;font-weight:900;letter-spacing:-.05em;line-height:.86;color:var(--red)">4</div>
+            <div style="font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:8px">displays<br>por loja</div></div>
+          <div data-a="fade" style="--d:3;font-size:36px;font-weight:800;color:var(--on-sand-2)">×</div>
+          <div data-a="pop" style="--d:3;text-align:center">
+            <div style="font-size:86px;font-weight:900;letter-spacing:-.05em;line-height:.86;color:var(--red)">26</div>
+            <div style="font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:8px">semanas<br>em 6 meses</div></div>
+          <div data-a="fade" style="--d:4;font-size:36px;font-weight:800;color:var(--on-sand-2)">=</div>
+          <div data-a="pop" style="--d:4;text-align:center;background:var(--red);border-radius:20px;padding:18px 26px;color:#fff">
+            <div style="font-size:86px;font-weight:900;letter-spacing:-.05em;line-height:.86"><span data-cu="104">0</span></div>
+            <div style="font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:8px">cotas<br>vendáveis</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+            <div id="quotaGrid" data-a="fade" style="--d:5;display:grid;grid-template-columns:repeat(13,1fr);gap:6px"></div>
+            <div class="kicker" data-a="fade" style="--d:6;font-size:10.5px">cada quadrado é uma semana de um display</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px">
+          <div class="card" data-a style="--d:6;gap:8px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-cal"/></svg>
+            <h3 style="font-size:20px;margin-top:8px">A venda deixa de ser sorte</h3>
+            <p>Sai do "tem um espaço aí?" e entra uma agenda com data, posição, categoria e preço.</p></div>
+          <div class="card" data-a style="--d:7;gap:8px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-refresh"/></svg>
+            <h3 style="font-size:20px;margin-top:8px">Pacotes de quatro semanas</h3>
+            <p>Vender por semana e ofertar ciclos de um mês aumenta a previsibilidade e reduz espaço vazio.</p></div>
+          <div class="card" data-a style="--d:8;gap:8px">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-doc"/></svg>
+            <h3 style="font-size:20px;margin-top:8px">Um relatório por campanha</h3>
+            <p>A evidência de execução é o que transforma a primeira compra em contrato anual.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 15 · SIMULAÇÃO ═══ -->
+  <section class="slide" data-tr="push" data-tone="dark">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · A simulação</div>
-        <h2 data-a style="--d:1">Quatro pontos viram <em>104 cotas</em>.<br>Escolha a ocupação e a conta se refaz.</h2>
+        <h2 data-a style="--d:1">Escolha a ocupação. <em>A conta se refaz.</em></h2>
       </div>
       <div class="body" style="justify-content:flex-start;gap:22px">
         <div style="display:flex;gap:9px" id="occ" data-a="fade"></div>
-        <div style="display:grid;grid-template-columns:296px 1fr;gap:38px;align-items:center;flex:1;min-height:0">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
-          <svg viewBox="0 0 300 300" style="width:100%;max-height:262px;height:auto" aria-hidden="true">
+        <div style="display:grid;grid-template-columns:310px 1fr;gap:38px;align-items:center;flex:1;min-height:0">
+          <svg viewBox="0 0 300 300" style="width:100%;height:auto" aria-hidden="true">
             <circle cx="150" cy="150" r="120" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="26"/>
             <circle id="arc" cx="150" cy="150" r="120" fill="none" stroke="#D20A11" stroke-width="26"
               stroke-linecap="round" transform="rotate(-90 150 150)" stroke-dasharray="754" stroke-dashoffset="754"
@@ -653,9 +871,6 @@ em{font-style:normal;color:var(--red-hi)}
             <text x="150" y="178" text-anchor="middle" font-family="Roboto" font-size="13.5" fill="#9C9CA6">da agenda vendida</text>
             <text id="arcQ" x="150" y="210" text-anchor="middle" font-family="Maven Pro" font-size="17" font-weight="800" fill="#E7D0B1">104 de 104 cotas</text>
           </svg>
-          <div id="quotaGrid" style="display:grid;grid-template-columns:repeat(13,1fr);gap:5px"></div>
-          <div class="kicker" style="font-size:10px">4 displays × 26 semanas · cada quadrado é uma cota</div>
-          </div>
           <div style="display:flex;flex-direction:column;gap:20px">
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
               <div class="card" style="gap:6px;padding:22px">
@@ -696,8 +911,157 @@ em{font-style:normal;color:var(--red-hi)}
     </div>
   </section>
 
+  <!-- ═══ 16 · A CURVA ═══ -->
+  <section class="slide sand" data-tr="curtain" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · O acumulado</div>
+        <h2 data-a style="--d:1">O ponto se paga <em>na segunda semana</em>.<br>O resto do semestre é margem.</h2>
+      </div>
+      <div class="body">
+        <svg viewBox="0 0 1400 390" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
+          <defs><linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D20A11" stop-opacity=".34"/><stop offset="1" stop-color="#D20A11" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="rgba(20,18,16,.13)" stroke-width="1">
+            <line x1="96" y1="320" x2="1360" y2="320"/><line x1="96" y1="244" x2="1360" y2="244"/>
+            <line x1="96" y1="168" x2="1360" y2="168"/><line x1="96" y1="92" x2="1360" y2="92"/></g>
+          <g font-family="Roboto" font-size="12" fill="rgba(20,18,16,.5)" text-anchor="end">
+            <text x="82" y="325">R$ 0</text><text x="82" y="249">50 mil</text><text x="82" y="173">100 mil</text><text x="82" y="97">150 mil</text></g>
+          <path class="fadein" style="--d:3" d="M96 320 L306 287 L516 253 L726 210 L936 177 L1146 143 L1356 101 L1356 320 Z" fill="url(#gArea)"/>
+          <path class="draw" style="--len:1400;--d:2" d="M96 320 L306 287 L516 253 L726 210 L936 177 L1146 143 L1356 101"
+            fill="none" stroke="#D20A11" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="fadein" style="--d:3" fill="#D20A11">
+            <circle cx="306" cy="287" r="6"/><circle cx="516" cy="253" r="6"/><circle cx="726" cy="210" r="6"/>
+            <circle cx="936" cy="177" r="6"/><circle cx="1146" cy="143" r="6"/><circle cx="1356" cy="101" r="9"/></g>
+          <g class="fadein" style="--d:4" font-family="Maven Pro" font-size="14" font-weight="800" fill="#141210" text-anchor="middle">
+            <text x="306" y="270">22 mil</text><text x="516" y="236">44 mil</text><text x="726" y="193">72 mil</text>
+            <text x="936" y="160">94 mil</text><text x="1146" y="126">116 mil</text></g>
+          <g class="fadein" style="--d:5">
+            <rect x="1206" y="40" width="168" height="44" rx="22" fill="#141210"/>
+            <text x="1290" y="69" text-anchor="middle" font-family="Maven Pro" font-size="21" font-weight="900" fill="#E7D0B1">R$ 144 mil</text></g>
+          <g font-family="Maven Pro" font-size="13" font-weight="800" fill="rgba(20,18,16,.55)" text-anchor="middle" letter-spacing="1.5">
+            <text x="306" y="350">MÊS 1</text><text x="516" y="350">MÊS 2</text><text x="726" y="350">MÊS 3</text>
+            <text x="936" y="350">MÊS 4</text><text x="1146" y="350">MÊS 5</text><text x="1356" y="350">MÊS 6</text></g>
+          <g class="fadein" style="--d:2">
+            <line x1="150" y1="128" x2="150" y2="320" stroke="#141210" stroke-width="1.6" stroke-dasharray="5 5"/>
+            <rect x="160" y="112" width="212" height="34" rx="17" fill="#F3A800"/>
+            <text x="266" y="135" text-anchor="middle" font-family="Maven Pro" font-size="14" font-weight="900" fill="#141210">ASSINATURA JÁ PAGA</text></g>
+        </svg>
+        <div style="display:flex;gap:16px;margin-top:22px">
+          <div class="card" data-a style="--d:6;flex:1;flex-direction:row;align-items:center;gap:18px;padding:20px 24px">
+            <div style="font-size:44px;font-weight:900;letter-spacing:-.04em;color:var(--red)">8</div>
+            <p style="font-size:15px">cotas para cobrir os 6 meses de assinatura dos 4 displays.</p></div>
+          <div class="card" data-a style="--d:7;flex:1;flex-direction:row;align-items:center;gap:18px;padding:20px 24px">
+            <div style="font-size:44px;font-weight:900;letter-spacing:-.04em;color:var(--red)">96</div>
+            <p style="font-size:15px">cotas restantes que viram margem direta para a rede.</p></div>
+          <div class="card" data-a style="--d:8;flex:1;flex-direction:row;align-items:center;gap:18px;padding:20px 24px">
+            <div style="font-size:44px;font-weight:900;letter-spacing:-.04em;color:var(--red)">12×</div>
+            <p style="font-size:15px">o valor da assinatura, no cenário de agenda cheia.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ═══ 09 · POR QUE A NEOBAND ═══ -->
+  <!-- ═══ 17 · COMPRAR OU ASSINAR ═══ -->
+  <section class="slide" data-tr="push" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · A decisão financeira</div>
+        <h2 data-a style="--d:1">Comprar imobiliza.<br><em>Assinar é despesa operacional</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+          <div data-a="left" style="--d:2;border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--ink2)">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+              <div style="width:34px;height:34px;border-radius:50%;background:var(--ink4);display:grid;place-items:center">
+                <svg class="ico" style="width:16px;height:16px;stroke:var(--mute)"><use href="#i-x2"/></svg></div>
+              <h3 style="font-size:25px;color:var(--mute)">Comprar o mobiliário</h3></div>
+            <div class="rows">
+              <div class="row"><span class="k">Desembolso inicial</span><span class="v" style="color:var(--mute)">Integral, no ato</span></div>
+              <div class="row"><span class="k">Contábil</span><span class="v" style="color:var(--mute)">Imobilizado e depreciação</span></div>
+              <div class="row"><span class="k">Manutenção</span><span class="v" style="color:var(--mute)">Orçamento a cada avaria</span></div>
+              <div class="row"><span class="k">Obsolescência</span><span class="v" style="color:var(--mute)">Risco da rede</span></div>
+              <div class="row"><span class="k">Tecnologia</span><span class="v" style="color:var(--mute)">Projeto novo a cada evolução</span></div></div>
+          </div>
+          <div data-a="right" style="--d:3;border:1px solid rgba(231,208,177,.45);border-radius:18px;padding:28px;
+            background:linear-gradient(158deg,rgba(231,208,177,.14),rgba(231,208,177,.02))">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+              <div style="width:34px;height:34px;border-radius:50%;background:var(--sand);display:grid;place-items:center">
+                <svg class="ico" style="width:16px;height:16px;stroke:var(--ink)"><use href="#i-check"/></svg></div>
+              <h3 style="font-size:25px;color:var(--sand)">Assinar a solução</h3></div>
+            <div class="rows">
+              <div class="row"><span class="k">Desembolso inicial</span><span class="v">Nenhum</span></div>
+              <div class="row"><span class="k">Contábil</span><span class="v">Despesa operacional</span></div>
+              <div class="row"><span class="k">Manutenção</span><span class="v">Inclusa na mensalidade</span></div>
+              <div class="row"><span class="k">Obsolescência</span><span class="v">Risco da NeoBand</span></div>
+              <div class="row"><span class="k">Tecnologia</span><span class="v">Sobe de plano quando quiser</span></div></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1.15fr;gap:16px;margin-top:22px" data-a style="--d:4">
+          <div style="padding:18px 22px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
+            <div class="num" style="color:var(--mute)">Assinatura em 6 meses</div>
+            <div style="font-size:29px;font-weight:900;letter-spacing:-.03em;margin-top:6px">R$ 12.000</div></div>
+          <div style="padding:18px 22px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
+            <div class="num" style="color:var(--mute)">Efeito no IRPJ a 15%</div>
+            <div style="font-size:29px;font-weight:900;letter-spacing:-.03em;margin-top:6px">R$ 1.800</div></div>
+          <div style="padding:18px 22px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
+            <div class="num" style="color:var(--mute)">Efeito no IRPJ a 25%</div>
+            <div style="font-size:29px;font-weight:900;letter-spacing:-.03em;margin-top:6px">R$ 3.000</div></div>
+          <div style="padding:18px 22px;border-radius:14px;background:var(--red)">
+            <div class="num" style="color:rgba(255,255,255,.84)">Custo efetivo</div>
+            <div style="font-size:29px;font-weight:900;letter-spacing:-.03em;margin-top:6px">R$ 10.200 a R$ 9.000</div></div>
+        </div>
+        <div class="note" data-a style="--d:5;margin-top:16px">Em empresas no Lucro Real, o aluguel pode ser tratado como despesa operacional quando for necessário, usual, comprovado e ligado à atividade. Não é crédito automático: o efeito ocorre pela redução da base de cálculo. Sujeito ao regime da rede e à validação da contabilidade.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 18 · O PAINEL ═══ -->
+  <section class="slide" data-tr="zoom" data-tone="dark">
+    <div class="bleed"><img src="assets/amb-tecnico.jpg" alt="Equipe operando a plataforma de gestão do display"></div>
+    <div class="scrim l"></div>
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 04 · A operação</div>
+        <h2 data-a style="--d:1;max-width:15ch">Do ativo instalado<br>ao <em>contrato renovado</em>.</h2>
+      </div>
+      <div class="body" style="justify-content:flex-end">
+        <div data-a style="--d:2;max-width:800px;background:rgba(10,10,11,.74);border:1px solid var(--line);
+          border-radius:20px;padding:26px 30px;backdrop-filter:blur(14px)">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:20px">
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--red)"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--amber)"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--sand)"></span>
+            <span style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-left:8px">Plataforma 75 LAB · painel da rede</span></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+            <div><div class="num" style="color:var(--mute)">Cotas disponíveis</div>
+              <div class="big" style="font-size:48px;margin-top:6px" data-cu="104">0</div>
+              <svg viewBox="0 0 200 34" style="width:100%;height:34px;margin-top:8px"><path class="draw" style="--len:280;--d:3"
+                d="M0 26 L28 22 L56 24 L84 15 L112 18 L140 9 L168 12 L200 4" fill="none" stroke="#D20A11" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+            <div><div class="num" style="color:var(--mute)">Ocupação comercial</div>
+              <div class="big" style="font-size:48px;margin-top:6px"><span data-cu="76">0</span><small>%</small></div>
+              <svg viewBox="0 0 200 34" style="width:100%;height:34px;margin-top:8px">
+                <rect x="0" y="12" width="200" height="10" rx="5" fill="rgba(255,255,255,.1)"/>
+                <rect class="grow" x="0" y="12" width="0" height="10" rx="5" fill="#F3A800" data-w="152"
+                  style="transition:width 1.1s cubic-bezier(.16,.84,.28,1)"/></svg></div>
+            <div><div class="num" style="color:var(--mute)">Uptime dos displays</div>
+              <div class="big" style="font-size:48px;margin-top:6px"><span data-cu="98">0</span><small>%</small></div>
+              <svg viewBox="0 0 200 34" style="width:100%;height:34px;margin-top:8px">
+                <g fill="#E7D0B1"><rect class="bar7" x="0" y="8" width="20" height="18" rx="4"/><rect class="bar7" x="26" y="4" width="20" height="22" rx="4"/>
+                <rect class="bar7" x="52" y="10" width="20" height="16" rx="4"/><rect class="bar7" x="78" y="2" width="20" height="24" rx="4"/>
+                <rect class="bar7" x="104" y="6" width="20" height="20" rx="4"/><rect class="bar7" x="130" y="3" width="20" height="23" rx="4"/>
+                <rect class="bar7" x="156" y="7" width="20" height="19" rx="4"/></g></svg></div>
+          </div>
+          <div class="rows" style="margin-top:16px;border-top:1px solid var(--line);padding-top:4px">
+            <div class="row"><span class="k">Agenda por loja</span><span class="v">Campanhas ativas, futuras e vencidas</span></div>
+            <div class="row"><span class="k">Saúde do ativo</span><span class="v">Uptime, chamados, manutenção e foto</span></div>
+            <div class="row"><span class="k">Relatório por marca</span><span class="v">Resultado por campanha e recomendação</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 19 · POR QUE A NEOBAND ═══ -->
   <section class="slide" data-tr="rise" data-tone="dark">
     <div class="circ" style="left:-190px;top:-160px;width:560px;height:560px;background:var(--plum);opacity:.26"></div>
     <div class="pad">
@@ -732,85 +1096,134 @@ em{font-style:normal;color:var(--red-hi)}
             <img src="assets/cli-allianz.png" alt="Allianz" style="height:32px;opacity:.9">
             <img src="assets/cli-gpa.png" alt="Grupo Pão de Açúcar" style="height:36px;opacity:.9"></div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px" data-a style="--d:7">
-          <div style="display:flex;align-items:center;gap:13px;padding:15px 18px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:22px;height:22px"><use href="#i-store"/></svg>
-            <div><div style="font-size:15px;font-weight:800">A rede</div>
-            <div style="font-family:Roboto;font-size:12px;color:var(--mute);font-weight:300">vende a agenda</div></div></div>
-          <div style="display:flex;align-items:center;gap:13px;padding:15px 18px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:22px;height:22px;stroke:var(--sand)"><use href="#i-truck"/></svg>
-            <div><div style="font-size:15px;font-weight:800">A NeoBand</div>
-            <div style="font-family:Roboto;font-size:12px;color:var(--mute);font-weight:300">produz e mantém</div></div></div>
-          <div style="display:flex;align-items:center;gap:13px;padding:15px 18px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:22px;height:22px;stroke:var(--sand)"><use href="#i-chart"/></svg>
-            <div><div style="font-size:15px;font-weight:800">A 75 LAB</div>
-            <div style="font-family:Roboto;font-size:12px;color:var(--mute);font-weight:300">plataforma e dados</div></div></div>
-          <div style="display:flex;align-items:center;gap:13px;padding:15px 18px;border-radius:14px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:22px;height:22px;stroke:var(--sand)"><use href="#i-tag"/></svg>
-            <div><div style="font-size:15px;font-weight:800">A indústria</div>
-            <div style="font-family:Roboto;font-size:12px;color:var(--mute);font-weight:300">compra a campanha</div></div></div>
+        <div style="display:flex;gap:16px;align-items:center;margin-top:26px" data-a style="--d:7">
+          <svg class="ico" style="width:26px;height:26px;stroke:var(--sand)"><use href="#i-layers"/></svg>
+          <div style="font-size:19px;font-weight:800;letter-spacing:-.015em;flex:1">A mesma engenharia que já está no PDV dessas marcas, agora como infraestrutura de mídia da sua rede.</div>
         </div>
-        <div class="note" data-a style="--d:8;margin-top:16px">Manutenção do display não é abastecimento de produto. A regra fica escrita no contrato para nenhuma das partes descobrir isso no meio da campanha.</div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══ 10 · O PILOTO E O PRÓXIMO PASSO ═══ -->
-  <section class="slide" data-tr="iris" data-tone="dark">
-    <div class="circ" style="right:-170px;bottom:-230px;width:560px;height:560px;background:var(--amber);opacity:.16"></div>
-    <div class="circ" style="left:-190px;top:-200px;width:460px;height:460px;background:var(--plum);opacity:.24"></div>
-    <div class="burst" style="right:13%;top:20%">
-      <i style="--r:0deg;--o:-172px;height:92px;--k:0"></i><i style="--r:45deg;--o:-142px;height:62px;--k:1"></i>
-      <i style="--r:90deg;--o:-176px;height:98px;--k:2"></i><i style="--r:135deg;--o:-144px;height:64px;--k:3"></i>
-      <i style="--r:180deg;--o:-174px;height:94px;--k:4"></i><i style="--r:225deg;--o:-140px;height:60px;--k:5"></i>
-      <i style="--r:270deg;--o:-178px;height:100px;--k:6"></i><i style="--r:315deg;--o:-142px;height:62px;--k:7"></i>
-    </div>
+  <!-- ═══ 20 · QUEM FAZ O QUÊ ═══ -->
+  <section class="slide paper" data-tr="push" data-tone="light">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 05 · A decisão</div>
-        <h2 data-a style="--d:1">Vamos começar pelas <em>10 primeiras lojas</em>?</h2>
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 05 · Governança</div>
+        <h2 data-a style="--d:1">Cada um faz <em>o que sabe fazer</em>.</h2>
       </div>
-      <div class="body" style="gap:26px">
-        <div style="display:flex;gap:14px" data-a style="--d:2">
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:15px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-store"/></svg>
-            <div class="big" style="font-size:36px" data-cu="10">0</div>
-            <div style="font-family:Roboto;font-size:12.5px;color:var(--mute);font-weight:300;line-height:1.3">lojas<br>da rede</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:15px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-layers"/></svg>
-            <div class="big" style="font-size:36px" data-cu="4">0</div>
-            <div style="font-family:Roboto;font-size:12.5px;color:var(--mute);font-weight:300;line-height:1.3">displays<br>por loja</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:15px;background:var(--ink2);border:1px solid var(--line)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-box"/></svg>
-            <div class="big" style="font-size:36px" data-cu="40">0</div>
-            <div style="font-family:Roboto;font-size:12.5px;color:var(--mute);font-weight:300;line-height:1.3">ativos em<br>operação</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:15px;
-            background:linear-gradient(158deg,rgba(210,10,17,.26),rgba(210,10,17,.05));border:1px solid rgba(210,10,17,.55)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-clock"/></svg>
-            <div class="big" style="font-size:36px;color:var(--red-hi)" data-cu="6">0</div>
-            <div style="font-family:Roboto;font-size:12.5px;color:var(--mute);font-weight:300;line-height:1.3">meses de<br>leitura</div></div>
+      <div class="body">
+        <svg viewBox="0 0 1400 110" style="width:100%;height:auto;overflow:visible;margin-bottom:12px" aria-hidden="true">
+          <path class="draw" style="--len:1150;--d:2" d="M140 55 H1260" fill="none" stroke="#D20A11" stroke-width="2" stroke-dasharray="8 8"/>
+          <g id="govNodes"></g>
+        </svg>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px" id="govCards"></div>
+        <div data-a style="--d:8;display:flex;gap:18px;align-items:center;margin-top:30px;padding:20px 26px;
+          border-radius:16px;background:rgba(210,10,17,.07);border-left:3px solid var(--red)">
+          <svg class="ico" style="width:26px;height:26px"><use href="#i-check"/></svg>
+          <div><div style="font-size:20px;font-weight:800;letter-spacing:-.02em">Manutenção do display não é abastecimento de produto.</div>
+          <div class="lede" style="font-size:14px;margin-top:4px">A regra fica escrita no contrato para nenhuma das partes descobrir isso no meio da campanha.</div></div>
         </div>
-        <svg viewBox="0 0 1400 186" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
-          <line x1="90" y1="36" x2="1330" y2="36" stroke="rgba(255,255,255,.12)" stroke-width="3" stroke-linecap="round"/>
-          <line class="draw" style="--len:1250;--d:3" x1="90" y1="36" x2="1330" y2="36" stroke="#D20A11" stroke-width="3" stroke-linecap="round"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 21 · O PILOTO ═══ -->
+  <section class="slide" data-tr="curtain" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 05 · A entrada</div>
+        <h2 data-a style="--d:1">Um piloto de <em>seis meses</em> decide tudo.</h2>
+      </div>
+      <div class="body" style="gap:32px">
+        <div style="display:flex;gap:16px" data-a style="--d:2">
+          <div style="flex:1;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:16px;background:var(--ink2);border:1px solid var(--line)">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-store"/></svg>
+            <div class="big" style="font-size:42px" data-cu="10">0</div>
+            <div style="font-family:Roboto;font-size:13px;color:var(--mute);font-weight:300;line-height:1.3">lojas<br>da rede</div></div>
+          <div style="flex:1;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:16px;background:var(--ink2);border:1px solid var(--line)">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-layers"/></svg>
+            <div class="big" style="font-size:42px" data-cu="4">0</div>
+            <div style="font-family:Roboto;font-size:13px;color:var(--mute);font-weight:300;line-height:1.3">displays<br>por loja</div></div>
+          <div style="flex:1;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:16px;background:var(--ink2);border:1px solid var(--line)">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-box"/></svg>
+            <div class="big" style="font-size:42px" data-cu="40">0</div>
+            <div style="font-family:Roboto;font-size:13px;color:var(--mute);font-weight:300;line-height:1.3">ativos em<br>operação</div></div>
+          <div style="flex:1;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:16px;
+            background:linear-gradient(158deg,rgba(210,10,17,.26),rgba(210,10,17,.05));border:1px solid rgba(210,10,17,.55)">
+            <svg class="ico" style="width:26px;height:26px"><use href="#i-clock"/></svg>
+            <div class="big" style="font-size:42px;color:var(--red-hi)" data-cu="6">0</div>
+            <div style="font-family:Roboto;font-size:13px;color:var(--mute);font-weight:300;line-height:1.3">meses de<br>leitura</div></div>
+        </div>
+        <svg viewBox="0 0 1400 200" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
+          <line x1="90" y1="40" x2="1330" y2="40" stroke="rgba(255,255,255,.12)" stroke-width="3" stroke-linecap="round"/>
+          <line class="draw" style="--len:1250;--d:3" x1="90" y1="40" x2="1330" y2="40" stroke="#D20A11" stroke-width="3" stroke-linecap="round"/>
           <g id="pilotNodes"></g>
         </svg>
-        <div style="display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:center" data-a style="--d:9">
-          <div class="rows">
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">01</span><span style="font-size:15.5px;font-weight:600">Selecionar lojas e categorias do piloto</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">02</span><span style="font-size:15.5px;font-weight:600">Definir formatos e pacote por área</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">03</span><span style="font-size:15.5px;font-weight:600">Montar a agenda de marcas por ciclo</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">04</span><span style="font-size:15.5px;font-weight:600">Instalar, medir e apresentar o resultado</span></div>
-          </div>
-          <div class="btns" style="flex-direction:column;align-items:stretch;gap:10px">
-            <a class="btn pri" href="mailto:contato@neoband.com.br?subject=Piloto%20NeoBand%20Retail%20Media&amp;body=Quero%20abrir%20o%20piloto%20de%206%20meses%20na%20nossa%20rede." style="justify-content:center;padding:14px 24px">Abrir o piloto agora <svg><use href="#i-r"/></svg></a>
-            <a class="btn snd" href="https://wa.me/5511971787042?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20o%20NeoBand%20Retail%20Media%20para%20a%20nossa%20rede." target="_blank" rel="noopener" style="justify-content:center;padding:14px 24px">Falar pelo WhatsApp</a>
-            <button class="btn gho" data-go="0" style="justify-content:center;padding:14px 24px">Rever a apresentação</button>
-          </div>
+        <div class="btns" data-a style="--d:9;justify-content:center">
+          <button class="btn pri" data-go="22">Quero abrir o piloto <svg><use href="#i-r"/></svg></button>
+          <button class="btn gho" data-go="21">E se der certo?</button>
         </div>
-        <div class="note" data-a style="--d:10">NeoBand · Av. Humberto de Alencar Castelo Branco, 559 · São Bernardo do Campo, SP · (11) 2199 1200 · contato@neoband.com.br · Plataforma e design por 75 LAB.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ 22 · A ESCALA ═══ -->
+  <section class="slide sand" data-tr="rise" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 05 · O que vem depois</div>
+        <h2 data-a style="--d:1">O piloto prova. <em>A rede escala.</em></h2>
+      </div>
+      <div class="body">
+        <svg viewBox="0 0 1400 364" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
+          <g id="scaleBars"></g>
+          <g font-family="Maven Pro" font-size="13" font-weight="800" fill="rgba(20,18,16,.55)" text-anchor="middle" letter-spacing="1.5">
+            <text x="240" y="352">10 LOJAS</text><text x="700" y="352">30 LOJAS</text><text x="1160" y="352">60 LOJAS</text></g>
+        </svg>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px">
+          <div class="card" data-a style="--d:5;gap:8px">
+            <span class="tag b" style="align-self:flex-start">Fase 01</span>
+            <h3 style="font-size:22px;margin-top:10px">Provar</h3>
+            <p>10 lojas, 40 displays. Testar agenda, operação, preço e renovação com evidência.</p></div>
+          <div class="card" data-a style="--d:6;gap:8px">
+            <span class="tag" style="align-self:flex-start">Fase 02</span>
+            <h3 style="font-size:22px;margin-top:10px">Padronizar</h3>
+            <p>Tabela comercial única, rota de manutenção por região e time da rede treinado.</p></div>
+          <div class="card" data-a style="--d:7;gap:8px">
+            <span class="tag" style="align-self:flex-start">Fase 03</span>
+            <h3 style="font-size:22px;margin-top:10px">Escalar</h3>
+            <p>A rede vira um veículo de mídia com cobertura própria e contrato anual com a indústria.</p></div>
+        </div>
+        <div class="note" data-a style="--d:8;margin-top:18px">Projeção linear a partir da mesma simulação por loja, com 50% da agenda vendida. Números de planejamento para dimensionar a conversa, não compromisso de receita.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 23 · CTA FINAL ═══ -->
+  <section class="slide" data-tr="iris" data-tone="dark">
+    <div class="bleed"><img src="assets/amb-studio.jpg" alt="Display NeoBand com telas e área de comunicação"></div>
+    <div class="scrim l"></div>
+    <div class="burst" style="left:66%;top:24%;z-index:1">
+      <i style="--r:0deg;--o:-198px;height:118px;--k:0"></i><i style="--r:45deg;--o:-164px;height:78px;--k:1"></i>
+      <i style="--r:90deg;--o:-203px;height:126px;--k:2"></i><i style="--r:135deg;--o:-166px;height:82px;--k:3"></i>
+      <i style="--r:180deg;--o:-200px;height:122px;--k:4"></i><i style="--r:225deg;--o:-162px;height:76px;--k:5"></i>
+      <i style="--r:270deg;--o:-204px;height:128px;--k:6"></i><i style="--r:315deg;--o:-164px;height:80px;--k:7"></i>
+    </div>
+    <div class="pad" style="justify-content:center">
+      <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Próximo passo</div>
+      <h1 class="lg" data-a style="--d:1;margin-top:22px">Vamos começar<br>pelas <em>10 primeiras<br>lojas</em>?</h1>
+      <div class="rows" data-a style="--d:3;max-width:600px;margin-top:26px">
+        <div class="row" style="justify-content:flex-start;gap:26px"><span class="num" style="width:24px;flex:0 0 24px">01</span><span style="font-size:17px;font-weight:600">Selecionar lojas e categorias do piloto</span></div>
+        <div class="row" style="justify-content:flex-start;gap:26px"><span class="num" style="width:24px;flex:0 0 24px">02</span><span style="font-size:17px;font-weight:600">Definir formatos e pacote por área</span></div>
+        <div class="row" style="justify-content:flex-start;gap:26px"><span class="num" style="width:24px;flex:0 0 24px">03</span><span style="font-size:17px;font-weight:600">Montar a agenda de marcas por ciclo</span></div>
+        <div class="row" style="justify-content:flex-start;gap:26px"><span class="num" style="width:24px;flex:0 0 24px">04</span><span style="font-size:17px;font-weight:600">Instalar, medir e apresentar o resultado</span></div>
+      </div>
+      <div class="btns" data-a style="--d:5;margin-top:30px">
+        <a class="btn pri" href="mailto:contato@neoband.com.br?subject=Piloto%20NeoBand%20Retail%20Media&amp;body=Quero%20abrir%20o%20piloto%20de%206%20meses%20na%20nossa%20rede.">Abrir o piloto agora <svg><use href="#i-r"/></svg></a>
+        <a class="btn snd" href="https://wa.me/5511971787042?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20o%20NeoBand%20Retail%20Media%20para%20a%20nossa%20rede." target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+        <button class="btn gho" data-go="0">Rever a apresentação</button>
+      </div>
+      <div class="note" data-a style="--d:6;margin-top:26px">NeoBand · Av. Humberto de Alencar Castelo Branco, 559 · São Bernardo do Campo, SP · (11) 2199 1200 · contato@neoband.com.br · Plataforma e design por 75 LAB.</div>
     </div>
   </section>
 
@@ -863,13 +1276,16 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 fit();
 
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
-var TITLES=["A sua loja já é um veículo de mídia","A verba desceu para o corredor","O custo de não agir",
- "Display as a Service","Como funciona","Seis formatos","Três planos","A conta que fecha",
- "Por que a NeoBand","O piloto e o próximo passo"];
-var ACTS=[[0,0,"Abertura"],[1,2,"Ato 01 · O que mudou"],[3,4,"Ato 02 · A solução"],
-          [5,6,"Ato 03 · O produto"],[7,7,"Ato 04 · A prova"],[8,9,"Ato 05 · Decisão"]];
+var TITLES=["A sua loja já é um veículo de mídia","A verba mudou de lugar","O espaço não está pronto",
+ "O custo de não agir","A virada","Display as a Service","Como funciona","Anatomia do display",
+ "Seis formatos","Três planos","Onde aplicar na loja","Camada de inteligência","Agora a conta",
+ "4 pontos, 104 cotas","Simulação de receita","A curva do semestre","Comprar ou assinar",
+ "O painel da rede","Por que a NeoBand","Quem faz o quê","O piloto de 6 meses",
+ "O piloto prova, a rede escala","Próximo passo"];
+var ACTS=[[0,0,"Abertura"],[1,3,"Ato 01 · O que mudou"],[4,6,"Ato 02 · A virada"],
+          [7,11,"Ato 03 · O produto"],[12,17,"Ato 04 · A prova"],[18,22,"Ato 05 · Decisão"]];
 
-/* ─────── Tela 05 · ciclo de quatro passos ─────── */
+/* ─────── 07 · ciclo de quatro passos ─────── */
 (function(){
   var S=[["01","Instalamos","Vistoria, montagem, treinamento da loja e aceite digital com foto.","i-truck"],
          ["02","Você vende a semana","A rede comercializa cotas por categoria e posição, com tabela própria.","i-cal"],
@@ -890,7 +1306,7 @@ var ACTS=[[0,0,"Abertura"],[1,2,"Ato 01 · O que mudou"],[3,4,"Ato 02 · A solu�
       '<p class="lede" style="font-size:14.5px;max-width:30ch">'+s[2]+'</p></div>'}).join("");
 })();
 
-/* ─────── Tela 06 · seis formatos ─────── */
+/* ─────── 09 · seis formatos ─────── */
 var FMT=[
  {img:"fmt-ponta",lb:"Ponta",n:"Formato 01",t:"Ponta de gôndola",c:"#D20A11",
   d:"O ponto mais disputado da loja. Testeira alta, laterais de comunicação e prateleiras inclinadas para giro rápido.",
@@ -933,7 +1349,7 @@ $("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-
   if(!b)return; gsel=+b.dataset.g; renderFmt()});
 renderFmt();
 
-/* ─────── Tela 07 · três planos ─────── */
+/* ─────── 10 · três planos ─────── */
 var TIERS=[
  {n:"Essencial",p:"499",d:"Começar a vender espaço com baixa complexidade.",
   li:["Display modular padronizado","Comunicação cambiável","QR de controle patrimonial","Manutenção programada"]},
@@ -966,18 +1382,131 @@ function renderTiers(){
         x+'</li>'}).join("")+'</ul></button>'}).join("");
 }
 document.addEventListener("click",function(e){var b=e.target.closest("[data-t]");
-  if(!b)return; tsel=+b.dataset.t; renderTiers(); slides[6].classList.add("noanim")});
+  if(!b)return; tsel=+b.dataset.t; renderTiers(); slides[9].classList.add("noanim")});
 renderTiers();
 
-/* ─────── Tela 08 · grade de 104 cotas ─────── */
+/* ─────── 11 · mapa da loja ─────── */
+var ZONES=[
+ {x:120,y:430,n:"Zona 01",t:"Entrada",idx:"100",
+  d:"Primeiro contato e maior alcance da loja. O ponto que constrói lembrança de campanha.",
+  r:[["Missão","Impacto e lançamento"],["Formato","Ilha ou vitrine premium"],["Fluxo","Todo mundo passa"]]},
+ {x:385,y:250,n:"Zona 02",t:"Corredor",idx:"72",
+  d:"Onde a categoria é decidida. Aqui a marca disputa a escolha ao lado do concorrente.",
+  r:[["Missão","Categoria e fluxo"],["Formato","Painel ou expositor de categoria"],["Fluxo","Alto, por missão"]]},
+ {x:640,y:150,n:"Zona 03",t:"Ponta de gôndola",idx:"95",
+  d:"O metro quadrado mais rentável do varejo. Visibilidade alta e conversão comprovada.",
+  r:[["Missão","Campanha premium"],["Formato","Ponta de gôndola"],["Fluxo","Alto, com fila de espera"]]},
+ {x:745,y:430,n:"Zona 04",t:"Checkout",idx:"78",
+  d:"Decisão por impulso na última etapa. Cota curta, giro rápido e recompra frequente.",
+  r:[["Missão","Impulso e recorrência"],["Formato","Multiuso compacto"],["Fluxo","Todo mundo passa"]]},
+ {x:790,y:250,n:"Zona 05",t:"Refrigerado",idx:"58",
+  d:"Área sensível que quase nunca recebe material de marca. Espaço novo para vender.",
+  r:[["Missão","Categoria fria"],["Formato","Módulo compacto com sensor"],["Fluxo","Médio, por missão"]]},
+ {x:120,y:150,n:"Zona 06",t:"FLV",idx:"64",
+  d:"Frescor e sazonalidade. A marca associa produto de mercearia ao hortifrúti do dia.",
+  r:[["Missão","Frescor e sazonalidade"],["Formato","Ilha dupla face"],["Fluxo","Alto no fim de semana"]]}];
+var zsel=2;
+(function(){
+  var g=$("#zoneNodes");
+  ZONES.forEach(function(z,k){
+    var b=mk("g",{"data-z":k});
+    b.appendChild(mk("circle",{cx:z.x,cy:z.y,r:34,fill:"#D20A11",opacity:".3",class:"zdot",
+      style:"transition:opacity .3s,r .3s"}));
+    b.appendChild(mk("circle",{cx:z.x,cy:z.y,r:34,fill:"none",stroke:"#D20A11","stroke-width":1.4,
+      class:"pulse",style:"--k:"+k,"transform-origin":z.x+"px "+z.y+"px"}));
+    b.appendChild(mk("text",{x:z.x,y:z.y+6,"text-anchor":"middle","font-family":"Maven Pro",
+      "font-size":"15","font-weight":"900",fill:"#fff"},k+1));
+    b.appendChild(mk("text",{x:z.x,y:z.y+58,"text-anchor":"middle","font-family":"Maven Pro","font-size":"12",
+      "font-weight":"800",fill:"rgba(255,255,255,.5)","letter-spacing":"1.4",class:"zname"},z.t.toUpperCase()));
+    g.appendChild(b);
+  });
+})();
+function renderZone(){
+  var z=ZONES[zsel];
+  $$("#zoneNodes [data-z]").forEach(function(n,k){
+    var on=k===zsel;
+    n.querySelector(".zdot").setAttribute("opacity",on?"1":".3");
+    n.querySelector(".zdot").setAttribute("r",on?"40":"34");
+    n.querySelector(".zname").setAttribute("fill",on?"#E7D0B1":"rgba(255,255,255,.5)")});
+  $("#zNum").textContent=z.n; $("#zTitle").textContent=z.t; $("#zDesc").textContent=z.d; $("#zIdx").textContent=z.idx;
+  $("#zRows").innerHTML=z.r.map(function(x){
+    return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
+}
+$("#storeMap").addEventListener("click",function(e){var b=e.target.closest("[data-z]");
+  if(!b)return; zsel=+b.getAttribute("data-z"); renderZone()});
+renderZone();
+
+/* ─────── 12 · órbita de tecnologia ─────── */
+var ORB=[
+ {r:128,a:-90,ic:"i-qr",n:"Camada interna · Essencial",t:"QR patrimonial e do shopper",
+  d:"Um código controla ativo, loja, campanha e check-in da equipe. O outro leva o shopper para cupom, pesquisa ou página da marca.",
+  rows:[["Entra no plano","Essencial"],["Decide","Prova de instalação e interesse"]]},
+ {r:128,a:-18,ic:"i-users",n:"Camada interna · Sense",t:"Sensor de proximidade",
+  d:"Mede passagens na zona do display e permanência aproximada. Serve para precificar posição, não para prometer audiência.",
+  rows:[["Entra no plano","Sense"],["Decide","Preço da cota por posição"]]},
+ {r:128,a:54,ic:"i-screen",n:"Camada interna · Media",t:"Tela e conteúdo remoto",
+  d:"Playlist por dia, loja e categoria, trocada sem visita técnica, com registro de arquivo, horário e falhas.",
+  rows:[["Entra no plano","Media"],["Decide","Venda premium e prova de veiculação"]]},
+ {r:128,a:126,ic:"i-bolt",n:"Camada interna · Media",t:"Iluminação inteligente",
+  d:"LED que destaca o ponto com baixo consumo e reporta o próprio estado de funcionamento.",
+  rows:[["Entra no plano","Media"],["Decide","Destaque e saúde do ativo"]]},
+ {r:128,a:198,ic:"i-wifi",n:"Camada interna · Sense",t:"Conectividade e alertas",
+  d:"O display avisa quando cai, quando a campanha muda e quando alguma coisa precisa de visita técnica.",
+  rows:[["Entra no plano","Sense"],["Decide","Uptime e rota de manutenção"]]},
+ {r:196,a:-54,ic:"i-scale",n:"Camada externa · Projeto",t:"Prateleira com peso",
+  d:"Variação de peso indica retirada, reposição e possível ruptura. Retirada não é venda confirmada: exige cruzamento com o caixa.",
+  rows:[["Entra no plano","Projeto sob orçamento"],["Decide","Alerta de ruptura e interesse"]]},
+ {r:196,a:18,ic:"i-cart",n:"Camada externa · Projeto",t:"Integração de sell-out",
+  d:"Cruza a campanha com a venda agregada por SKU, loja e data para avaliar impacto comercial com rigor.",
+  rows:[["Entra no plano","Projeto sob orçamento"],["Decide","Renovação com prova de resultado"]]},
+ {r:196,a:90,ic:"i-eye",n:"Camada externa · Projeto",t:"Visão computacional",
+  d:"Confere planograma e disponibilidade por imagem de produto e prateleira. Nunca reconhecimento facial.",
+  rows:[["Entra no plano","Projeto sob orçamento"],["Decide","Auditoria de execução"]]},
+ {r:196,a:162,ic:"i-temp",n:"Camada externa · Projeto",t:"Temperatura",
+  d:"Para categorias refrigeradas e sensíveis, com histórico e alerta de desvio.",
+  rows:[["Entra no plano","Projeto sob orçamento"],["Decide","Segurança da categoria fria"]]},
+ {r:196,a:234,ic:"i-pin",n:"Camada externa · Essencial",t:"Geolocalização de visita",
+  d:"Registra a coordenada no check-in da equipe, com a precisão informada pelo aparelho. O QR sozinho não rastreia o display.",
+  rows:[["Entra no plano","Essencial"],["Decide","Comprovação de rota e visita"]]}];
+var osel=0;
+(function(){
+  var g=$("#orbitNodes");
+  ORB.forEach(function(o,k){
+    var rad=o.a*Math.PI/180,x=380+Math.cos(rad)*o.r,y=235+Math.sin(rad)*o.r;
+    var b=mk("g",{"data-orb":k});
+    b.appendChild(mk("circle",{cx:x,cy:y,r:27,fill:"#18181B",stroke:"rgba(255,255,255,.18)",
+      "stroke-width":1,class:"odot",style:"transition:fill .3s,stroke .3s,r .3s"}));
+    var u=mk("use",{href:"#"+o.ic,x:x-11,y:y-11,width:22,height:22,class:"oico",
+      style:"stroke:#9C9CA6;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s"});
+    b.appendChild(u); g.appendChild(b);
+  });
+})();
+function renderOrb(){
+  var o=ORB[osel];
+  $$("#orbitNodes [data-orb]").forEach(function(n,k){
+    var on=k===osel;
+    var d=n.querySelector(".odot");
+    d.setAttribute("fill",on?"#D20A11":"#18181B");
+    d.setAttribute("stroke",on?"#F42730":"rgba(255,255,255,.18)");
+    d.setAttribute("r",on?31:27);
+    n.querySelector(".oico").style.stroke=on?"#fff":"#9C9CA6"});
+  $("#orbNum").textContent=o.n; $("#orbTitle").textContent=o.t; $("#orbDesc").textContent=o.d;
+  $("#orbRows").innerHTML=o.rows.map(function(x){
+    return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
+}
+$("#orbit").addEventListener("click",function(e){var b=e.target.closest("[data-orb]");
+  if(!b)return; osel=+b.getAttribute("data-orb"); renderOrb()});
+renderOrb();
+
+/* ─────── 14 · grade de 104 cotas ─────── */
 (function(){
   var h="";
-  for(var k=0;k<104;k++)h+='<span style="width:11px;height:11px;border-radius:3px;'+
+  for(var k=0;k<104;k++)h+='<span style="width:12px;height:12px;border-radius:3px;'+
     'background:rgba(210,10,17,.16);transition:background .5s var(--ease) '+(k*7)+'ms"></span>';
   $("#quotaGrid").innerHTML=h;
 })();
 
-/* ─────── Tela 08 · simulação ─────── */
+/* ─────── 15 · simulação ─────── */
 var PRECO=1500,COTAS=104,ALUGUEL=12000,OCC=[25,50,75,100],ocSel=3,MAXBAR=640,MAXV=156000;
 $("#occ").innerHTML=OCC.map(function(o,k){
   return '<button data-o="'+k+'" style="font-size:13px;font-weight:800;border-radius:100px;padding:11px 22px;'+
@@ -1002,7 +1531,26 @@ function renderSim(){
 $("#occ").addEventListener("click",function(e){var b=e.target.closest("[data-o]");
   if(!b)return; ocSel=+b.dataset.o; renderSim()});
 
-/* ─────── Tela 10 · piloto ─────── */
+/* ─────── 20 · governança ─────── */
+(function(){
+  var G=[["Rede varejista","Agenda comercial","categorias, marcas, preços e calendário","i-store","#D20A11"],
+         ["NeoBand","Produção e manutenção","instalação, troca técnica e conservação","i-truck","#141210"],
+         ["75 LAB","Design, tecnologia e dados","modelos, plataforma, painel e relatórios","i-chart","#141210"],
+         ["Indústria","Campanha","conteúdo, verba, produto e ciclo","i-tag","#141210"],
+         ["Loja","Rotina de ponto","abastecimento, aceite e reposição","i-users","#141210"]];
+  var g=$("#govNodes"),xs=[140,420,700,980,1260];
+  G.forEach(function(s,k){
+    g.appendChild(mk("circle",{cx:xs[k],cy:55,r:31,fill:s[4],class:"fadein",style:"--d:"+(k+2)}));
+    g.appendChild(mk("use",{href:"#"+s[3],x:xs[k]-13,y:42,width:26,height:26,class:"fadein",
+      style:"--d:"+(k+2)+";stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"}));
+  });
+  $("#govCards").innerHTML=G.map(function(s,k){
+    return '<div class="card" data-a style="--d:'+(k+3)+';gap:7px;padding:22px">'+
+      '<span class="tag'+(k===0?" b":"")+'" style="align-self:flex-start">'+s[0]+'</span>'+
+      '<h3 style="font-size:20px;margin-top:10px">'+s[1]+'</h3><p>'+s[2]+'</p></div>'}).join("");
+})();
+
+/* ─────── 21 · piloto ─────── */
 (function(){
   var P=[["30d","Desenhar","Lojas, categorias, contratos, tabela comercial e primeira campanha."],
          ["60d","Instalar","Montagem, treinamento, agenda ativa e primeira rodada de dados."],
@@ -1010,20 +1558,40 @@ $("#occ").addEventListener("click",function(e){var b=e.target.closest("[data-o]"
          ["180d","Decidir","Relatório final, resultado por loja e decisão de escala para a rede."]];
   var g=$("#pilotNodes"),xs=[90,503,916,1330];
   P.forEach(function(s,k){
-    g.appendChild(mk("circle",{cx:xs[k],cy:36,r:15,fill:"#D20A11",class:"fadein",style:"--d:"+(k+4)}));
+    g.appendChild(mk("circle",{cx:xs[k],cy:40,r:15,fill:"#D20A11",class:"fadein",style:"--d:"+(k+4)}));
     g.appendChild(mk("circle",{cx:xs[k],cy:40,r:15,fill:"none",stroke:"#F42730","stroke-width":1.4,
-      class:"pulse",style:"--k:"+k,"transform-origin":xs[k]+"px 36px"}));
+      class:"pulse",style:"--k:"+k,"transform-origin":xs[k]+"px 40px"}));
     var anc=k===0?"start":(k===3?"end":"middle"), ox=k===0?-14:(k===3?14:0);
-    g.appendChild(mk("text",{x:xs[k]+ox,y:100,"text-anchor":anc,"font-family":"Maven Pro","font-size":"40",
+    g.appendChild(mk("text",{x:xs[k]+ox,y:106,"text-anchor":anc,"font-family":"Maven Pro","font-size":"40",
       "font-weight":"900",fill:"#D20A11",class:"fadein",style:"--d:"+(k+4)},s[0]));
-    g.appendChild(mk("text",{x:xs[k]+ox,y:132,"text-anchor":anc,"font-family":"Maven Pro","font-size":"21",
+    g.appendChild(mk("text",{x:xs[k]+ox,y:138,"text-anchor":anc,"font-family":"Maven Pro","font-size":"21",
       "font-weight":"800",fill:"#fff",class:"fadein",style:"--d:"+(k+5)},s[1]));
     var words=s[2].split(" "),lines=[],cur2="";
     words.forEach(function(w){if((cur2+" "+w).length>36){lines.push(cur2);cur2=w}else cur2=cur2?cur2+" "+w:w});
     lines.push(cur2);
     lines.forEach(function(ln,li){
-      g.appendChild(mk("text",{x:xs[k]+ox,y:158+li*18,"text-anchor":anc,"font-family":"Roboto",
+      g.appendChild(mk("text",{x:xs[k]+ox,y:166+li*19,"text-anchor":anc,"font-family":"Roboto",
         "font-size":"13.5",fill:"#9C9CA6",class:"fadein",style:"--d:"+(k+6)},ln))});
+  });
+})();
+
+/* ─────── 22 · escala ─────── */
+(function(){
+  var S=[[240,"R$ 1,3 mi",.34,"40 displays"],[700,"R$ 4,0 mi",.62,"120 displays"],[1160,"R$ 7,9 mi",1,"240 displays"]];
+  var g=$("#scaleBars");
+  /* linha de base do gráfico */
+  g.appendChild(mk("line",{x1:60,y1:288,x2:1340,y2:288,stroke:"rgba(20,18,16,.18)","stroke-width":1.5}));
+  S.forEach(function(s,k){
+    var h=Math.round(216*s[2]),y=288-h;
+    g.appendChild(mk("rect",{x:s[0]-92,y:288,width:184,height:0,rx:14,fill:k===2?"#D20A11":"#141210",
+      class:"gbar","data-h":h,"data-y":y,
+      style:"transition:height 1.05s cubic-bezier(.16,.84,.28,1),y 1.05s cubic-bezier(.16,.84,.28,1)"}));
+    g.appendChild(mk("text",{x:s[0],y:y-46,"text-anchor":"middle","font-family":"Roboto","font-size":"13",
+      fill:"rgba(20,18,16,.55)",class:"fadein",style:"--d:"+(k+3)},"receita anual do espaço"));
+    g.appendChild(mk("text",{x:s[0],y:y-12,"text-anchor":"middle","font-family":"Maven Pro","font-size":"42",
+      "font-weight":"900",fill:k===2?"#D20A11":"#141210",class:"fadein",style:"--d:"+(k+3)},s[1]));
+    g.appendChild(mk("text",{x:s[0],y:288+26,"text-anchor":"middle","font-family":"Roboto","font-size":"12.5",
+      fill:"rgba(20,18,16,.45)",class:"fadein",style:"--d:"+(k+4)},s[3]));
   });
 })();
 
@@ -1075,7 +1643,7 @@ function onEnter(sec){
     $$(".bar7",sec).forEach(function(r,k){
       r.style.transition="opacity .5s ease "+(k*70+420)+"ms"; r.style.opacity=1});
   },140);
-  if(sec===slides[7]){$("#arc").setAttribute("stroke-dashoffset",754); setTimeout(renderSim,200)}
+  if(sec===slides[14]){$("#arc").setAttribute("stroke-dashoffset",754); setTimeout(renderSim,200)}
   safety(sec);
 }
 function safety(sec){

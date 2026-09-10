@@ -346,9 +346,10 @@ h1 em,h2 em{font-style:normal;color:var(--red-hi)}
 #menuList i{font-family:'Maven Pro',sans-serif;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.14em;
   text-transform:uppercase;color:var(--mute2)}
 #menuList button.cur i{color:rgba(255,255,255,.75)}
-#hint{position:absolute;right:var(--pad);bottom:64px;z-index:71;text-align:right;font-family:'Maven Pro',sans-serif;
-  font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mute2);
-  transition:opacity .4s;pointer-events:none}
+#hint{position:absolute;right:var(--pad);bottom:66px;z-index:71;font-family:'Maven Pro',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.74);
+  background:rgba(11,11,12,.6);border:1px solid var(--line);border-radius:100px;padding:7px 15px;
+  backdrop-filter:blur(8px);transition:opacity .4s;pointer-events:none}
 
 /* ---------- Celular em pé: pedir rotação ---------- */
 #rotate{position:fixed;inset:0;z-index:9998;display:none;flex-direction:column;align-items:center;
@@ -893,7 +894,7 @@ h1 em,h2 em{font-style:normal;color:var(--red-hi)}
     </div>
     <div class="body">
       <div class="grow" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch;max-height:380px">
-        <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:18px;justify-content:center">
           <p class="lede" data-a style="--d:2">Na locação, a rede não imobiliza o display. Em empresas no Lucro Real, o aluguel pode ser tratado como despesa operacional quando for necessário, usual, comprovado e ligado à atividade.</p>
           <div class="strip" data-a style="--d:3">
             <svg class="ico" style="width:26px;height:26px"><use href="#i-shield"/></svg>
@@ -1125,9 +1126,20 @@ addEventListener("mouseover",function(e){
 var stage=$("#stage"),deck=$("#deck");
 function lock(e){var el=e&&e.target||deck;if(el.scrollTop||el.scrollLeft){el.scrollTop=0;el.scrollLeft=0}}
 [deck,stage].concat($$(".slide")).forEach(function(el){el.addEventListener("scroll",lock,{passive:true})});
-function fit(){var s=Math.min(innerWidth/1600,innerHeight/900);if(!(s>0))s=1;
-  stage.style.transform="translate(-50%,-50%) scale("+s+")"}
-addEventListener("resize",fit);fit();
+function fit(){
+  var r=deck.getBoundingClientRect();
+  var w=r.width||innerWidth,h=r.height||innerHeight;
+  var s=Math.min(w/1600,h/900);
+  if(!(s>0))return;               /* painel oculto: mantém a escala atual */
+  stage.style.transform="translate(-50%,-50%) scale("+s+")";
+}
+addEventListener("resize",fit);
+addEventListener("orientationchange",fit);
+addEventListener("load",fit);
+/* O painel pode mudar de tamanho sem disparar resize da janela. */
+if(window.ResizeObserver)new ResizeObserver(fit).observe(deck);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+fit();
 
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
 var TITLES=["A loja já tem o fluxo","O dinheiro mudou de endereço","O que trava hoje",

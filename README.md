@@ -1,14 +1,15 @@
-# NeoBand Retail Media · Proposta comercial para o varejo
+# Códice · Proposta comercial para o varejo
 
-Apresentação comercial em HTML (arquivo único) da solução **Display as a Service** da
-NeoBand com plataforma da 75 LAB, dirigida a redes varejistas.
+Apresentação comercial em HTML (arquivo único) da **Códice**, displays inteligentes para
+grandes resultados. Display as a Service para redes varejistas, com fabricação NeoBand e
+plataforma e design da 75 LAB.
 
 **No ar:** https://projetos.75lab.com.br/neoband-retail-media/
 
 ## O racional
 
-12 telas no arco clássico de um pitch comercial: contexto, dor, custo de não agir,
-virada, produto, preço, tecnologia, prova, benefício fiscal, confiança e decisão.
+12 telas no arco de um pitch comercial: contexto, dor, custo de não agir, virada, produto,
+preço, tecnologia, prova, benefício fiscal, confiança e decisão.
 
 | Ato | Telas | Conteúdo |
 |---|---|---|
@@ -17,65 +18,57 @@ virada, produto, preço, tecnologia, prova, benefício fiscal, confiança e deci
 | 02 · A solução | 04 a 05 | Display as a Service e o ciclo de quatro passos |
 | 03 · O produto | 06 a 08 | Seis formatos, os três planos e a tecnologia embarcada |
 | 04 · A prova | 09 a 10 | 104 cotas, simulação de receita e o efeito fiscal |
-| 05 · Decisão | 11 a 12 | Por que a NeoBand, governança, piloto e CTA |
+| 05 · Decisão | 11 a 12 | Por que a Códice, governança, piloto e CTA |
 
-A versão longa de 23 telas continua no repositório em
-[`completo.html`](completo.html), para reunião de aprofundamento:
-https://projetos.75lab.com.br/neoband-retail-media/completo.html
+A versão longa de 23 telas continua em [`completo.html`](completo.html), ainda na
+identidade anterior (NeoBand).
+
+## Identidade Códice
+
+- **Cores:** Midnight Navy `#061B49` (principal), Electric Teal `#1DD4C8` (destaques),
+  Intelligent Blue `#2F73FF` (dados), Graphite `#4E4E50` (apoio), Off-white `#F5F7FA`
+  (base clara) e o degradê navy, teal e azul.
+- **Tipografia:** Exo 2 nos títulos e números, Inter no texto.
+- **Elementos:** símbolo de três faces com barras de sensor, ondas de sensor, pontos de
+  dados, conectores com anel, molduras de canto e grade modular.
+- **Cursor:** moldura de quatro cantos com ponto de dado, que se abre sobre o que é clicável.
+- Telas alternam entre Midnight Navy e Off-white. Sem brilho, sem fundo quase preto.
 
 ## Infográficos animados
 
-- Fluxo de migração da verba (paths SVG que se desenham)
-- Anéis concêntricos expandindo no número de impacto
-- Diagrama de três círculos sobrepostos (mobiliário, manutenção, inteligência)
-- Ciclo de quatro nós com linha tracejada que se desenha e fecha
-- Órbita de tecnologia em duas camadas, com dez módulos clicáveis
-- Grade de 104 cotas que se acende conforme a ocupação
-- Arco de ocupação e barras comparativas de receita
+- Fluxo de verba com partículas correndo pelas linhas
+- Símbolo da Códice montado face a face, com conectores até mobiliário, manutenção,
+  inteligência e receita
+- Ciclo de quatro passos com um ponto de dado percorrendo o circuito
+- Órbita pontilhada em rotação, com conector que se desenha até o módulo escolhido
+- Grade de 104 cotas, arco de ocupação e barras de receita
 - Colunas empilhadas do efeito fiscal (custo efetivo e o que volta em imposto)
 - Timeline do piloto com marcos pulsando
 
 ## Interações
 
-- Seletor dos três planos (Essencial, Sense, Media)
-- Galeria clicável com os seis formatos de display
-- Órbita com dez módulos de tecnologia embarcada clicáveis
-- Simulador de ocupação (25%, 50%, 75%, 100%) que recalcula receita, arco e grade
-- Índice navegável (tecla `M`), 20 botões de CTA, exportação em PDF
-
-## Transições
-
-Seis tipos, escolhidos por natureza de tela: `push`, `rise`, `zoom`, `iris`,
-`curtain` e `blinds` (cortina de oito blocos nas telas de virada), sempre com
-a varredura de raios vermelhos por cima.
+- Galeria dos seis formatos, com moldura que se refaz a cada troca
+- Seletor dos três planos
+- Órbita com dez módulos de tecnologia clicáveis
+- Simulador de ocupação (25%, 50%, 75%, 100%)
+- Índice navegável (tecla `M`), botões de CTA, exportação em PDF
 
 ## Navegação
 
 Setas, espaço, PageUp e PageDown, `Home`, `End`, `M` para o índice, `Esc` para fechar.
-Swipe no celular. O link aceita âncora de tela: `#8` abre a tela 8.
-
-## Identidade
-
-Sistema visual levantado dos próprios materiais da NeoBand, já que a marca não
-publica manual: preto como tela dominante, areia `#E7D0B1` como campo quente,
-vermelho `#D20A11` como energia, âmbar `#F3A800` e roxo `#66256D` em círculos
-chapados sobrepostos.
-
-Devices da marca em uso: o sparkle de 4 pontas (cursor e marcador dos eyebrows),
-a explosão de raios vermelhos, os anéis concêntricos e o enquadramento de foto em
-cartão de canto arredondado. Tipografia Maven Pro, a fonte da marca, com Roboto no
-texto corrido. Assinatura 75 LAB no topo de todas as telas.
+Swipe no celular. O link aceita âncora de tela: `#9` abre a tela 9.
 
 ## Estrutura
 
 ```
 index.html          apresentação de 12 telas (HTML, CSS e JS em arquivo único)
-completo.html       versão longa de 23 telas, mesma identidade
-assets/             logos, renders ambientados e renders do sistema modular
+completo.html       versão longa de 23 telas, identidade anterior
+assets/codice-*     logos, símbolo e suas partes, elementos gráficos da marca
+assets/cfmt-*       renders dos formatos, com as áreas de comunicação na paleta Códice
+assets/app-*        renders de aplicação da marca
 ```
 
 ## Fontes do conteúdo
 
-Plano de negócio `75LAB_NeoBand_Plano_de_Negocio` e modelo financeiro
-`75LAB_NeoBand_Modelo_Financeiro`. Números de mercado do IAB Brasil / Propmark
-(Digital Adspend 2026) e ABRAS (Ranking 2026).
+Plano de negócio e modelo financeiro do projeto. Números de mercado do IAB Brasil /
+Propmark (Digital Adspend 2026) e da ABRAS (Ranking 2026).

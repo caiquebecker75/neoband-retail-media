@@ -327,10 +327,135 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 .app .chip2{right:0;border-bottom-left-radius:14px;justify-content:center}
 .app .chip2 svg{width:16px;height:12px;fill:var(--teal)}
 
+/* ---------- Fotos da operação ---------- */
+.shot{position:relative;margin:0;border-radius:18px;overflow:hidden;background:var(--navy2)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease)}
+.shot:hover img{transform:scale(1.05)}
+.shot.fade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,27,73,0) 42%,rgba(6,27,73,.9) 100%);pointer-events:none}
+.shot figcaption{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;color:#fff}
+.sn{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:24px;padding:0 9px;border-radius:100px;background:var(--teal);color:var(--navy);font-family:'Exo 2';font-size:12px;font-weight:800;letter-spacing:.04em}
+.shot .stt{font-family:'Exo 2';font-size:19px;font-weight:700;margin-top:8px;display:block;line-height:1.1}
+.shot .sst{font-size:12.5px;color:rgba(255,255,255,.8);margin-top:3px;display:block;line-height:1.35}
+.slide.on .rv{animation:shotIn 1.05s var(--ease-out) both;animation-delay:calc(var(--d,0)*90ms + 260ms)}
+@keyframes shotIn{from{clip-path:inset(100% 0 0 0 round 18px)}to{clip-path:inset(0 0 0 0 round 18px)}}
+.slide.noanim .rv{animation:none!important;clip-path:none!important}
+
+/* pontos de destaque sobre a foto */
+.hs{position:absolute;z-index:4;width:18px;height:18px;margin:-9px 0 0 -9px}
+.hs::before{content:"";position:absolute;inset:0;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(29,212,200,.6)}
+.hs::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--teal);animation:hsPulse 2.4s ease-out infinite}
+@keyframes hsPulse{0%{opacity:.9;transform:scale(.5)}80%,100%{opacity:0;transform:scale(1.6)}}
+.hs span{position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;background:#fff;color:var(--navy);font-family:'Exo 2';
+  font-size:13.5px;font-weight:700;padding:8px 14px;border-radius:100px;box-shadow:0 10px 24px rgba(3,14,40,.32)}
+.hs span::before{content:"";position:absolute;top:50%;width:20px;height:2px;background:#fff}
+.hs.r span{left:32px}.hs.r span::before{left:-20px}
+.hs.l span{right:32px}.hs.l span::before{right:-20px}
+.slide.on .hs{animation:aPop .7s var(--ease-out) both;animation-delay:calc(var(--d,0)*140ms + 900ms)}
+.slide.noanim .hs{animation:none!important;opacity:1!important;transform:none!important}
+
+/* pacotes */
+.pknav{display:flex;gap:6px}
+.pknav button{font-family:'Exo 2';font-size:12.5px;font-weight:700;padding:8px 16px;border-radius:100px;border:1.5px solid var(--ln2);color:var(--fg2);transition:.25s}
+.pknav button:hover{border-color:var(--acc);color:var(--fg)}
+.pknav button.cur{background:var(--teal);border-color:var(--teal);color:var(--navy)}
+.light .pknav button.cur{background:var(--navy);border-color:var(--navy);color:#fff}
+.pkname{font-family:'Exo 2';font-size:98px;font-weight:800;letter-spacing:-.03em;line-height:.9}
+.pkmeter{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pkmeter span{display:flex;flex-direction:column;gap:7px}
+.pkmeter i{height:8px;border-radius:4px;background:var(--ln);position:relative;overflow:hidden}
+.pkmeter i.on::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#1DD4C8,#2F73FF);transform-origin:left;transform:scaleX(0)}
+.slide.on .pkmeter i.on::after{animation:meterIn .8s var(--ease-out) both .5s}
+.slide.on .pkmeter span:nth-child(2) i.on::after{animation-delay:.75s}
+.slide.on .pkmeter span:nth-child(3) i.on::after{animation-delay:1s}
+@keyframes meterIn{to{transform:scaleX(1)}}
+.slide.noanim .pkmeter i.on::after{animation:none!important;transform:none!important}
+.pkmeter b{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
+.pkmeter b.on{color:var(--acc)}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.feat{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;background:var(--card);border:1px solid var(--cardln)}
+.light .feat{box-shadow:0 8px 20px rgba(6,27,73,.05)}
+.feat .fi{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(29,212,200,.14);flex:0 0 36px}
+.light .feat .fi{background:rgba(47,115,255,.1)}
+.feat .fi svg{width:19px;height:19px}
+.feat b{font-family:'Exo 2';font-size:15.5px;font-weight:700;line-height:1.15;display:block}
+.feat small{font-size:11.5px;color:var(--fg3);display:block;margin-top:2px;line-height:1.3}
+.feat.new{border-color:rgba(29,212,200,.55)}
+.light .feat.new{border-color:rgba(47,115,255,.4)}
+.feat.base{background:transparent;border-style:dashed}
+.pkph{position:relative;height:100%;min-height:0}
+.pkph .ph{position:absolute;inset:0;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(3,14,40,.3)}
+.pkph .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.slide.on .pkph .ph img{animation:kenburns 16s linear both}
+
+/* faixa de marcas rodando */
+.mq{position:relative;overflow:hidden;border-radius:16px;background:var(--navy2);border:1px solid var(--cardln);display:flex;align-items:center;height:64px}
+.mq .ml{position:relative;z-index:2;flex:0 0 150px;height:100%;display:flex;align-items:center;gap:9px;padding:0 18px;background:var(--navy3);
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.mq .mt{flex:1;overflow:hidden;height:100%;display:flex;align-items:center;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
+.mq .trk{display:flex;width:max-content;animation:mq 48s linear infinite}
+.mq .trk.rev{animation-direction:reverse;animation-duration:92s}
+.mq .trk>div{display:flex;align-items:center;gap:40px;padding-right:40px}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq .trk img{height:36px;width:auto;opacity:1}
+.mq .trk span{font-family:'Exo 2';font-size:19px;font-weight:700;color:rgba(255,255,255,.88);white-space:nowrap}
+.mq .trk i{width:5px;height:5px;border-radius:50%;background:var(--teal);opacity:.75;flex:0 0 5px}
+
+/* painéis do grupo */
+.gp{border-radius:22px;padding:22px 24px;background:var(--navy2);border:1px solid var(--cardln);display:flex;flex-direction:column;gap:14px}
+.gp .gk{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.gp .gk div{padding:11px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--cardln)}
+.gp .gk b{font-family:'Exo 2';font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--teal);display:block;line-height:1;white-space:nowrap}
+.gp .gk small{font-size:11.5px;color:var(--fg2);display:block;margin-top:5px;line-height:1.3}
+.gp ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.gp li{font-size:13px;color:var(--fg2);display:flex;gap:9px;align-items:flex-start;line-height:1.35}
+.gp li svg{width:13px;height:13px;flex:0 0 13px;margin-top:2px;stroke:var(--teal);fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* simulador */
+.ctl{display:flex;flex-direction:column;gap:7px}
+.ctl label{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A93A7;display:flex;justify-content:space-between;align-items:baseline}
+.ctl label output{font-family:'Exo 2';font-size:15px;letter-spacing:0;text-transform:none;color:var(--navy)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:14px;background:var(--off);border:1px solid var(--cardln)}
+.seg button{padding:8px 6px;border-radius:10px;font-family:'Exo 2';font-size:13.5px;font-weight:700;color:#58627A;text-align:center;transition:.25s;line-height:1.15}
+.seg button small{display:block;font-family:Inter,sans-serif;font-size:10.5px;font-weight:600;opacity:.8;margin-top:1px}
+.seg button:hover{color:var(--navy)}
+.seg button.on{background:var(--navy);color:#fff}
+.stp{display:grid;grid-template-columns:46px 1fr 46px;align-items:center;border-radius:14px;background:var(--off);border:1px solid var(--cardln);height:48px}
+.stp button{height:100%;display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:700;color:var(--navy);border-radius:12px;transition:.2s;text-align:center}
+.stp button:hover{background:rgba(6,27,73,.07)}
+.stp input{width:100%;min-width:0;border:0;background:transparent;text-align:center;font-family:'Exo 2';font-size:21px;font-weight:800;color:var(--navy);outline:none;-moz-appearance:textfield;cursor:none}
+.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.rng{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;outline:none;cursor:none;margin:8px 0 4px;
+  background:linear-gradient(90deg,#0E9E95 0%,#2F73FF var(--p,100%),rgba(6,27,73,.1) var(--p,100%))}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--navy);box-shadow:0 4px 10px rgba(6,27,73,.2)}
+.rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy)}
+.kpi{border-radius:18px;padding:15px 18px;background:#fff;border:1px solid var(--cardln);box-shadow:0 12px 30px rgba(6,27,73,.05)}
+.kpi .kl{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A93A7}
+.kpi .kv{font-family:'Exo 2';font-size:33px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1;white-space:nowrap}
+.kpi .kv small{font-size:.5em;font-weight:700;margin-right:3px}
+.kpi .ks{font-size:12px;color:#58627A;margin-top:6px;white-space:nowrap}
+.kpi.hl{background:var(--navy);border-color:var(--navy);color:#fff}
+.kpi.hl .kl{color:var(--teal)}.kpi.hl .ks{color:rgba(255,255,255,.72)}
+.datechip{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--cardln);
+  border-radius:100px;padding:7px 15px 7px 11px;box-shadow:0 6px 16px rgba(6,27,73,.06);white-space:nowrap}
+.datechip i{width:8px;height:8px;border-radius:50%;background:#0E9E95;box-shadow:0 0 0 3px rgba(14,158,149,.22)}
+.swap{animation:aSwap .55s var(--ease-out) both}
+.gx{transform-box:fill-box;transform-origin:left center;transform:scaleX(0)}
+.gx.rt{transform-origin:right center}
+.slide.on .gx{animation:barX 1.1s var(--ease-out) both;animation-delay:calc(var(--d,0)*95ms + 300ms)}
+@keyframes barX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.slide.noanim .gx{animation:none!important;transform:none!important}
+.slide.on .rv2{animation:shotIn2 1.05s var(--ease-out) both;animation-delay:calc(var(--d,0)*90ms + 260ms)}
+@keyframes shotIn2{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(-140px -140px -140px -140px)}}
+.slide.noanim .rv2{animation:none!important;clip-path:none!important}
+.wbar{transition:width 1.1s var(--ease-out)}
+@media print{.gx{transform:none!important}.rv,.rv2{clip-path:none!important}}
+@keyframes aSwap{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
 /* índice */
 #menu{position:absolute;inset:0;z-index:95;background:rgba(6,27,73,.98);display:none;padding:92px var(--pad) 78px;flex-direction:column;gap:22px}
 #menu.on{display:flex;animation:trFadeIn .3s both}
-#menuList{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:5px 40px;flex:1;grid-auto-flow:column;grid-template-rows:repeat(6,1fr)}
+#menuList{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:5px 40px;flex:1;grid-auto-flow:column;grid-template-rows:repeat(9,1fr)}
 #menuList button{width:100%;display:flex;align-items:center;gap:14px;padding:9px 14px;border-radius:12px;transition:.22s}
 #menuList button:hover{background:rgba(29,212,200,.14)}
 #menuList button.cur{background:var(--teal);color:var(--navy)}
@@ -446,10 +571,10 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 
   <!-- ═══ 01 · CAPA ═══ -->
   <section class="slide" data-tr="zoom" data-tone="dark">
-    <div class="bleed"><img src="assets/amb-loja.jpg" alt="Display conectado em supermercado"></div>
-    <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(96deg,rgba(6,27,73,.97) 0%,rgba(6,27,73,.9) 36%,rgba(6,27,73,.32) 72%,rgba(6,27,73,.14) 100%)"></div>
-    <div class="frame" style="left:872px;top:92px;width:640px;height:706px;z-index:3"><i></i><i></i><i></i><i></i></div>
-    <div class="livecard" data-a="pop" style="--d:7">
+    <div class="bleed"><img src="assets/foto-ilha-supermercado.jpg" alt="Display Códice em supermercado" style="width:1600px;height:900px;margin-left:330px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);mask-image:linear-gradient(90deg,transparent 0,#000 26%)"></div>
+    <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(96deg,rgba(6,27,73,.98) 0%,rgba(6,27,73,.93) 32%,rgba(6,27,73,.5) 50%,rgba(6,27,73,.08) 68%,rgba(6,27,73,0) 100%)"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:260px;z-index:1;background:linear-gradient(0deg,rgba(6,27,73,.7),rgba(6,27,73,0))"></div>
+    <div class="livecard" data-a="pop" style="--d:7;left:1250px;top:640px">
       <div class="lc-top"><img src="assets/codice-simbolo.png" alt=""><span>Ponta 03 · Loja Centro</span><b>ONLINE</b></div>
       <div class="lc-mid">
         <div><small>Campanha ativa</small><strong>Semana 12 de 26</strong></div>
@@ -466,19 +591,185 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
       <h1 class="xl" data-a style="--d:2;margin-top:16px">A sua loja já é<br>um <em>veículo<br>de mídia</em>.</h1>
       <p class="lede" data-a style="--d:4;font-size:20px;max-width:48ch;margin-top:22px">Falta cobrar por isso. Displays inteligentes por assinatura: a rede vende a semana, a Códice instala, mantém e mede.</p>
       <div class="btns" data-a style="--d:5;margin-top:28px">
-        <button class="btn pri" data-go="3">Ver a virada <svg><use href="#i-r"/></svg></button>
-        <button class="btn wht" data-go="8">Ver os números</button>
-        <button class="btn gho" data-go="11">Começar pelo piloto</button>
+        <button class="btn pri" data-go="1">Conhecer a Códice <svg><use href="#i-r"/></svg></button>
+        <button class="btn wht" data-go="16">Ver os números</button>
+        <button class="btn gho" data-go="18">Simular a minha rede</button>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 02 · O MOMENTO E O PROBLEMA ═══ -->
+  <!-- ═══ QUEM É A CÓDICE ═══ -->
+  <section class="slide light" data-tr="rise" data-tone="light">
+    <div class="pad">
+      <div style="display:grid;grid-template-columns:1fr 800px;gap:56px;align-items:center;flex:1;min-height:0">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos</div>
+          <h2 data-a style="--d:1;font-size:60px">Uma empresa feita<br>para o <em>display de varejo</em>.</h2>
+          <p class="lede" data-a style="--d:2;font-size:18.5px;max-width:44ch">A Códice transforma o espaço da loja em mídia que se vende, se mantém e se mede. Projeto, instalação, manutenção, tecnologia e dados num contrato só.</p>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+            <div data-a="left" style="--d:3;display:flex;gap:16px;align-items:center">
+              <div style="width:46px;height:46px;border-radius:50%;background:var(--navy);display:grid;place-items:center;flex:0 0 46px"><svg class="ico" style="width:21px;height:21px;stroke:var(--teal)"><use href="#i-box"/></svg></div>
+              <div><h3 style="font-size:20px">Mobiliário que vende</h3><p style="font-size:14px;color:var(--fg2);margin-top:2px">Formatos modulares, com o mesmo padrão em todas as lojas.</p></div></div>
+            <div data-a="left" style="--d:4;display:flex;gap:16px;align-items:center">
+              <div style="width:46px;height:46px;border-radius:50%;background:var(--teal);display:grid;place-items:center;flex:0 0 46px"><svg class="ico" style="width:21px;height:21px;stroke:var(--navy)"><use href="#i-wrench"/></svg></div>
+              <div><h3 style="font-size:20px">Operação que mantém</h3><p style="font-size:14px;color:var(--fg2);margin-top:2px">Instalação, manutenção e troca de comunicação com time próprio.</p></div></div>
+            <div data-a="left" style="--d:5;display:flex;gap:16px;align-items:center">
+              <div style="width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:0 0 46px"><svg class="ico" style="width:21px;height:21px;stroke:#fff"><use href="#i-chart"/></svg></div>
+              <div><h3 style="font-size:20px">Dados que provam</h3><p style="font-size:14px;color:var(--fg2);margin-top:2px">Sensores, plataforma e relatório por campanha.</p></div></div>
+          </div>
+          <div data-a style="--d:6;display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:18px;border-top:1px solid var(--ln)">
+            <img src="assets/codice-simbolo.png" alt="" style="height:38px;width:auto">
+            <span style="font-family:'Exo 2';font-size:27px;font-weight:800;letter-spacing:-.01em">Do espaço <em>ao insight</em>.</span>
+          </div>
+        </div>
+        <div style="position:relative;height:600px">
+          <figure class="shot rv" style="--d:2;position:absolute;left:70px;top:0;width:730px;height:470px;box-shadow:0 30px 60px rgba(6,27,73,.22)"><img src="assets/foto-sede.jpg" alt="Sede da Códice" style="object-position:50% 40%"></figure>
+          <div class="frame" style="left:70px;top:0;width:730px;height:470px;z-index:3;--fc:#061B49;--fs:40px;--fo:-16px"><i></i><i></i><i></i><i></i></div>
+          <figure class="shot rv" style="--d:5;position:absolute;left:0;top:340px;width:420px;height:250px;border:7px solid var(--off);z-index:4;box-shadow:0 26px 50px rgba(6,27,73,.25)"><img src="assets/foto-time.jpg" alt="Time Códice" style="object-position:50% 45%"></figure>
+          <span data-a="pop" style="--d:8;position:absolute;right:26px;top:410px;z-index:5;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-family:'Exo 2';font-size:13px;font-weight:700;padding:8px 15px;border-radius:100px"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>Sede Códice</span>
+          <span data-a="pop" style="--d:9;position:absolute;left:444px;top:548px;z-index:5;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-family:'Exo 2';font-size:13px;font-weight:700;padding:8px 15px;border-radius:100px;box-shadow:0 10px 24px rgba(6,27,73,.14)"><svg class="mb" style="fill:var(--blue)"><use href="#mb"/></svg>Time próprio, do projeto ao suporte</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ O GRUPO ═══ -->
+  <section class="slide" data-tr="push" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos · O grupo</div>
+        <h2 data-a style="--d:1">A Códice nasce dentro de um grupo<br>que <em>já faz o varejo acontecer</em>.</h2>
+      </div>
+      <div class="body" style="gap:16px">
+        <div style="position:relative;display:grid;grid-template-columns:520px 1fr 520px;gap:60px;align-items:stretch">
+          <div class="gp" data-a="left" style="--d:2">
+            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+              <img src="assets/neoband-wordmark-white.png" alt="NeoBand" style="height:32px;width:auto"><span class="tag">A fábrica</span></div>
+            <p style="font-size:14px;line-height:1.45;color:var(--fg2)">Projeta e fabrica mobiliário de PDV para grandes marcas. Constrói cada display da Códice.</p>
+            <div class="gk">
+              <div><b><span data-cu="40">0</span>+</b><small>anos de fabricação</small></div>
+              <div><b><span data-cu="100">0</span>%</b><small>design e produção no Brasil</small></div>
+              <div><b>FSC</b><small>materiais certificados</small></div>
+              <div><b>24 h</b><small>fábrica de segunda a sexta</small></div>
+            </div>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Fornecedor do Ano, Brazil Promotion 2025</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Homologada por Disney/FAMA e JCDecaux</li>
+            </ul>
+          </div>
+          <div data-a="pop" style="--d:4;border-radius:22px;background:#fff;color:var(--navy);padding:24px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;box-shadow:0 30px 60px rgba(3,14,40,.45)">
+            <img src="assets/codice-simbolo.png" alt="" style="height:78px;width:auto">
+            <img src="assets/codice-logotipo.png" alt="Códice" style="height:32px;width:auto">
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0E9E95">O serviço</div>
+            <p style="font-size:13.5px;line-height:1.45;color:#58627A;max-width:25ch">Une a fábrica e a inteligência num contrato por display e por mês.</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:5px">
+              <span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Assinatura</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Instalação</span>
+              <span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Manutenção</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Mídia</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Dados</span></div>
+          </div>
+          <div class="gp" data-a="right" style="--d:2">
+            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+              <img src="assets/75lab-wordmark-paper.png" alt="75 LAB" style="height:40px;width:auto"><span class="tag">Trade e tecnologia</span></div>
+            <p style="font-size:14px;line-height:1.45;color:var(--fg2)">Estratégia de trade, design de PDV e tecnologia. Desenha a experiência e mede o resultado.</p>
+            <div class="gk">
+              <div><b>+<span data-cu="15">0</span></b><small>anos no trade marketing</small></div>
+              <div><b><span data-cu="15000" data-fmt="br">0</span>+</b><small>PDVs positivados</small></div>
+              <div><b><span data-cu="95">0</span>%</b><small>projetos aprovados</small></div>
+              <div><b><span data-cu="84">0</span></b><small>cases entregues</small></div>
+            </div>
+            <ul>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Estratégia de trade, categoria e design de PDV</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plataforma, dados e prova de execução</li>
+            </ul>
+          </div>
+          <svg class="fadein" style="--d:5;position:absolute;left:520px;top:50%;width:60px;height:24px;margin-top:-12px;overflow:visible" viewBox="0 0 60 24" aria-hidden="true">
+            <line x1="0" y1="12" x2="60" y2="12" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#061B49" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="60" cy="12" r="5" fill="#fff" stroke="#1DD4C8" stroke-width="2.4"/>
+            <circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M0 12 H60"/></circle></svg>
+          <svg class="fadein" style="--d:5;position:absolute;left:900px;top:50%;width:60px;height:24px;margin-top:-12px;overflow:visible" viewBox="0 0 60 24" aria-hidden="true">
+            <line x1="0" y1="12" x2="60" y2="12" stroke="#2F73FF" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#fff" stroke="#2F73FF" stroke-width="2.4"/><circle cx="60" cy="12" r="5" fill="#061B49" stroke="#2F73FF" stroke-width="2.4"/>
+            <circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M60 12 H0"/></circle></svg>
+        </div>
+        <div data-a style="--d:7;display:flex;flex-direction:column;gap:8px">
+          <div class="kicker">Marcas que o grupo já atende</div>
+          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>NeoBand</div><div class="mt"><div class="trk" id="mq1"></div></div></div>
+          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>75 LAB</div><div class="mt"><div class="trk rev" id="mq2"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ A OPERAÇÃO ═══ -->
+  <section class="slide light" data-tr="curtain" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos · A operação</div>
+        <h2 data-a style="--d:1">Por trás de cada display,<br><em>uma operação inteira</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="position:relative;width:1480px;height:540px">
+          <svg viewBox="0 0 1480 540" style="position:absolute;inset:0;width:1480px;height:540px;overflow:visible" aria-hidden="true">
+            <defs><linearGradient id="gOps" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1480" y2="0"><stop offset="0" stop-color="#0E9E95"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>
+            <line x1="10" y1="270" x2="1470" y2="270" stroke="rgba(6,27,73,.1)" stroke-width="4" stroke-linecap="round"/>
+            <line class="draw" style="--len:1460;--d:1" x1="10" y1="270" x2="1470" y2="270" stroke="url(#gOps)" stroke-width="4" stroke-linecap="round"/>
+            <g class="fadein" style="--d:3" stroke="rgba(6,27,73,.3)" stroke-width="2" stroke-dasharray="3 4">
+              <line x1="170" y1="240" x2="170" y2="262"/><line x1="626" y1="240" x2="626" y2="262"/><line x1="1082" y1="240" x2="1082" y2="262"/>
+              <line x1="398" y1="278" x2="398" y2="300"/><line x1="854" y1="278" x2="854" y2="300"/><line x1="1310" y1="278" x2="1310" y2="300"/></g>
+            <g class="fadein" style="--d:3" fill="#fff" stroke="#2F73FF" stroke-width="3">
+              <circle cx="170" cy="270" r="8"/><circle cx="398" cy="270" r="8"/><circle cx="626" cy="270" r="8"/>
+              <circle cx="854" cy="270" r="8"/><circle cx="1082" cy="270" r="8"/><circle cx="1310" cy="270" r="8"/></g>
+            <circle class="fadein" style="--d:4" r="6" fill="#0E9E95"><animateMotion dur="7s" repeatCount="indefinite" path="M10 270 H1470"/></circle>
+          </svg>
+          <figure class="shot fade rv" style="--d:2;position:absolute;left:0;top:0;width:340px;height:240px"><img src="assets/foto-engenharia.jpg" alt="Engenharia Códice" style="object-position:50% 40%">
+            <figcaption><span class="sn">01</span><span class="stt">Engenharia</span><span class="sst">Projeto e protótipo de cada formato</span></figcaption></figure>
+          <figure class="shot fade rv" style="--d:3;position:absolute;left:228px;top:300px;width:340px;height:240px"><img src="assets/foto-montagem.jpg" alt="Montagem dos displays" style="object-position:30% 50%">
+            <figcaption><span class="sn">02</span><span class="stt">Montagem</span><span class="sst">Módulos montados e testados</span></figcaption></figure>
+          <figure class="shot fade rv" style="--d:4;position:absolute;left:456px;top:0;width:340px;height:240px"><img src="assets/foto-estoque.jpg" alt="Estoque de displays" style="object-position:45% 50%">
+            <figcaption><span class="sn">03</span><span class="stt">Estoque</span><span class="sst">Cada ativo rastreado por código</span></figcaption></figure>
+          <figure class="shot fade rv" style="--d:5;position:absolute;left:684px;top:300px;width:340px;height:240px"><img src="assets/foto-logistica.jpg" alt="Logística Códice" style="object-position:62% 50%">
+            <figcaption><span class="sn">04</span><span class="stt">Logística</span><span class="sst">Entrega e instalação na loja</span></figcaption></figure>
+          <figure class="shot fade rv" style="--d:6;position:absolute;left:912px;top:0;width:340px;height:240px"><img src="assets/foto-monitoramento.jpg" alt="Centro de monitoramento" style="object-position:50% 40%">
+            <figcaption><span class="sn">05</span><span class="stt">Monitoramento</span><span class="sst">Displays conectados acompanhados de perto</span></figcaption></figure>
+          <figure class="shot fade rv" style="--d:7;position:absolute;left:1140px;top:300px;width:340px;height:240px"><img src="assets/foto-suporte.jpg" alt="Suporte Códice" style="object-position:66% 50%">
+            <figcaption><span class="sn">06</span><span class="stt">Suporte</span><span class="sst">Chamado aberto, técnico na rota</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ A PLATAFORMA ═══ -->
+  <section class="slide" data-tr="zoom" data-tone="dark">
+    <img class="decor" src="assets/codice-pontos-branco.png" alt="" style="right:64px;top:100px;width:96px;--op:.18">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos · A plataforma</div>
+        <h2 data-a style="--d:1">A operação inteira, <em>numa plataforma só</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:1fr 860px;gap:44px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div id="sisTabs" style="display:flex;flex-direction:column;gap:5px"></div>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+              <div style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden"><div id="sisProg" style="height:100%;width:0;background:linear-gradient(90deg,#1DD4C8,#2F73FF)"></div></div>
+              <span class="kicker" id="sisCount" style="font-size:10px">01 / 07</span></div>
+          </div>
+          <div data-a="right" style="--d:3;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 40px 80px rgba(0,0,0,.45)">
+            <div style="height:34px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#E6EBF3">
+              <i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i>
+              <span style="margin:0 auto;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#58627A;background:#fff;border-radius:100px;padding:4px 16px"><img src="assets/codice-simbolo.png" alt="" style="height:13px;width:auto">Plataforma Códice · <span id="sisUrl">Painel</span></span>
+              <span style="width:44px"></span></div>
+            <div style="position:relative;aspect-ratio:1386/868;background:#F5F7FA;overflow:hidden"><img id="sisImg" src="assets/sis-painel.jpg" alt="Painel da plataforma Códice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .3s"></div>
+          </div>
+        </div>
+        <div class="note" data-a style="--d:6;margin-top:14px">Telas do sistema Códice em modo demonstração, com dados fictícios. As telas trocam sozinhas; clique para escolher.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ O MOMENTO E O PROBLEMA ═══ -->
   <section class="slide light" data-tr="push" data-tone="light">
     <img class="decor" src="assets/codice-pontos.png" alt="" style="right:66px;top:100px;width:132px">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 01 · O que mudou</div>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O que mudou</div>
         <h2 data-a style="--d:1">A verba desceu para o corredor.<br>O espaço <em>ainda não está pronto</em>.</h2>
       </div>
       <div class="body">
@@ -546,7 +837,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
       <svg class="gw" viewBox="0 0 64 40" style="width:74px;height:46px;margin-bottom:22px" aria-hidden="true">
         <rect x="0" y="22" width="11" height="18" rx="5.5" fill="url(#gBarV)"/><rect x="17.5" y="13" width="11" height="27" rx="5.5" fill="url(#gBarV)"/>
         <rect x="35" y="6" width="11" height="34" rx="5.5" fill="url(#gBarV)"/><rect x="52.5" y="0" width="11" height="40" rx="5.5" fill="url(#gBarV)"/></svg>
-      <div class="eyebrow" data-a style="--d:0;justify-content:center">Ato 01 · O custo de não agir</div>
+      <div class="eyebrow" data-a style="--d:0;justify-content:center">O custo de não agir</div>
       <p class="lede" data-a style="--d:1;margin-top:22px;font-size:22px;max-width:40ch">Uma rede de 10 lojas, com metade da agenda vendida, deixa na mesa</p>
       <div data-a="pop" style="--d:2;margin:18px 0 6px;display:flex;align-items:baseline;gap:14px;font-family:'Exo 2'">
         <span style="font-size:68px;font-weight:700;color:var(--teal)">R$</span>
@@ -555,9 +846,9 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
       </div>
       <div data-a style="--d:4;font-family:'Exo 2';font-size:25px;font-weight:700">por ano. <em>Todo ano.</em></div>
       <div class="btns" data-a style="--d:5;margin-top:36px;justify-content:center">
-        <button class="btn pri" data-go="3">Como virar esse jogo <svg><use href="#i-r"/></svg></button>
+        <button class="btn pri" data-go="7">Como virar esse jogo <svg><use href="#i-r"/></svg></button>
       </div>
-      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:78ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 1.500, já descontada a assinatura. Detalhamento na tela 09.</div>
+      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:78ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 1.500, já descontado o aluguel. Detalhamento na tela 17.</div>
     </div>
   </section>
 
@@ -565,7 +856,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   <section class="slide white" data-tr="rise" data-tone="light">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 02 · A solução</div>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A solução</div>
         <h2 data-a style="--d:1">E se cada ponta fosse um espaço vendável?<br>Três compras separadas, <em>agora uma assinatura</em>.</h2>
       </div>
       <div class="body">
@@ -623,31 +914,151 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
               <div><h3 style="font-size:23px">Evidência que renova</h3>
               <p style="font-size:15px;color:var(--fg2);line-height:1.55;margin-top:6px">Prova de instalação, período ativo e sinais de interação para a indústria comprar de novo.</p></div></div>
             <div class="btns" data-a style="--d:8;margin-top:4px">
-              <button class="btn pri" data-go="4">Como isso roda na prática <svg><use href="#i-r"/></svg></button></div>
+              <button class="btn pri" data-go="8">Comparar com comprar <svg><use href="#i-r"/></svg></button></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══ QUANTO CUSTA COMPRAR SOZINHO ═══ -->
+  <section class="slide" data-tr="blinds" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Comprar sozinho</div>
+        <h2 data-a style="--d:1">O preço do display é só a ponta.<br>O resto <em>fica abaixo da linha d'água</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:640px 1fr;gap:54px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <svg viewBox="0 0 720 500" style="width:640px;height:auto;overflow:visible" aria-hidden="true">
+              <defs>
+                <linearGradient id="gIce" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="0" y2="480"><stop offset="0" stop-color="#11307A"/><stop offset="1" stop-color="#0A2360"/></linearGradient>
+                <linearGradient id="gSea" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="0" y2="500"><stop offset="0" stop-color="#2F73FF" stop-opacity=".18"/><stop offset="1" stop-color="#2F73FF" stop-opacity="0"/></linearGradient>
+              </defs>
+              <rect class="fadein" style="--d:0" x="0" y="150" width="720" height="350" fill="url(#gSea)"/>
+              <path class="fadein" style="--d:2" d="M168 150 H552 L640 262 L602 398 L470 478 H262 L118 404 L82 262 Z" fill="url(#gIce)" stroke="rgba(29,212,200,.5)" stroke-width="1.6"/>
+              <g data-a style="--d:1"><path d="M248 150 L318 62 L352 88 L396 34 L472 150 Z" fill="#fff"/><path d="M396 34 L472 150 H404 Z" fill="#D5DEEE"/></g>
+              <path class="draw" style="--len:760;--d:1" d="M0 150 C40 142 80 158 120 150 S200 142 240 150 S320 158 360 150 S440 142 480 150 S560 158 600 150 S680 142 720 150" fill="none" stroke="#1DD4C8" stroke-width="2.4"/>
+              <text class="fadein" style="--d:2" x="716" y="176" text-anchor="end" font-family="Inter" font-size="11" font-weight="700" fill="rgba(255,255,255,.45)" letter-spacing="1.6">LINHA D'ÁGUA</text>
+              <g class="fadein" style="--d:2">
+                <line x1="470" y1="96" x2="528" y2="70" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/>
+                <text x="538" y="62" font-family="Exo 2" font-size="36" font-weight="800" fill="#fff">R$ <tspan data-cu="3200" data-fmt="br">0</tspan></text>
+                <text x="539" y="86" font-family="Inter" font-size="13" fill="rgba(255,255,255,.66)">o que aparece na nota</text>
+              </g>
+              <g class="fadein" style="--d:4" stroke="rgba(255,255,255,.14)" stroke-dasharray="4 5">
+                <line x1="130" y1="232" x2="590" y2="232"/><line x1="96" y1="292" x2="630" y2="292"/><line x1="108" y1="352" x2="614" y2="352"/></g>
+              <g class="fadein" style="--d:4" font-family="Inter" font-size="16" fill="rgba(255,255,255,.86)">
+                <text x="180" y="212">Instalação</text><text x="160" y="272">Manutenção no 1º ano</text>
+                <text x="172" y="332">Operação no 1º ano</text><text x="232" y="410" font-size="14.5" fill="rgba(255,255,255,.58)">Projeto, peças e reforma</text></g>
+              <g class="fadein" style="--d:5" font-family="Exo 2" font-size="22" font-weight="800" fill="#1DD4C8" text-anchor="end">
+                <text x="548" y="212">R$ 350</text><text x="578" y="272">R$ 600</text><text x="560" y="332">R$ 240</text>
+                <text x="500" y="436" font-family="Inter" font-size="13" font-weight="600" fill="rgba(255,255,255,.5)" text-anchor="middle">sem preço fechado</text></g>
+            </svg>
+            <div data-a style="--d:6;display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:16px;background:rgba(29,212,200,.1);border-left:3px solid var(--teal)">
+              <span style="font-family:'Exo 2';font-size:30px;font-weight:800;white-space:nowrap">R$ 4.390</span>
+              <span style="font-size:14px;color:var(--fg2);line-height:1.35">por display no primeiro ano.<br><b style="color:#fff">37% acima do preço da nota.</b></span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="card hl" data-a="pop" style="--d:4;padding:22px 26px;gap:4px">
+              <div class="num">Uma loja com 4 displays</div>
+              <div class="big" style="font-size:60px;margin-top:8px;color:var(--navy)"><small>R$ </small><span data-cu="17560" data-fmt="br">0</span></div>
+              <p style="font-size:13.5px;margin-top:6px">no primeiro ano, antes de vender uma única cota para a indústria</p>
+            </div>
+            <div class="kicker" data-a="fade" style="--d:5;margin-top:6px">E o que vem junto com a compra</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 22px">
+              <div data-a style="--d:5;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Capital parado no dia 1</span></div>
+              <div data-a style="--d:6;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Imobilizado e depreciação</span></div>
+              <div data-a style="--d:7;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Tecnologia que envelhece</span></div>
+              <div data-a style="--d:8;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Projeto e engenharia por conta</span></div>
+              <div data-a style="--d:9;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Manutenção sem prazo</span></div>
+              <div data-a style="--d:10;display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Cada loja com um móvel</span></div>
+              <div data-a style="--d:11;display:flex;gap:11px;align-items:center;padding:10px 0"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Sem prova de execução</span></div>
+              <div data-a style="--d:12;display:flex;gap:11px;align-items:center;padding:10px 0"><span style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:0 0 26px"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span style="font-size:14.5px;line-height:1.3">Sem plataforma para vender mídia</span></div>
+            </div>
+            <div class="btns" data-a style="--d:12;margin-top:8px"><button class="btn pri" data-go="9">Comparar com a Códice <svg><use href="#i-r"/></svg></button></div>
+          </div>
+        </div>
+        <div class="note" data-a style="--d:13;margin-top:14px">Premissas de custo de escala do plano de negócio: display R$ 3.200, instalação R$ 350, manutenção R$ 50 e operação R$ 20 por mês. Na compra avulsa, a rede tende a pagar mais.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPRAR OU ASSINAR ═══ -->
+  <section class="slide light" data-tr="push" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Comprar ou assinar</div>
+        <h2 data-a style="--d:1">Mesmo display, dois caminhos.<br>Só um <em>começa vendendo</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:600px 1fr;gap:44px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="card" data-a style="--d:2;padding:22px 24px;gap:14px">
+              <div class="num">Desembolso no primeiro mês · loja com 4 displays</div>
+              <div style="display:grid;grid-template-columns:84px 1fr 98px;gap:10px 14px;align-items:center">
+                <span style="font-size:13.5px;color:var(--fg2)">Comprar</span>
+                <div style="height:34px;border-radius:10px;background:rgba(6,27,73,.06);overflow:hidden"><div class="wbar" data-w="100" style="height:100%;width:0;border-radius:10px;background:#4E4E50"></div></div>
+                <b style="font-family:'Exo 2';font-size:17px;text-align:right">R$ 14.480</b>
+                <span style="font-size:13.5px;color:var(--fg2)">Códice</span>
+                <div style="height:34px;border-radius:10px;background:rgba(6,27,73,.06);overflow:hidden"><div class="wbar" data-w="27.3" style="height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,#0E9E95,#2F73FF)"></div></div>
+                <b style="font-family:'Exo 2';font-size:17px;text-align:right;color:var(--blue)">R$ 3.956</b>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:10px;margin-top:2px"><span class="big" style="font-size:44px;color:var(--blue)"><span data-cu="73">0</span><small>%</small></span><span style="font-size:14px;color:var(--fg2)">menos caixa no mês de entrada</span></div>
+            </div>
+            <div class="card" data-a style="--d:3;padding:20px 24px;gap:12px">
+              <div class="num">Cotas a R$ 1.500 para pagar o primeiro mês</div>
+              <div style="display:grid;grid-template-columns:84px 1fr 40px;gap:12px 14px;align-items:center">
+                <span style="font-size:13.5px;color:var(--fg2)">Comprar</span>
+                <div style="display:flex;gap:6px"><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i><i style="width:24px;height:24px;border-radius:7px;background:#4E4E50"></i></div>
+                <b style="font-family:'Exo 2';font-size:22px;text-align:right">10</b>
+                <span style="font-size:13.5px;color:var(--fg2)">Códice</span>
+                <div style="display:flex;gap:6px"><i style="width:24px;height:24px;border-radius:7px;background:#0E9E95"></i><i style="width:24px;height:24px;border-radius:7px;background:#1A9BC0"></i><i style="width:24px;height:24px;border-radius:7px;background:#2F73FF"></i></div>
+                <b style="font-family:'Exo 2';font-size:22px;text-align:right;color:var(--blue)">3</b>
+              </div>
+            </div>
+            <div data-a style="--d:4;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="card" style="padding:16px 20px;gap:4px"><div class="kicker" style="font-size:10px">Risco do ativo · comprar</div><div style="font-family:'Exo 2';font-size:21px;font-weight:700">Fica com a rede</div></div>
+              <div class="card" style="padding:16px 20px;gap:4px;background:var(--navy);border-color:var(--navy);color:#fff"><div class="kicker" style="font-size:10px;color:var(--teal)">Risco do ativo · Códice</div><div style="font-family:'Exo 2';font-size:21px;font-weight:700">Fica com a Códice</div></div>
+            </div>
+          </div>
+          <div data-a="right" style="--d:3;background:#fff;border-radius:22px;box-shadow:0 20px 44px rgba(6,27,73,.08);overflow:hidden">
+            <div style="display:grid;grid-template-columns:170px 1fr 1fr;align-items:stretch">
+              <div></div>
+              <div style="padding:16px 20px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);display:flex;align-items:center">Comprar sozinho</div>
+              <div style="padding:14px 20px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:10px"><img src="assets/codice-simbolo.png" alt="" style="height:22px;width:auto"><span style="font-family:'Exo 2';font-size:16px;font-weight:700">Assinar a Códice</span></div>
+            </div>
+            <div id="cmpRows"></div>
+          </div>
+        </div>
+        <div data-a style="--d:11;display:flex;align-items:center;gap:24px;margin-top:18px">
+          <div class="note" style="flex:1;max-width:none">Mês 1 da compra: display, instalação, manutenção e operação. Mês 1 da Códice: pacote Essencial de R$ 499 mais implantação de R$ 490 por display. Em 12 meses a compra pode custar menos no papel; a assinatura troca capital e risco por serviço, tecnologia e receita desde o início.</div>
+          <button class="btn pri" data-go="10">Ver como funciona <svg><use href="#i-r"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ 05 · COMO FUNCIONA ═══ -->
-  <section class="slide" data-tr="push" data-tone="dark">
+  <section class="slide" data-tr="curtain" data-tone="dark">
     <img class="decor" src="assets/codice-pontos-branco.png" alt="" style="right:64px;top:104px;width:112px;--op:.16">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 02 · A mecânica</div>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A mecânica</div>
         <h2 data-a style="--d:1">Um ciclo de quatro passos<br>que <em>se repete toda semana</em>.</h2>
       </div>
       <div class="body">
-        <svg viewBox="0 0 1480 300" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
-          <defs><linearGradient id="gCyc" gradientUnits="userSpaceOnUse" x1="148" y1="0" x2="1332" y2="0"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>
-          <path class="draw" style="--len:1700;--d:3" d="M1332 90 C1436 90 1436 240 1332 240 H148 C44 240 44 90 148 90" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2" stroke-dasharray="7 8"/>
-          <path class="draw" style="--len:1250;--d:0" d="M148 90 H1332" fill="none" stroke="url(#gCyc)" stroke-width="3" stroke-linecap="round"/>
-          <circle class="fadein" style="--d:4" r="6" fill="#1DD4C8"><animateMotion dur="8s" repeatCount="indefinite" path="M148 90 H1332 C1436 90 1436 240 1332 240 H148 C44 240 44 90 148 90"/></circle>
-          <text class="fadein" style="--d:4" x="740" y="266" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="rgba(255,255,255,.42)" letter-spacing="2.4">E RECOMEÇA NA SEMANA SEGUINTE</text>
+        <svg viewBox="0 0 1480 64" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
+          <defs><linearGradient id="gCyc" gradientUnits="userSpaceOnUse" x1="175" y1="0" x2="1305" y2="0"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>
+          <line x1="175" y1="32" x2="1305" y2="32" stroke="rgba(255,255,255,.14)" stroke-width="3"/>
+          <path class="draw" style="--len:1130;--d:0" d="M175 32 H1305" fill="none" stroke="url(#gCyc)" stroke-width="3" stroke-linecap="round"/>
+          <circle class="fadein" style="--d:4" r="6" fill="#fff"><animateMotion dur="6s" repeatCount="indefinite" path="M175 32 H1305"/></circle>
           <g id="cycNodes"></g>
         </svg>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:26px" id="cycText"></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:16px" id="cycText"></div>
+        <div data-a="fade" style="--d:9;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:24px;font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)">
+          <svg class="ico" style="width:18px;height:18px"><use href="#i-refresh"/></svg>E recomeça na semana seguinte</div>
       </div>
     </div>
   </section>
@@ -656,11 +1067,11 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   <section class="slide light" data-tr="zoom" data-tone="light">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 03 · O produto</div>
-        <h2 data-a style="--d:1">Seis formatos, <em>seis conversas</em><br>diferentes com a indústria.</h2>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O produto</div>
+        <h2 data-a style="--d:1">Seis formatos, <em>seis conversas</em> com a indústria.</h2>
       </div>
-      <div class="body" style="justify-content:flex-start">
-        <div style="display:grid;grid-template-columns:1fr 610px;gap:36px;flex:1;min-height:0;align-items:center">
+      <div class="body" style="justify-content:flex-start;padding-top:14px">
+        <div style="display:grid;grid-template-columns:500px 1fr;gap:40px;flex:1;min-height:0;align-items:center">
           <div data-a="left" style="--d:2;display:flex;flex-direction:column;gap:14px">
             <div style="display:flex;align-items:center;gap:14px">
               <span class="num" id="fmtNum" style="font-size:12.5px"></span>
@@ -671,11 +1082,11 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             <div id="fmtGal" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"></div>
           </div>
           <div style="position:relative;height:100%;display:grid;place-items:center">
-            <div id="fmtTile" style="position:absolute;width:420px;height:420px;border-radius:60px;right:44px;top:50%;transform:translateY(-50%);transition:background .6s var(--ease)"></div>
-            <img class="decor" src="assets/codice-modulos.png" alt="" style="left:4px;bottom:0;width:118px">
-            <div class="frame fmtFrame" id="fmtFrame" style="position:relative;z-index:3;--fc:#061B49;--fs:40px;--fo:-20px">
+            <div id="fmtTile" style="position:absolute;width:680px;height:500px;border-radius:72px;left:50%;top:50%;transform:translate(-50%,-50%);transition:background .6s var(--ease)"></div>
+            <img class="decor" src="assets/codice-modulos.png" alt="" style="left:0;bottom:0;width:112px;z-index:4">
+            <div class="frame fmtFrame" id="fmtFrame" style="position:relative;z-index:3;--fc:#061B49;--fs:54px;--fo:-24px">
               <i></i><i></i><i></i><i></i>
-              <img id="fmtImg" src="assets/cfmt-ponta.jpg" alt="" style="display:block;max-height:384px;width:auto;border-radius:22px;box-shadow:0 26px 54px rgba(6,27,73,.2);transition:opacity .3s var(--ease)">
+              <img id="fmtImg" src="assets/cfmt-ponta.jpg" alt="" style="display:block;height:540px;max-width:620px;width:auto;object-fit:contain;border-radius:24px;box-shadow:0 34px 70px rgba(6,27,73,.28);transition:opacity .3s var(--ease),transform .5s var(--ease-out)">
             </div>
           </div>
         </div>
@@ -685,35 +1096,24 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   </section>
 
   <!-- ═══ 07 · TRÊS PLANOS ═══ -->
-  <section class="slide" data-tr="curtain" data-tone="dark">
-    <img class="decor" src="assets/codice-ondas.png" alt="" style="right:70px;top:98px;width:104px">
-    <div class="pad">
-      <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 03 · O produto</div>
-        <h2 data-a style="--d:1">A tecnologia entra <em>por camada</em>.<br>A rede paga só pela que vai usar.</h2>
-      </div>
-      <div class="body">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch" id="tiers"></div>
-        <div data-a style="--d:6;display:flex;align-items:center;gap:22px;margin-top:30px">
-          <svg class="ico" style="width:28px;height:28px"><use href="#i-layers"/></svg>
-          <div style="font-family:'Exo 2';font-size:21px;font-weight:700;flex:1">O mesmo corpo evolui de Essencial para Media sem trocar o display inteiro.</div>
-          <button class="btn pri" data-go="8">Ver a conta <svg><use href="#i-r"/></svg></button>
-        </div>
-        <div class="note" data-a style="--d:7;margin-top:16px">Valores mensais por display, com manutenção programada inclusa. Implantação cobrada por instalação. Balanças por SKU, sell-out, visão computacional e temperatura entram por projeto, com orçamento à parte.</div>
-      </div>
-    </div>
-  </section>
+  <section class="slide" data-tr="rise" data-tone="dark" data-pk="0"></section>
+
+  <!-- ═══ PACOTE SENSE ═══ -->
+  <section class="slide light" data-tr="push" data-tone="light" data-pk="1"></section>
+
+  <!-- ═══ PACOTE MEDIA ═══ -->
+  <section class="slide" data-tr="zoom" data-tone="dark" data-pk="2"></section>
 
   <!-- ═══ 08 · TECNOLOGIA EMBARCADA ═══ -->
   <section class="slide white" data-tr="iris" data-tone="light">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 03 · O produto</div>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Tecnologia embarcada</div>
         <h2 data-a style="--d:1">Todas as tecnologias possíveis.<br>Sensor só entra quando <em>gera uma decisão</em>.</h2>
       </div>
       <div class="body" style="justify-content:flex-start">
-        <div style="display:grid;grid-template-columns:1fr 390px;gap:34px;flex:1;min-height:0;align-items:center">
-          <svg viewBox="150 8 460 454" id="orbit" style="width:100%;height:100%;max-height:500px;overflow:visible" aria-hidden="true">
+        <div style="display:grid;grid-template-columns:500px 1fr 400px;gap:36px;flex:1;min-height:0;align-items:center">
+          <svg viewBox="150 8 460 454" id="orbit" style="width:100%;height:auto;max-height:500px;overflow:visible" aria-hidden="true">
             <g class="spin"><circle cx="380" cy="235" r="128" fill="none" stroke="rgba(6,27,73,.3)" stroke-width="2.4" stroke-dasharray="0.1 11" stroke-linecap="round"/></g>
             <g class="spin rev"><circle cx="380" cy="235" r="196" fill="none" stroke="rgba(6,27,73,.22)" stroke-width="2.4" stroke-dasharray="0.1 12" stroke-linecap="round"/></g>
             <line id="orbLink" x1="380" y1="235" x2="380" y2="235" stroke="#1DD4C8" stroke-width="2.6" stroke-linecap="round"/>
@@ -723,74 +1123,81 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             <image href="assets/codice-simbolo-branco.png" x="359" y="208" width="42.6" height="54"/>
             <g id="orbitNodes"></g>
           </svg>
-          <div style="display:flex;flex-direction:column;gap:16px">
-            <div>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div data-a="fade" style="--d:2;display:flex;align-items:center;gap:12px">
+              <span class="num" id="orbCount" style="font-size:12.5px;color:var(--navy);min-width:62px">01 / 10</span>
+              <div style="flex:1;height:4px;border-radius:2px;background:rgba(6,27,73,.08);overflow:hidden"><div id="orbProg" style="height:100%;width:0;background:linear-gradient(90deg,#0E9E95,#2F73FF)"></div></div>
+              <button id="orbPlay" aria-label="Pausar a troca automática" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(6,27,73,.18);display:grid;place-items:center;color:var(--navy);text-align:center">
+                <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:currentColor"><path id="orbPlayIco" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button>
+            </div>
+            <div id="orbPanel" style="min-height:262px">
               <div class="num" id="orbNum"></div>
-              <h3 id="orbTitle" style="font-size:32px;letter-spacing:-.015em;margin:8px 0 10px;line-height:1.08"></h3>
-              <p class="lede" id="orbDesc" style="font-size:15.5px"></p></div>
-            <div class="rows" id="orbRows"></div>
-            <div style="display:flex;gap:14px;align-items:center;padding:15px 18px;border-radius:14px;background:var(--off);border-left:3px solid var(--teal-ink)">
+              <h3 id="orbTitle" style="font-size:34px;letter-spacing:-.015em;margin:8px 0 10px;line-height:1.08"></h3>
+              <p class="lede" id="orbDesc" style="font-size:15.5px"></p>
+              <div class="rows" id="orbRows" style="margin-top:10px"></div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:14px 18px;border-radius:14px;background:var(--off);border-left:3px solid var(--teal-ink)">
               <svg class="ico" style="width:22px;height:22px;stroke:var(--navy)"><use href="#i-lock"/></svg>
               <p style="font-size:13px;color:var(--fg2);line-height:1.45">Contagem agregada, sem reconhecimento facial e sem identificar o shopper.</p></div>
           </div>
+          <figure class="shot rv" style="--d:3;height:540px;box-shadow:0 30px 60px rgba(6,27,73,.2)"><img src="assets/foto-laboratorio.jpg" alt="Bancada de testes da Códice" style="object-position:8% 50%">
+            <span style="position:absolute;left:16px;top:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-family:'Exo 2';font-size:13px;font-weight:700;padding:8px 14px;border-radius:100px"><svg class="mb" style="fill:var(--blue)"><use href="#mb"/></svg>Bancada de testes</span>
+            <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;padding:60px 20px 20px;background:linear-gradient(0deg,rgba(6,27,73,.94),rgba(6,27,73,0));color:#fff">
+              <b style="font-family:'Exo 2';font-size:19px;font-weight:700">Tecnologia validada na bancada</b>
+              <span style="display:block;font-size:13px;color:rgba(255,255,255,.8);margin-top:4px;line-height:1.4">Sensores, conectividade e telas testados antes de chegar à loja.</span></div>
+          </figure>
         </div>
-        <div class="note" data-a style="--d:6">Clique em cada módulo em órbita. A camada interna entra nos planos Essencial, Sense e Media. A externa entra por projeto.</div>
+        <div class="note" data-a style="--d:6">As tecnologias trocam sozinhas, devagar. Clique em um módulo para fixar. A camada interna entra nos pacotes; a externa entra por projeto.</div>
       </div>
     </div>
   </section>
 
   <!-- ═══ 09 · A CONTA QUE FECHA ═══ -->
   <section class="slide" data-tr="blinds" data-tone="dark">
+    <img class="decor" src="assets/codice-face-base.png" alt="" style="right:-170px;bottom:-160px;width:620px;--op:.12">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 04 · A simulação</div>
-        <h2 data-a style="--d:1">Quatro pontos viram <em>104 cotas</em>.<br>Escolha a ocupação e a conta se refaz.</h2>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A conta em 6 meses</div>
+        <h2 data-a style="--d:1">Cada display vende a semana por R$ 1.500.<br>Em 6 meses, <em>o lucro já sai com o aluguel pago</em>.</h2>
       </div>
-      <div class="body" style="justify-content:flex-start;gap:22px">
-        <div style="display:flex;gap:9px" id="occ" data-a="fade"></div>
-        <div style="display:grid;grid-template-columns:296px 1fr;gap:38px;align-items:center;flex:1;min-height:0">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
-            <svg viewBox="0 0 300 300" style="width:100%;max-height:262px;height:auto" aria-hidden="true">
-              <circle cx="150" cy="150" r="120" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="26"/>
-              <circle id="arc" cx="150" cy="150" r="120" fill="none" stroke="url(#gArc)" stroke-width="26" stroke-linecap="round" transform="rotate(-90 150 150)"
-                stroke-dasharray="754" stroke-dashoffset="754" style="transition:stroke-dashoffset .95s cubic-bezier(.16,.84,.28,1)"/>
-              <text id="arcPct" x="150" y="146" text-anchor="middle" font-family="Exo 2" font-size="62" font-weight="800" fill="#fff">100%</text>
-              <text x="150" y="178" text-anchor="middle" font-family="Inter" font-size="13.5" fill="rgba(255,255,255,.62)">da agenda vendida</text>
-              <text id="arcQ" x="150" y="210" text-anchor="middle" font-family="Exo 2" font-size="17" font-weight="700" fill="#1DD4C8">104 de 104 cotas</text>
-            </svg>
-            <div id="quotaGrid" style="display:grid;grid-template-columns:repeat(13,1fr);gap:5px"></div>
-            <div class="kicker" style="font-size:10px;letter-spacing:.14em">Cada quadrado é uma cota</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:20px">
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-              <div class="card" style="gap:6px;padding:22px">
-                <div class="num">Receita de campanhas</div>
-                <div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span id="simRec">156.000</span></div>
-                <p style="font-size:12.5px">R$ 1.500 por display por semana</p></div>
-              <div class="card" style="gap:6px;padding:22px">
-                <div class="num">Assinatura Códice</div>
-                <div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span id="simAlu">12.000</span></div>
-                <p style="font-size:12.5px">4 displays × R$ 500 × 6 meses</p></div>
-              <div class="card hl" style="gap:6px;padding:22px">
-                <div class="num">Resultado bruto</div>
-                <div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span id="simRes">144.000</span></div>
-                <p style="font-size:12.5px">antes de impostos e custos da rede</p></div>
-            </div>
-            <svg viewBox="0 0 900 130" style="width:100%;height:auto" aria-hidden="true">
-              <g font-family="Inter" font-size="13" fill="rgba(255,255,255,.62)"><text x="0" y="24">Receita</text><text x="0" y="70">Assinatura</text><text x="0" y="116">Resultado</text></g>
-              <g fill="rgba(255,255,255,.08)"><rect x="112" y="8" width="640" height="22" rx="11"/><rect x="112" y="54" width="640" height="22" rx="11"/><rect x="112" y="100" width="640" height="22" rx="11"/></g>
-              <rect id="bR" x="112" y="8" width="0" height="22" rx="11" fill="#2F73FF" style="transition:width .95s cubic-bezier(.16,.84,.28,1)"/>
-              <rect id="bA" x="112" y="54" width="0" height="22" rx="11" fill="rgba(255,255,255,.38)" style="transition:width .95s cubic-bezier(.16,.84,.28,1)"/>
-              <rect id="bS" x="112" y="100" width="0" height="22" rx="11" fill="#1DD4C8" style="transition:width .95s cubic-bezier(.16,.84,.28,1)"/>
-              <g font-family="Exo 2" font-size="16" font-weight="700" fill="#fff" text-anchor="end"><text id="tR" x="898" y="25"></text><text id="tA" x="898" y="71"></text><text id="tS" x="898" y="117"></text></g>
-            </svg>
-            <div class="strip">
-              <svg class="ico" style="width:26px;height:26px"><use href="#i-check"/></svg>
-              <div><div class="st">O ponto se paga com 8 cotas. Menos de 8% da agenda.</div>
-              <div class="ss">Duas semanas com os quatro displays ocupados cobrem os 6 meses de assinatura.</div></div></div>
-          </div>
+      <div class="body" style="gap:20px">
+        <div style="display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr 44px 1.15fr 44px 1.35fr;align-items:stretch">
+          <div class="card" data-a="pop" style="--d:2;padding:16px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-layers"/></svg><div class="big" style="font-size:52px;margin-top:4px" data-cu="4">0</div><p style="font-size:13px">displays por loja</p></div>
+          <div data-a="fade" style="--d:3;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
+          <div class="card" data-a="pop" style="--d:4;padding:16px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-store"/></svg><div class="big" style="font-size:52px;margin-top:4px" data-cu="10">0</div><p style="font-size:13px">lojas da rede</p></div>
+          <div data-a="fade" style="--d:5;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
+          <div class="card" data-a="pop" style="--d:6;padding:16px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-cal"/></svg><div class="big" style="font-size:52px;margin-top:4px" data-cu="26">0</div><p style="font-size:13px">semanas em 6 meses</p></div>
+          <div data-a="fade" style="--d:7;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
+          <div class="card" data-a="pop" style="--d:8;padding:16px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-tag"/></svg><div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span data-cu="1500" data-fmt="br">0</span></div><p style="font-size:13px;margin-top:4px">por semana, comunicação inclusa</p></div>
+          <div data-a="fade" style="--d:9;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">=</div>
+          <div class="card hl" data-a="pop" style="--d:10;padding:16px 18px;align-items:center;text-align:center;gap:4px;justify-content:center"><div class="num">Receita das cotas</div><div class="big" style="font-size:36px;margin-top:8px;color:var(--navy);white-space:nowrap"><small>R$ </small><span data-cu="1560000" data-fmt="br">0</span></div><p style="font-size:13px;margin-top:4px"><b>1.040</b> cotas vendidas</p></div>
         </div>
-        <div class="note" data-a="fade" style="--d:6">Simulação com preço de campanha de referência. O valor efetivo depende da negociação da rede com cada indústria, da posição na loja e da categoria.</div>
+        <svg viewBox="0 0 1480 190" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
+          <defs>
+            <linearGradient id="gRec" gradientUnits="userSpaceOnUse" x1="230" y1="0" x2="1470" y2="0"><stop offset="0" stop-color="#11307A"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
+            <linearGradient id="gLuc" gradientUnits="userSpaceOnUse" x1="230" y1="0" x2="1375" y2="0"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
+          </defs>
+          <g font-family="Inter" font-size="14" font-weight="600" fill="rgba(255,255,255,.66)">
+            <text x="0" y="36">Receita das cotas</text><text x="0" y="98">Aluguel Códice</text><text x="0" y="164" fill="#fff" font-size="16" font-weight="700">Lucro em 6 meses</text></g>
+          <rect x="230" y="12" width="1240" height="42" rx="12" fill="rgba(255,255,255,.06)"/>
+          <rect class="gx" style="--d:11" x="230" y="12" width="1240" height="42" rx="12" fill="url(#gRec)"/>
+          <text class="fadein" style="--d:12" x="254" y="40" font-family="Exo 2" font-size="19" font-weight="800" fill="#fff">R$ 1.560.000</text>
+          <line class="fadein" style="--d:13" x1="1375" y1="54" x2="1375" y2="76" stroke="rgba(255,255,255,.4)" stroke-width="1.6" stroke-dasharray="3 4"/>
+          <rect class="gx rt" style="--d:13" x="1375" y="76" width="95" height="36" rx="10" fill="#8E97AB"/>
+          <text class="fadein" style="--d:14" x="1358" y="100" text-anchor="end" font-family="Exo 2" font-size="18" font-weight="800" fill="#fff">menos R$ 119.760</text>
+          <line class="fadein" style="--d:15" x1="1375" y1="112" x2="1375" y2="134" stroke="rgba(255,255,255,.4)" stroke-width="1.6" stroke-dasharray="3 4"/>
+          <rect class="gx" style="--d:15" x="230" y="134" width="1145" height="54" rx="14" fill="url(#gLuc)"/>
+          <text class="fadein" style="--d:16" x="256" y="170" font-family="Exo 2" font-size="26" font-weight="800" fill="#061B49">R$ <tspan data-cu="1440240" data-fmt="br">0</tspan></text>
+          <text class="fadein" style="--d:16" x="1360" y="167" text-anchor="end" font-family="Inter" font-size="13" font-weight="700" fill="#061B49" letter-spacing="1">92% DA RECEITA</text>
+        </svg>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.25fr auto;gap:14px;align-items:stretch">
+          <div class="card" data-a style="--d:12;padding:16px 20px;gap:2px"><div class="kicker" style="font-size:10px">Lucro por loja</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span data-cu="144024" data-fmt="br">0</span></div></div>
+          <div class="card" data-a style="--d:13;padding:16px 20px;gap:2px"><div class="kicker" style="font-size:10px">Lucro por mês na rede</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span data-cu="240040" data-fmt="br">0</span></div></div>
+          <div class="card" data-a style="--d:14;padding:16px 20px;gap:2px;border-color:rgba(29,212,200,.45)"><div class="kicker" style="font-size:10px;color:var(--teal)">Com metade da agenda vendida</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span data-cu="660240" data-fmt="br">0</span><small style="font-size:.42em;font-weight:600;color:var(--fg2)"> ainda sobra</small></div></div>
+          <div data-a style="--d:15;display:flex;flex-direction:column;gap:8px;justify-content:center">
+            <button class="btn pri" data-go="18" style="justify-content:center">Simular a minha rede <svg><use href="#i-r"/></svg></button>
+            <button class="btn gho" data-go="17" style="justify-content:center;padding:12px 24px">Ver o efeito fiscal</button></div>
+        </div>
+        <div class="note" data-a="fade" style="--d:16">Aluguel do pacote Essencial: 40 displays × R$ 499 × 6 meses = R$ 119.760. Não considera a implantação (R$ 490 por display, cobrada uma vez), a produção das peças e os impostos. Preço de referência: o valor real depende da negociação com cada indústria.</div>
       </div>
     </div>
   </section>
@@ -800,7 +1207,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
     <img class="decor" src="assets/codice-conector.png" alt="" style="right:64px;top:92px;width:150px">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 04 · O efeito fiscal</div>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O efeito fiscal</div>
         <h2 data-a style="--d:1">E parte da assinatura <em>ainda volta em imposto</em>.</h2>
       </div>
       <div class="body" style="justify-content:flex-start;gap:22px">
@@ -834,7 +1241,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
           <svg viewBox="0 0 780 396" style="width:100%;max-height:334px;height:auto;overflow:visible" aria-hidden="true">
             <line x1="34" y1="330" x2="752" y2="330" stroke="rgba(6,27,73,.2)" stroke-width="1.5"/>
             <line class="draw" style="--len:700;--d:2" x1="60" y1="86" x2="720" y2="86" stroke="rgba(6,27,73,.3)" stroke-width="1.4" stroke-dasharray="6 7"/>
-            <text class="fadein" style="--d:2" x="60" y="72" font-family="Inter" font-size="11.5" font-weight="700" fill="rgba(6,27,73,.5)" letter-spacing="1.6">ASSINATURA DE 4 DISPLAYS EM 6 MESES</text>
+            <text class="fadein" style="--d:2" x="60" y="72" font-family="Inter" font-size="11.5" font-weight="700" fill="rgba(6,27,73,.5)" letter-spacing="1.6">R$ 12.000 DE ASSINATURA EM 6 MESES</text>
             <g class="fadein" style="--d:6" font-family="Inter" font-size="12" font-weight="600" fill="rgba(6,27,73,.66)">
               <rect x="462" y="62" width="13" height="13" rx="3.5" fill="#1DD4C8"/><text x="482" y="73">volta em imposto</text>
               <rect x="610" y="62" width="13" height="13" rx="3.5" fill="#061B49"/><text x="630" y="73">custo efetivo</text></g>
@@ -845,121 +1252,65 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
           <svg class="ico" style="width:26px;height:26px"><use href="#i-shield"/></svg>
           <div style="flex:1"><div class="st">Não é crédito automático nem abatimento integral do imposto.</div>
           <div class="ss">O efeito ocorre pela redução da base de cálculo, quando o enquadramento contábil da rede permitir.</div></div>
-          <button class="btn pri" data-go="11">Começar pelo piloto <svg><use href="#i-r"/></svg></button>
+          <button class="btn pri" data-go="18">Simular a minha rede <svg><use href="#i-r"/></svg></button>
         </div>
-        <div class="note" data-a style="--d:7">Simulação sobre a assinatura de 4 displays por R$ 500 durante 6 meses. Sujeita ao regime tributário da rede e à validação da contabilidade. Não constitui parecer fiscal.</div>
+        <div class="note" data-a style="--d:7">Exemplo com R$ 12.000 de assinatura em 6 meses, o equivalente arredondado a 4 displays Essencial. Sujeita ao regime tributário da rede e à validação da contabilidade. Não constitui parecer fiscal.</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 11 · POR QUE A CÓDICE ═══ -->
-  <section class="slide" data-tr="push" data-tone="dark">
-    <div class="pad">
-      <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 05 · Confiança</div>
-        <h2 data-a style="--d:1">Uma marca nova,<br>com <em>40 anos de fábrica</em> por trás.</h2>
-      </div>
-      <div class="body" style="gap:20px">
-        <div style="display:grid;grid-template-columns:1fr 640px;gap:40px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              <div class="card" data-a="pop" style="--d:2;padding:18px 20px;flex-direction:row;align-items:center;gap:16px">
-                <div class="big" style="font-size:46px;color:var(--teal)"><span data-cu="40">0</span><small style="font-size:.62em">+</small></div>
-                <p style="font-size:13.5px;line-height:1.35">anos de fabricação<br>NeoBand</p></div>
-              <div class="card" data-a="pop" style="--d:3;padding:18px 20px;flex-direction:row;align-items:center;gap:16px">
-                <div class="big" style="font-size:46px;color:var(--teal)"><span data-cu="100">0</span><small style="font-size:.55em">%</small></div>
-                <p style="font-size:13.5px;line-height:1.35">design e produção<br>no Brasil</p></div>
-              <div class="card" data-a="pop" style="--d:4;padding:18px 20px;flex-direction:row;align-items:center;gap:16px">
-                <div class="big" style="font-size:46px;color:var(--teal)">FSC</div>
-                <p style="font-size:13.5px;line-height:1.35">materiais<br>certificados</p></div>
-              <div class="card" data-a="pop" style="--d:5;padding:18px 20px;flex-direction:row;align-items:center;gap:16px">
-                <svg class="ico" style="width:40px;height:40px"><use href="#i-award"/></svg>
-                <p style="font-size:13.5px;line-height:1.35"><b style="font-family:'Exo 2';font-size:17px;color:#fff">Fornecedor do Ano</b><br>Brazil Promotion 2025</p></div>
-            </div>
-            <div class="kicker" data-a="fade" style="--d:6;margin-top:10px">Quem faz o quê</div>
-            <div data-a style="--d:6;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-              <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:14px;border:1px solid var(--ln)">
-                <svg class="ico" style="width:21px;height:21px"><use href="#i-store"/></svg>
-                <div><div style="font-family:'Exo 2';font-size:15.5px;font-weight:700">A rede</div><div style="font-size:12.5px;color:var(--fg2)">vende a agenda</div></div></div>
-              <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:14px;border:1px solid var(--ln)">
-                <svg class="ico" style="width:21px;height:21px"><use href="#i-truck"/></svg>
-                <div><div style="font-family:'Exo 2';font-size:15.5px;font-weight:700">NeoBand</div><div style="font-size:12.5px;color:var(--fg2)">fabrica e mantém</div></div></div>
-              <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:14px;border:1px solid var(--ln)">
-                <svg class="ico" style="width:21px;height:21px"><use href="#i-chart"/></svg>
-                <div><div style="font-family:'Exo 2';font-size:15.5px;font-weight:700">75 LAB</div><div style="font-size:12.5px;color:var(--fg2)">plataforma e dados</div></div></div>
-              <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:14px;border:1px solid var(--ln)">
-                <svg class="ico" style="width:21px;height:21px"><use href="#i-tag"/></svg>
-                <div><div style="font-family:'Exo 2';font-size:15.5px;font-weight:700">A indústria</div><div style="font-size:12.5px;color:var(--fg2)">compra a campanha</div></div></div>
-            </div>
-          </div>
-          <div class="mosaic" data-a="right" style="--d:3">
-            <figure class="app" style="--cw:29%;--ch:24%"><img src="assets/app-ilha.jpg" alt="Ilha inteligente Códice"><figcaption><svg><use href="#mb"/></svg>Ilha</figcaption></figure>
-            <figure class="app" style="--cw:50%;--ch:23%"><img src="assets/app-parede.jpg" alt="Parede de displays modulares Códice"><figcaption><svg><use href="#mb"/></svg>Parede modular</figcaption></figure>
-            <figure class="app" style="--cw:30%;--ch:23%"><img src="assets/app-compacto.jpg" alt="Display compacto Códice"><figcaption><svg><use href="#mb"/></svg>Compacto</figcaption></figure>
-            <figure class="app" style="--cw:45%;--ch:20%"><img src="assets/app-painel.jpg" alt="Painel de dados Códice"><figcaption><svg><use href="#mb"/></svg>Painel de dados</figcaption><span class="chip2" style="width:19%;height:22%"><svg><use href="#mb"/></svg></span></figure>
-          </div>
-        </div>
-        <div data-a style="--d:7">
-          <div class="kicker" style="margin-bottom:12px">Marcas que já produzem com a NeoBand, fábrica da Códice</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:20px 44px;border-radius:18px;background:var(--navy2);border:1px solid var(--cardln)">
-            <img src="assets/cli-vivo.png" alt="Vivo" style="height:42px;opacity:.95">
-            <img src="assets/cli-claro.png" alt="Claro" style="height:54px;opacity:.95">
-            <img src="assets/cli-bradesco.png" alt="Bradesco" style="height:54px;opacity:.95">
-            <img src="assets/cli-allianz.png" alt="Allianz" style="height:38px;opacity:.95">
-            <img src="assets/cli-gpa.png" alt="Grupo Pão de Açúcar" style="height:42px;opacity:.95"></div>
-        </div>
-        <div class="note" data-a style="--d:8">Renders de aplicação da marca Códice. As marcas citadas são clientes da fabricação NeoBand.</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ 12 · O PILOTO E O PRÓXIMO PASSO ═══ -->
-  <section class="slide" data-tr="iris" data-tone="dark">
-    <img class="decor" src="assets/codice-simbolo.png" alt="" style="right:-240px;top:230px;width:560px;--op:.12">
-    <div class="pad">
-      <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Ato 05 · A decisão</div>
-        <h2 data-a style="--d:1">Vamos começar pelas <em>10 primeiras lojas</em>?</h2>
+  <!-- ═══ SIMULADOR DA SUA REDE ═══ -->
+  <section class="slide" data-tr="zoom" data-tone="dark">
+    <img class="decor" src="assets/codice-simbolo.png" alt="" style="right:-280px;top:260px;width:560px;--op:.07">
+    <div class="pad" style="padding-top:90px">
+      <div class="hd" style="flex-direction:row;align-items:flex-end;justify-content:space-between;gap:30px">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Simulador da sua rede</div>
+          <h2 data-a style="--d:1">Coloque a sua rede e <em>veja quando o lucro chega</em>.</h2>
+        </div>
+        <span class="datechip" data-a="fade" style="--d:2;margin-bottom:6px"><i></i><span id="simDate">Simulação de hoje</span></span>
       </div>
-      <div class="body" style="gap:26px">
-        <div style="display:flex;gap:14px" data-a style="--d:2">
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:16px;background:var(--navy2);border:1px solid var(--cardln)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-store"/></svg>
-            <div class="big" style="font-size:38px" data-cu="10">0</div>
-            <div style="font-size:12.5px;color:var(--fg2);line-height:1.3">lojas<br>da rede</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:16px;background:var(--navy2);border:1px solid var(--cardln)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-layers"/></svg>
-            <div class="big" style="font-size:38px" data-cu="4">0</div>
-            <div style="font-size:12.5px;color:var(--fg2);line-height:1.3">displays<br>por loja</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:16px;background:var(--navy2);border:1px solid var(--cardln)">
-            <svg class="ico" style="width:24px;height:24px"><use href="#i-box"/></svg>
-            <div class="big" style="font-size:38px" data-cu="40">0</div>
-            <div style="font-size:12.5px;color:var(--fg2);line-height:1.3">ativos em<br>operação</div></div>
-          <div style="flex:1;display:flex;align-items:center;gap:13px;padding:16px 20px;border-radius:16px;background:#fff;color:var(--navy)">
-            <svg class="ico" style="width:24px;height:24px;stroke:var(--blue)"><use href="#i-clock"/></svg>
-            <div class="big" style="font-size:38px;color:var(--navy)" data-cu="6">0</div>
-            <div style="font-size:12.5px;color:#58627A;line-height:1.3">meses de<br>leitura</div></div>
-        </div>
-        <svg viewBox="0 0 1400 186" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
-          <defs><linearGradient id="gPil" gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="1330" y2="0"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>
-          <line x1="90" y1="36" x2="1330" y2="36" stroke="rgba(255,255,255,.14)" stroke-width="3" stroke-linecap="round"/>
-          <line class="draw" style="--len:1250;--d:3" x1="90" y1="36" x2="1330" y2="36" stroke="url(#gPil)" stroke-width="3" stroke-linecap="round"/>
-          <g id="pilotNodes"></g>
-        </svg>
-        <div data-a style="--d:9;display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:center">
-          <div class="rows">
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">01</span><span style="font-size:15.5px;font-weight:500">Selecionar lojas e categorias do piloto</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">02</span><span style="font-size:15.5px;font-weight:500">Definir formatos e pacote por área</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">03</span><span style="font-size:15.5px;font-weight:500">Montar a agenda de marcas por ciclo</span></div>
-            <div class="row" style="justify-content:flex-start;gap:22px;padding:9px 0"><span class="num" style="width:22px;flex:0 0 22px">04</span><span style="font-size:15.5px;font-weight:500">Instalar, medir e apresentar o resultado</span></div>
+      <div class="body" style="justify-content:flex-start;padding-top:16px">
+        <div style="display:grid;grid-template-columns:392px 1fr;gap:18px;flex:1;min-height:0">
+          <div data-a="left" style="--d:2;background:#fff;color:var(--navy);border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:15px">
+            <div class="ctl"><label>Pacote</label><div class="seg" id="sPlan"></div></div>
+            <div class="ctl"><label>Displays por loja</label><div class="stp" data-k="dpl"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sDpl" aria-label="Displays por loja"><button data-s="1" aria-label="Mais">+</button></div></div>
+            <div class="ctl"><label>Lojas da rede</label><div class="stp" data-k="lojas"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sLojas" aria-label="Lojas"><button data-s="1" aria-label="Mais">+</button></div></div>
+            <div class="ctl"><label>Cota semanal por display <output>comunicação inclusa</output></label><div class="stp" data-k="cota"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sCota" aria-label="Cota semanal em reais"><button data-s="1" aria-label="Mais">+</button></div></div>
+            <div class="ctl"><label>Agenda vendida <output id="sOccTxt">100%</output></label><input type="range" class="rng" id="sOcc" min="10" max="100" step="5" value="100" aria-label="Agenda vendida"></div>
+            <div class="ctl"><label>Período do contrato</label><div class="seg" id="sPer"></div></div>
+            <p style="font-size:11.5px;line-height:1.45;color:#8A93A7;margin-top:auto">Implantação de R$ 490 por display, cobrada uma vez e mostrada à parte. Valores antes de impostos.</p>
           </div>
-          <div class="btns" style="flex-direction:column;align-items:stretch;gap:10px">
-            <a class="btn pri" href="mailto:contato@neoband.com.br?subject=Piloto%20C%C3%B3dice&amp;body=Quero%20abrir%20o%20piloto%20de%206%20meses%20da%20C%C3%B3dice%20na%20nossa%20rede." style="justify-content:center;padding:14px 24px">Abrir o piloto agora <svg><use href="#i-r"/></svg></a>
-            <a class="btn wht" href="https://wa.me/5511971787042?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20a%20C%C3%B3dice%20para%20a%20nossa%20rede." target="_blank" rel="noopener" style="justify-content:center;padding:14px 24px">Falar pelo WhatsApp</a>
-            <button class="btn gho" data-go="0" style="justify-content:center;padding:14px 24px">Rever a apresentação</button>
+          <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+            <div data-a style="--d:3;display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:12px">
+              <div class="kpi" style="color:var(--navy)"><div class="kl">Receita com cotas</div><div class="kv"><small>R$</small><span id="kRec">0</span></div><div class="ks" id="kRecS"></div></div>
+              <div class="kpi" style="color:var(--navy)"><div class="kl">Aluguel Códice</div><div class="kv"><small>R$</small><span id="kAlu">0</span></div><div class="ks" id="kAluS"></div></div>
+              <div class="kpi hl" style="background:linear-gradient(120deg,#0A2360,#11307A);border-color:rgba(29,212,200,.5)"><div class="kl">Lucro potencial</div><div class="kv" style="font-size:38px"><small>R$</small><span id="kLuc">0</span></div><div class="ks" id="kLucS"></div></div>
+            </div>
+            <div data-a style="--d:4;background:#fff;color:var(--navy);border-radius:18px;padding:14px 20px 14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:20px">
+                <div class="kicker" style="color:#8A93A7">Cronograma a partir de hoje</div>
+                <span id="sPay" style="font-size:12.5px;font-weight:700;color:#0E9E95"></span></div>
+              <svg id="sTl" viewBox="0 0 1000 52" style="width:100%;height:auto;margin-top:6px;overflow:visible" aria-hidden="true"></svg>
+              <div id="sTlLeg" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:6px"></div>
+            </div>
+            <div data-a style="--d:5;background:#fff;color:var(--navy);border-radius:18px;padding:14px 20px 8px;flex:1;min-height:0;display:flex;flex-direction:column">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="kicker" style="color:#8A93A7">Lucro acumulado mês a mês</div>
+                <div style="display:flex;gap:16px;font-size:11.5px;color:#58627A;align-items:center">
+                  <span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:3px;background:linear-gradient(180deg,#1DD4C8,#2F73FF)"></i>lucro acumulado</span>
+                  <span style="display:flex;align-items:center;gap:6px"><i style="width:16px;border-top:2px dashed #4E4E50"></i>implantação</span></div></div>
+              <svg id="sChart" viewBox="0 0 1000 214" style="width:100%;flex:1;min-height:0;overflow:visible" aria-hidden="true"></svg>
+            </div>
+            <div data-a style="--d:6;display:flex;gap:10px;align-items:center">
+              <a class="btn pri" id="sMail" href="mailto:contato@neoband.com.br">Enviar esta simulação <svg><use href="#i-r"/></svg></a>
+              <a class="btn wht" id="sWpp" href="https://wa.me/5511971787042" target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+              <button class="btn gho" data-go="0">Rever a apresentação</button>
+              <span class="note" style="margin-left:auto;text-align:right;max-width:none;white-space:nowrap;line-height:1.5">contato@neoband.com.br<br>WhatsApp (11) 97178-7042</span>
+            </div>
           </div>
         </div>
-        <div class="note" data-a style="--d:10">Códice · Displays inteligentes para grandes resultados. Fabricação NeoBand, plataforma e design 75 LAB. Contato comercial: contato@neoband.com.br · (11) 2199 1200.</div>
       </div>
     </div>
   </section>
@@ -993,7 +1344,7 @@ addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;document.body
 addEventListener("mouseleave",function(){document.body.classList.add("hidecur")});
 (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform="translate3d("+cx+"px,"+cy+"px,0)";requestAnimationFrame(loop)})();
 addEventListener("mouseover",function(e){
-  document.body.classList.toggle("hot",!!e.target.closest("button,a,[data-go],.card,.app,[data-g],[data-t],[data-o],[data-orb]"))});
+  document.body.classList.toggle("hot",!!e.target.closest("button,a,input,[data-go],.card,.shot,[data-g],[data-orb]"))});
 
 /* ─────── Palco ─────── */
 var stage=$("#stage"),deck=$("#deck");
@@ -1008,30 +1359,33 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 fit();
 
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
-var TITLES=["A sua loja já é um veículo de mídia","A verba desceu para o corredor","O custo de não agir",
- "Display as a Service","Como funciona","Seis formatos","Três planos","Tecnologia embarcada",
- "A conta que fecha","O efeito fiscal","Por que a Códice","O piloto e o próximo passo"];
-var ACTS=[[0,0,"Abertura"],[1,2,"Ato 01 · O que mudou"],[3,4,"Ato 02 · A solução"],
-          [5,7,"Ato 03 · O produto"],[8,9,"Ato 04 · A prova"],[10,11,"Ato 05 · Decisão"]];
-var SIM=8,TIER=6;
+var TITLES=["A sua loja já é um veículo de mídia","Quem é a Códice","O grupo por trás da Códice","A operação","A plataforma",
+ "A verba desceu para o corredor","O custo de não agir","Display as a Service","Quanto custa comprar sozinho","Comprar ou assinar",
+ "Como funciona","Seis formatos","Pacote Essencial","Pacote Sense","Pacote Media","Tecnologia embarcada",
+ "A conta em 6 meses","O efeito fiscal","Simulador da sua rede"];
+var ACTS=[[0,0,"Abertura"],[1,4,"Quem somos"],[5,6,"O que mudou"],[7,10,"A solução"],
+          [11,15,"O produto"],[16,17,"A prova"],[18,18,"Decisão"]];
+var SIS=4,TECH=15,SIMU=18;
 
-/* ─────── Tela 05 · ciclo de quatro passos ─────── */
+/* ─────── Como funciona · ciclo com fotos da operação ─────── */
 (function(){
-  var S=[["01","Instalamos","Vistoria, montagem, treinamento da loja e aceite digital com foto.","i-truck"],
-         ["02","Você vende a semana","A rede comercializa cotas por categoria e posição, com tabela própria.","i-cal"],
-         ["03","Nós mantemos","Troca de comunicação, manutenção e reposição. O ponto fica sempre vendável.","i-wrench"],
-         ["04","O relatório renova","Evidência de execução chega à marca. A segunda compra fica mais fácil.","i-refresh"]];
-  var g=$("#cycNodes"),xs=[148,542,938,1332];
+  var S=[["01","Instalamos","Vistoria, montagem, treinamento da loja e aceite digital com foto.","i-truck","foto-instalacao","50% 45%"],
+         ["02","Você vende a semana","A rede comercializa cotas por categoria e posição, com tabela própria.","i-cal","foto-planejamento","40% 40%"],
+         ["03","Nós mantemos","Vistoria, troca de comunicação e reposição. O ponto fica sempre vendável.","i-wrench","foto-auditoria","58% 45%"],
+         ["04","O relatório renova","A evidência de execução chega à marca. A segunda compra fica mais fácil.","i-refresh","foto-resultados","48% 40%"]];
+  var g=$("#cycNodes"),xs=[175,552,928,1305];
   S.forEach(function(s,k){
-    g.appendChild(mk("circle",{cx:xs[k],cy:90,r:44,fill:"none",stroke:"#1DD4C8","stroke-width":1.4,class:"pulse",style:"--k:"+k}));
-    g.appendChild(mk("circle",{cx:xs[k],cy:90,r:44,fill:"#0A2360",stroke:"#1DD4C8","stroke-width":2.2,class:"fadein",style:"--d:"+(k+1)}));
-    g.appendChild(mk("text",{x:xs[k],y:99,"text-anchor":"middle","font-family":"Exo 2","font-size":"26","font-weight":"800",fill:"#1DD4C8",class:"fadein",style:"--d:"+(k+1)},s[0]));
+    g.appendChild(mk("circle",{cx:xs[k],cy:32,r:30,fill:"none",stroke:"#1DD4C8","stroke-width":1.4,class:"pulse",style:"--k:"+k}));
+    g.appendChild(mk("circle",{cx:xs[k],cy:32,r:26,fill:"#0A2360",stroke:"#1DD4C8","stroke-width":2.4,class:"fadein",style:"--d:"+(k+1)}));
+    g.appendChild(mk("text",{x:xs[k],y:39.5,"text-anchor":"middle","font-family":"Exo 2","font-size":"20","font-weight":"800",fill:"#1DD4C8",class:"fadein",style:"--d:"+(k+1)},s[0]));
   });
   $("#cycText").innerHTML=S.map(function(s,k){
-    return '<div data-a style="--d:'+(k+4)+';text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px">'+
-      '<svg class="ico" style="width:26px;height:26px"><use href="#'+s[3]+'"/></svg>'+
-      '<h3 style="font-size:25px">'+s[1]+'</h3>'+
-      '<p class="lede" style="font-size:14.5px;max-width:30ch">'+s[2]+'</p></div>'}).join("");
+    return '<div style="display:flex;flex-direction:column;gap:14px">'+
+      '<figure class="shot fade rv" style="--d:'+(k*2+2)+';height:236px"><img src="assets/'+s[4]+'.jpg" alt="'+s[1]+'" style="object-position:'+s[5]+'">'+
+      '<figcaption style="display:flex;align-items:center;gap:10px"><span class="sn">'+s[0]+'</span>'+
+      '<svg class="ico" style="width:20px;height:20px;stroke:#fff"><use href="#'+s[3]+'"/></svg></figcaption></figure>'+
+      '<div data-a style="--d:'+(k*2+3)+'"><h3 style="font-size:24px">'+s[1]+'</h3>'+
+      '<p class="lede" style="font-size:14.5px;margin-top:6px;max-width:32ch">'+s[2]+'</p></div></div>'}).join("");
 })();
 
 /* ─────── Tela 06 · seis formatos ─────── */
@@ -1076,38 +1430,122 @@ function renderFmt(){
 $("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-g]"); if(!b)return; gsel=+b.dataset.g; renderFmt()});
 renderFmt();
 
-/* ─────── Tela 07 · três planos ─────── */
-var TIERS=[
- {n:"Essencial",p:"499",d:"Começar a vender espaço com baixa complexidade.",
-  li:["Display modular padronizado","Comunicação cambiável","QR de controle patrimonial","Manutenção programada"]},
- {n:"Sense",p:"849",d:"Pontos de maior fluxo e categorias com verba de trade.",
-  li:["Tudo do Essencial","Sensor de proximidade","Conectividade e alertas","Painel de execução"]},
- {n:"Media",p:"1.290",d:"Lançamento, campanha premium e ativação especial.",
-  li:["Tudo do Sense","Tela e player integrados","Gestão remota de conteúdo","Prova de veiculação"]}];
-var tsel=1;
-function renderTiers(){
-  $("#tiers").innerHTML=TIERS.map(function(t,k){
-    var on=k===tsel, fg=on?"#061B49":"#fff", fg2=on?"#58627A":"rgba(255,255,255,.72)";
-    return '<button data-t="'+k+'" data-a="pop" style="--d:'+(k+2)+';border-radius:22px;padding:26px;'+
-      'border:1px solid '+(on?"#fff":"rgba(255,255,255,.12)")+';background:'+(on?"#fff":"#0A2360")+';color:'+fg+';'+
-      'display:flex;flex-direction:column;gap:13px;transition:background .34s,color .34s,border-color .34s,transform .34s var(--ease);'+
-      'transform:translateY('+(on?"-10px":"0")+')">'+
-      '<div style="display:flex;justify-content:space-between;align-items:center;min-height:24px">'+
-        '<span style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:'+(on?"#2F73FF":"#1DD4C8")+'">'+t.n+'</span>'+
-        (k===1?'<span class="tag t">Mais vendido</span>':'')+'</div>'+
-      '<div style="display:flex;align-items:baseline;gap:7px"><span style="font-family:\'Exo 2\';font-size:44px;font-weight:800;letter-spacing:-.02em">R$ '+t.p+'</span>'+
-        '<span style="font-size:13px;color:'+fg2+'">/ display / mês</span></div>'+
-      '<div style="height:6px;border-radius:3px;background:'+(on?"rgba(6,27,73,.08)":"rgba(255,255,255,.12)")+';overflow:hidden">'+
-        '<div style="height:100%;width:'+(34+k*33)+'%;border-radius:3px;background:linear-gradient(90deg,#1DD4C8,#2F73FF)"></div></div>'+
-      '<p style="font-size:14px;line-height:1.5;color:'+fg2+'">'+t.d+'</p>'+
-      '<ul style="list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:2px">'+
-      t.li.map(function(x){return '<li style="font-size:13.5px;display:flex;gap:10px;align-items:flex-start;color:'+fg2+'">'+
-        '<svg viewBox="0 0 24 24" style="width:14px;height:14px;flex:0 0 14px;margin-top:3px;stroke:'+(on?"#0E9E95":"#1DD4C8")+
-        ';fill:none;stroke-width:3.4;stroke-linecap:round"><polyline points="20 6 9 17 4 12"/></svg>'+x+'</li>'}).join("")+'</ul></button>'}).join("");
+/* ─────── Pacotes · uma tela por pacote ─────── */
+var PLANS=[{n:"Essencial",p:499},{n:"Sense",p:849},{n:"Media",p:1290}];
+var PK=[
+ {img:"foto-ilha-supermercado",pos:"72% 50%",side:"r",badge:"Ideal para começar",
+  quem:"Para a rede que quer começar a vender espaço já, com baixa complexidade.",
+  ind:"A indústria compra espaço e comunicação padronizados, semana a semana.",
+  f:[["i-layers","Display modular padronizado","mesmo padrão em todas as lojas",1],["i-refresh","Comunicação cambiável","troca de campanha sem obra",1],
+     ["i-qr","QR patrimonial e do shopper","controle do ativo e cupom da marca",1],["i-pin","Check-in com geolocalização","prova de visita da equipe",1],
+     ["i-wrench","Manutenção programada","inclusa na mensalidade",1],["i-truck","Instalação e treinamento","a loja recebe pronta para vender",1]],
+  hs:[[294,96,"r","Testeira com a marca"],[508,250,"l","Comunicação cambiável"],[300,470,"r","Módulos padronizados"]]},
+ {img:"foto-consultoria",pos:"65% 50%",side:"l",badge:"Mais vendido",
+  quem:"Para pontos de maior fluxo e categorias com verba de trade.",
+  ind:"A indústria compra posição com sinal de fluxo. A melhor posição vale mais.",
+  f:[["i-check","Tudo do Essencial","display, comunicação, QR e manutenção",0],["i-users","Sensor de proximidade","passagens e permanência na zona",1],
+     ["i-wifi","Conectividade e alertas","o display avisa quando cai",1],["i-chart","Painel de execução","loja, campanha e evidência",1],
+     ["i-tag","Preço por posição","a cota vale o fluxo que recebe",1],["i-shield","Uptime e rota de manutenção","técnico vai onde precisa",1]],
+  hs:[[412,440,"r","Painel de execução"],[640,300,"l","Sensor de proximidade"]]},
+ {img:"foto-ilha-touch",pos:"59% 50%",side:"r",badge:"Maior valor por cota",inset:"foto-parede-eletro",
+  quem:"Para lançamento, campanha premium e ativação especial.",
+  ind:"A indústria compra veiculação com prova de exibição, por dia e por loja.",
+  f:[["i-check","Tudo do Sense","sensor, alertas e painel de execução",0],["i-screen","Tela e player integrados","vídeo e conteúdo no ponto",1],
+     ["i-cal","Playlist por dia e loja","conteúdo trocado sem visita",1],["i-doc","Prova de veiculação","arquivo, horário e falhas",1],
+     ["i-bolt","Iluminação inteligente","destaque com baixo consumo",1],["i-target","Venda premium","a cota de maior valor da rede",1]],
+  hs:[[254,255,"l","Tela e player integrados"],[433,191,"r","Conteúdo trocado remotamente"],[293,556,"r","Iluminação inteligente"]]}];
+(function(){
+  $$("[data-pk]").forEach(function(sec){
+    var k=+sec.dataset.pk,P=PK[k],L=PLANS[k],lt=sec.classList.contains("light");
+    var nav='<div class="pknav" data-a="fade" style="--d:1">'+PLANS.map(function(q,j){
+      return '<button data-go="'+(12+j)+'"'+(j===k?' class="cur"':'')+'>'+q.n+'</button>'}).join("")+'</div>';
+    var meter='<div class="pkmeter" data-a style="--d:2;max-width:520px">'+PLANS.map(function(q,j){
+      return '<span><i'+(j<=k?' class="on"':'')+'></i><b'+(j===k?' class="on"':'')+'>Camada '+(j+1)+' · '+q.n+'</b></span>'}).join("")+'</div>';
+    var feats='<div class="feats">'+P.f.map(function(f,j){
+      return '<div class="feat'+(f[3]?(k?' new':''):' base')+'" data-a style="--d:'+(j+5)+'"><span class="fi"><svg class="ico"><use href="#'+f[0]+'"/></svg></span>'+
+        '<span><b>'+f[1]+'</b><small>'+f[2]+'</small></span></div>'}).join("")+'</div>';
+    var txt='<div style="display:flex;flex-direction:column;gap:14px">'+
+      '<div class="pkname" data-a style="--d:1">'+L.n+'</div>'+meter+
+      '<div data-a style="--d:3;display:flex;align-items:center;gap:14px;margin-top:4px">'+
+        '<span style="font-family:\'Exo 2\';font-size:60px;font-weight:800;letter-spacing:-.02em;line-height:1;white-space:nowrap">R$ '+BR(L.p)+'</span>'+
+        '<span style="font-size:14px;color:var(--fg2);line-height:1.4">por display por mês<br>manutenção programada inclusa</span></div>'+
+      '<p class="lede" data-a style="--d:4;font-size:17.5px;max-width:46ch">'+P.quem+'</p>'+feats+
+      '<div data-a style="--d:11;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:14px;border-left:3px solid var(--acc);background:'+(lt?'#fff':'rgba(29,212,200,.1)')+'">'+
+        '<svg class="ico" style="width:22px;height:22px"><use href="#i-tag"/></svg><span style="font-size:14px;line-height:1.4">'+P.ind+'</span></div>'+
+      '<div class="btns" data-a style="--d:12"><button class="btn pri" data-plan="'+k+'">Simular com o '+L.n+' <svg><use href="#i-r"/></svg></button>'+
+        (k<2?'<button class="btn gho" data-go="'+(13+k)+'">Próximo pacote: '+PLANS[k+1].n+'</button>':'<button class="btn gho" data-go="15">Ver a tecnologia</button>')+'</div></div>';
+    var ph='<div class="pkph rv2" style="--d:3;height:600px">'+
+      '<div class="ph"><img src="assets/'+P.img+'.jpg" alt="Pacote '+L.n+' em loja" style="object-position:'+P.pos+'"></div>'+
+      '<div class="frame" style="inset:0;z-index:3;--fc:'+(lt?'#061B49':'#1DD4C8')+';--fs:50px;--fo:-18px"><i></i><i></i><i></i><i></i></div>'+
+      P.hs.map(function(h,j){return '<div class="hs '+h[2]+'" style="left:'+h[0]+'px;top:'+h[1]+'px;--d:'+j+'"><span>'+h[3]+'</span></div>'}).join("")+
+      '<span data-a="pop" style="--d:9;position:absolute;right:18px;bottom:18px;z-index:5;display:inline-flex;align-items:center;gap:8px;background:'+(lt?'#061B49':'#fff')+';color:'+(lt?'#fff':'#061B49')+
+        ';font-family:\'Exo 2\';font-size:13px;font-weight:700;padding:9px 15px;border-radius:100px;box-shadow:0 10px 24px rgba(3,14,40,.3)"><svg class="mb" style="fill:'+(lt?'#1DD4C8':'#2F73FF')+'"><use href="#mb"/></svg>'+P.badge+'</span>'+
+      (P.inset?'<figure class="shot" style="position:absolute;left:-34px;top:-34px;width:250px;height:141px;z-index:6;border:5px solid var(--navy);box-shadow:0 20px 40px rgba(0,0,0,.4)">'+
+        '<img src="assets/'+P.inset+'.jpg" alt="Media em parede modular" style="object-position:50% 40%"><span class="sn" style="position:absolute;left:10px;bottom:10px;z-index:2">Também em parede</span></figure>':'')+
+      '</div>';
+    sec.innerHTML='<div class="pad"><div class="hd" style="flex-direction:row;align-items:center;justify-content:space-between">'+
+      '<div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Pacote '+(k+1)+' de 3</div>'+nav+'</div>'+
+      '<div class="body" style="padding-top:8px"><div style="display:grid;grid-template-columns:'+(P.side==="l"?'740px 1fr':'1fr 740px')+';gap:54px;align-items:center">'+
+      (P.side==="l"?ph+txt:txt+ph)+'</div></div></div>';
+  });
+})();
+document.addEventListener("click",function(e){var b=e.target.closest("[data-plan]"); if(!b)return; SS.plan=+b.dataset.plan; renderSimu(); go(SIMU)});
+
+/* ─────── Comprar ou assinar · tabela ─────── */
+(function(){
+  var R=[["Manutenção","Orçamento a cada avaria","Inclusa, com prazo"],["Reforma e troca","Novo investimento","Dentro do contrato"],
+         ["Tecnologia","Envelhece no balanço","Evolui por camada"],["Prova de execução","Não existe","Relatório por campanha"],
+         ["Padrão entre lojas","Cada compra, um móvel","Sistema modular único"],["Contábil","Imobilizado","Despesa operacional"],
+         ["Expansão","Nova compra, novo projeto","Mais pontos no contrato"]];
+  var X='<svg viewBox="0 0 24 24" style="width:12px;height:12px;flex:0 0 12px;stroke:#8A93A7;stroke-width:3;fill:none;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  var C='<svg viewBox="0 0 24 24" style="width:14px;height:14px;flex:0 0 14px;stroke:#0E9E95;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round"><polyline points="20 6 9 17 4 12"/></svg>';
+  $("#cmpRows").innerHTML=R.map(function(r,k){
+    return '<div data-a style="--d:'+(k+4)+';display:grid;grid-template-columns:170px 1fr 1fr;border-top:1px solid rgba(6,27,73,.07)">'+
+      '<div style="padding:13px 20px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#58627A;display:flex;align-items:center">'+r[0]+'</div>'+
+      '<div style="padding:13px 20px;font-size:14.5px;color:#58627A;display:flex;align-items:center;gap:10px">'+X+r[1]+'</div>'+
+      '<div style="padding:13px 20px;font-size:14.5px;font-weight:600;color:#061B49;display:flex;align-items:center;gap:10px;background:rgba(47,115,255,.05)">'+C+r[2]+'</div></div>'}).join("");
+})();
+
+/* ─────── O grupo · marcas rodando ─────── */
+(function(){
+  var A=[["img","cli-vivo","Vivo",54],["img","cli-claro","Claro",62],["img","cli-bradesco","Bradesco",62],["img","cli-allianz","Allianz",48],
+         ["img","cli-gpa","Grupo Pão de Açúcar",54],"Casas Bahia","Chilly Beans","Fórmula E"];
+  var B=["O Boticário","Quem disse Berenice","Eudora","Oui","Petz","Alltak","Polenghi","DPSP","Evino","Grand Cru","Brastemp","Consul",
+         "Loungerie","Ciranda Cultural","Ypê","Bem Brasil","Atlas","Dako","Ouro Fino","Pirelli","Abras","3 Corações","Grupo Pereira",
+         "LG","Campo Lindo","FTW","Hidramais","Keldog","Pipicat","Cuétara","Nobratta","Cabral e Sousa"];
+  function one(list,hide){return '<div'+(hide?' aria-hidden="true"':'')+'>'+list.map(function(x){
+    return (typeof x==="string"?'<span>'+x+'</span>':'<img src="assets/'+x[1]+'.png" alt="'+(hide?'':x[2])+'" style="height:'+x[3]+'px">')+'<i></i>'}).join("")+'</div>'}
+  $("#mq1").innerHTML=one(A)+one(A,1)+one(A,1)+one(A,1);
+  $("#mq2").innerHTML=one(B)+one(B,1);
+})();
+
+/* ─────── A plataforma · telas que trocam sozinhas ─────── */
+var SISD=[["sis-painel","i-chart","Painel","Ocupação, receita e SLA da semana"],
+ ["sis-inventario","i-cal","Inventário de mídia","Cada display vira cotas semanais"],
+ ["sis-campanhas","i-tag","Campanhas","Da reserva à veiculação, com valor e prazo"],
+ ["sis-sensores","i-users","Sensores das lojas","Pessoas que param e tempo de atenção"],
+ ["sis-mapa","i-pin","Mapa da frota","Cada loja e cada display no mapa"],
+ ["sis-excecoes","i-shield","Exceções","O que saiu do esperado vira tarefa"],
+ ["sis-campo","i-qr","Modo campo","Instalação e vistoria pelo QR"]];
+var sisSel=0,sisT0=0,SIS_MS=6000;
+$("#sisTabs").innerHTML=SISD.map(function(s,k){
+  return '<button data-sis="'+k+'" data-a="left" style="--d:'+(k+2)+';display:flex;align-items:center;gap:14px;padding:9px 14px;border-radius:14px;transition:background .3s,color .3s">'+
+    '<span class="sisi" style="width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 38px;background:rgba(255,255,255,.07);transition:background .3s">'+
+    '<svg class="ico" style="width:19px;height:19px"><use href="#'+s[1]+'"/></svg></span>'+
+    '<span><b style="display:block;font-family:\'Exo 2\';font-size:17px;font-weight:700">'+s[2]+'</b>'+
+    '<small style="display:block;font-size:12.5px;opacity:.72;margin-top:1px">'+s[3]+'</small></span></button>'}).join("");
+function renderSis(){
+  $$("#sisTabs [data-sis]").forEach(function(b,k){var on=k===sisSel; b.style.background=on?"#fff":"transparent"; b.style.color=on?"#061B49":"#fff";
+    b.querySelector(".sisi").style.background=on?"#061B49":"rgba(255,255,255,.07)"});
+  var im=$("#sisImg"); im.style.opacity=0;
+  setTimeout(function(){im.src="assets/"+SISD[sisSel][0]+".jpg"; im.alt=SISD[sisSel][2]+" da plataforma Códice"; im.style.opacity=1},170);
+  $("#sisUrl").textContent=SISD[sisSel][2];
+  $("#sisCount").textContent=String(sisSel+1).padStart(2,"0")+" / "+String(SISD.length).padStart(2,"0");
+  var p=$("#sisProg"); p.style.transition="none"; p.style.width="0"; p.getBoundingClientRect();
+  p.style.transition="width "+SIS_MS+"ms linear"; p.style.width="100%"; sisT0=Date.now();
 }
-document.addEventListener("click",function(e){var b=e.target.closest("[data-t]"); if(!b)return;
-  tsel=+b.dataset.t; renderTiers(); slides[TIER].classList.add("noanim")});
-renderTiers();
+$("#sisTabs").addEventListener("click",function(e){var b=e.target.closest("[data-sis]"); if(!b)return; sisSel=+b.dataset.sis; renderSis()});
+SISD.forEach(function(s){var im=new Image(); im.src="assets/"+s[0]+".jpg"});
 
 /* ─────── Tela 08 · órbita de tecnologia ─────── */
 var ORB=[
@@ -1167,30 +1605,115 @@ function renderOrb(){
   R.setAttribute("cx",x2);R.setAttribute("cy",y2);
   $("#orbNum").textContent=o.n; $("#orbTitle").textContent=o.t; $("#orbDesc").textContent=o.d;
   $("#orbRows").innerHTML=o.rows.map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
+  $("#orbCount").textContent=String(osel+1).padStart(2,"0")+" / "+ORB.length;
+  var pn=$("#orbPanel"); pn.classList.remove("swap"); void pn.offsetWidth; pn.classList.add("swap");
+  orbProgress();
 }
-$("#orbit").addEventListener("click",function(e){var b=e.target.closest("[data-orb]"); if(!b)return; osel=+b.getAttribute("data-orb"); renderOrb()});
+/* troca automática e lenta; um clique fixa o módulo por 14 segundos */
+var ORB_MS=5200,orbT0=0,orbDur=5200,orbPaused=false,orbHold=0;
+function orbProgress(){
+  var p=$("#orbProg"); p.style.transition="none"; p.style.width="0"; p.getBoundingClientRect();
+  orbDur=Math.max(ORB_MS,orbHold-Date.now()); orbT0=Date.now();
+  if(orbPaused)return; p.style.transition="width "+orbDur+"ms linear"; p.style.width="100%";
+}
+$("#orbit").addEventListener("click",function(e){var b=e.target.closest("[data-orb]"); if(!b)return;
+  osel=+b.getAttribute("data-orb"); orbHold=Date.now()+14000; renderOrb()});
+$("#orbPlay").addEventListener("click",function(){orbPaused=!orbPaused;
+  $("#orbPlayIco").setAttribute("d",orbPaused?"M7 4l13 8-13 8z":"M6 4h4v16H6zM14 4h4v16h-4z");
+  this.setAttribute("aria-label",orbPaused?"Retomar a troca automática":"Pausar a troca automática"); orbProgress()});
 renderOrb();
+setInterval(function(){
+  if(document.hidden)return;
+  var now=Date.now(),sec=slides[i];
+  if(sec===slides[SIS]&&now-sisT0>=SIS_MS){sisSel=(sisSel+1)%SISD.length; renderSis()}
+  if(sec===slides[TECH]&&!orbPaused&&now-orbT0>=orbDur){osel=(osel+1)%ORB.length; orbHold=0; renderOrb()}
+},400);
 
-/* ─────── Tela 09 · grade de cotas e simulação ─────── */
-(function(){var h="";for(var k=0;k<104;k++)h+='<span style="width:11px;height:11px;border-radius:3px;background:rgba(255,255,255,.12);transition:background .5s var(--ease) '+(k*7)+'ms"></span>';
-  $("#quotaGrid").innerHTML=h})();
-var PRECO=1500,COTAS=104,ALUGUEL=12000,OCC=[25,50,75,100],ocSel=3,MAXBAR=640,MAXV=156000;
-$("#occ").innerHTML=OCC.map(function(o,k){return '<button data-o="'+k+'" style="font-family:\'Exo 2\';font-size:14px;font-weight:700;border-radius:100px;padding:10px 22px;'+
-  'border:1.5px solid rgba(255,255,255,.22);color:rgba(255,255,255,.74);transition:.28s">Ocupação de '+o+'%</button>'}).join("");
-function renderSim(){
-  var pct=OCC[ocSel],o=pct/100,cot=Math.round(COTAS*o),rec=cot*PRECO,res=rec-ALUGUEL;
-  $$("#occ [data-o]").forEach(function(b,k){var on=k===ocSel;
-    b.style.background=on?"#1DD4C8":"transparent"; b.style.borderColor=on?"#1DD4C8":"rgba(255,255,255,.22)"; b.style.color=on?"#061B49":"rgba(255,255,255,.74)"});
-  $("#arc").setAttribute("stroke-dashoffset",754*(1-o));
-  $("#arcPct").textContent=pct+"%"; $("#arcQ").textContent=cot+" de 104 cotas";
-  $("#simRec").textContent=BR(rec); $("#simAlu").textContent=BR(ALUGUEL); $("#simRes").textContent=BR(res);
-  $("#bR").setAttribute("width",Math.max(0,rec/MAXV*MAXBAR));
-  $("#bA").setAttribute("width",Math.max(0,ALUGUEL/MAXV*MAXBAR));
-  $("#bS").setAttribute("width",Math.max(0,res/MAXV*MAXBAR));
-  $("#tR").textContent="R$ "+BR(rec); $("#tA").textContent="R$ "+BR(ALUGUEL); $("#tS").textContent="R$ "+BR(res);
-  $$("#quotaGrid span").forEach(function(c,k){c.style.background=k<cot?"#1DD4C8":"rgba(255,255,255,.12)"});
+/* ─────── Simulador da rede, com cronograma que parte do dia de hoje ─────── */
+var MES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+var MESL=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+var SS={plan:0,dpl:4,lojas:10,cota:1500,occ:100,per:6},IMPL=490;
+var LIM={dpl:[1,40,1],lojas:[1,5000,1],cota:[100,50000,100]};
+function addDays(d,n){var x=new Date(d); x.setDate(x.getDate()+n); return x}
+function addMonths(d,n){var x=new Date(d),day=x.getDate(); x.setMonth(x.getMonth()+n); if(x.getDate()<day)x.setDate(0); return x}
+function dLonga(d){return d.getDate()+" "+MES[d.getMonth()]+" "+d.getFullYear()}
+function curto(v){var a=Math.abs(v),s=v<0?"−":"";
+  return a>=1e6?s+"R$ "+(a/1e6).toFixed(1).replace(".",",")+" mi":a>=1e3?s+"R$ "+Math.round(a/1e3)+" mil":s+"R$ "+Math.round(a)}
+$("#sPlan").innerHTML=PLANS.map(function(p,k){return '<button data-pl="'+k+'">'+p.n+'<small>R$ '+BR(p.p)+'</small></button>'}).join("");
+$("#sPer").innerHTML=[6,12].map(function(m){return '<button data-per="'+m+'">'+m+' meses</button>'}).join("");
+$("#sPlan").addEventListener("click",function(e){var b=e.target.closest("[data-pl]"); if(!b)return; SS.plan=+b.dataset.pl; renderSimu()});
+$("#sPer").addEventListener("click",function(e){var b=e.target.closest("[data-per]"); if(!b)return; SS.per=+b.dataset.per; renderSimu()});
+$$(".stp").forEach(function(st){
+  var k=st.dataset.k,inp=st.querySelector("input"),L=LIM[k];
+  st.addEventListener("click",function(e){var b=e.target.closest("[data-s]"); if(!b)return;
+    SS[k]=Math.max(L[0],Math.min(L[1],SS[k]+(+b.dataset.s)*L[2])); renderSimu(true)});
+  inp.addEventListener("input",function(){var v=parseInt(inp.value.replace(/\D/g,""),10);
+    if(v>0){SS[k]=Math.max(L[0],Math.min(L[1],v)); renderSimu(true)}});
+  inp.addEventListener("focus",function(){inp.select()});
+  inp.addEventListener("blur",function(){renderSimu(true)});
+});
+$("#sOcc").addEventListener("input",function(){SS.occ=+this.value; renderSimu(true)});
+function renderSimu(quick){
+  var P=PLANS[SS.plan],D=SS.dpl*SS.lojas,W=SS.per*52/12,o=SS.occ/100;
+  var cot=Math.round(D*W*o),rec=cot*SS.cota,alu=D*P.p*SS.per,luc=rec-alu,imp=D*IMPL;
+  $$("#sPlan [data-pl]").forEach(function(b,k){b.classList.toggle("on",k===SS.plan)});
+  $$("#sPer [data-per]").forEach(function(b){b.classList.toggle("on",+b.dataset.per===SS.per)});
+  [["sDpl","dpl",""],["sLojas","lojas",""],["sCota","cota","R$ "]].forEach(function(p){var el=$("#"+p[0]);
+    if(document.activeElement===el&&quick)return; el.value=p[2]+BR(SS[p[1]])});
+  var r=$("#sOcc"); r.value=SS.occ; r.style.setProperty("--p",((SS.occ-10)/90*100)+"%"); $("#sOccTxt").textContent=SS.occ+"%";
+  $("#kRec").textContent=BR(rec); $("#kRecS").textContent=BR(cot)+" cotas em "+Math.round(W)+" semanas";
+  $("#kAlu").textContent=BR(alu); $("#kAluS").textContent=BR(D)+" displays × R$ "+BR(P.p)+" × "+SS.per+" meses";
+  $("#kLuc").textContent=BR(luc); $("#kLucS").textContent="Descontada a implantação: R$ "+BR(luc-imp);
+  /* cronograma */
+  var hoje=new Date(); hoje.setHours(12,0,0,0);
+  var ini=addDays(hoje,60),fim=addMonths(ini,SS.per);
+  var wNet=SS.cota*o*D-D*P.p*12/52,pw=wNet>0?Math.max(1,Math.ceil(imp/wNet)):0,pay=pw&&pw<=W?addDays(ini,pw*7):null;
+  var semanas=function(n){return n+(n>1?" semanas":" semana")};
+  $("#simDate").textContent="Simulação de "+hoje.getDate()+" de "+MESL[hoje.getMonth()]+" de "+hoje.getFullYear();
+  $("#sPay").textContent=pay?"Implantação paga em "+semanas(pw)+" de venda":"Neste cenário a implantação não se paga no período";
+  var M=[[hoje,"Aprovação","Proposta aceita e lojas definidas"],[addDays(hoje,30),"Projeto","Formatos, contratos e agenda"],
+         [ini,"Instalação","Displays no ar e vendas abertas"],[pay,"Implantação paga",pay?"Com "+semanas(pw)+" de venda":"Fora do período"],
+         [fim,"Fim do ciclo","Lucro potencial de "+curto(luc)]];
+  var tot=(fim-hoje)/864e5,X=function(d){return 18+((d-hoje)/864e5)/tot*964},COR=["#061B49","#061B49","#061B49","#0E9E95","#2F73FF"];
+  var s='<defs><linearGradient id="gTl" gradientUnits="userSpaceOnUse" x1="18" y1="0" x2="982" y2="0"><stop offset="0" stop-color="#0E9E95"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>'+
+    '<line x1="18" y1="36" x2="982" y2="36" stroke="rgba(6,27,73,.08)" stroke-width="6" stroke-linecap="round"/>'+
+    '<line x1="18" y1="36" x2="'+X(ini)+'" y2="36" stroke="#8A93A7" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/>'+
+    '<line x1="'+X(ini)+'" y1="36" x2="982" y2="36" stroke="url(#gTl)" stroke-width="6" stroke-linecap="round"/>';
+  M.forEach(function(m,k){if(!m[0])return; var x=X(m[0]);
+    if(k===3)s+='<line x1="'+x+'" y1="18" x2="'+x+'" y2="30" stroke="#0E9E95" stroke-width="2"/><circle cx="'+x+'" cy="10" r="9" fill="#0E9E95"/>'+
+      '<text x="'+x+'" y="14" text-anchor="middle" font-family="Exo 2" font-size="11" font-weight="800" fill="#fff">4</text>';
+    else s+='<circle cx="'+x+'" cy="36" r="12" fill="'+COR[k]+'" stroke="#fff" stroke-width="3"/>'+
+      '<text x="'+x+'" y="40.5" text-anchor="middle" font-family="Exo 2" font-size="12" font-weight="800" fill="#fff">'+(k+1)+'</text>'});
+  $("#sTl").innerHTML=s;
+  $("#sTlLeg").innerHTML=M.map(function(m,k){return '<div style="display:flex;gap:9px;align-items:flex-start">'+
+    '<span style="width:20px;height:20px;border-radius:50%;flex:0 0 20px;display:grid;place-items:center;font-family:\'Exo 2\';font-size:10.5px;font-weight:800;color:#fff;background:'+COR[k]+'">'+(k+1)+'</span>'+
+    '<span style="min-width:0"><b style="display:block;font-family:\'Exo 2\';font-size:14px;font-weight:800;white-space:nowrap">'+(m[0]?dLonga(m[0]):"Sem data")+'</b>'+
+    '<span style="display:block;font-size:12px;font-weight:700;margin-top:1px">'+m[1]+'</span>'+
+    '<span style="display:block;font-size:11.5px;color:#8A93A7;line-height:1.3">'+m[2]+'</span></span></div>'}).join("");
+  /* lucro acumulado mês a mês */
+  var pts=[],mx=0,mn=0;
+  for(var m=1;m<=SS.per;m++){var v=D*SS.cota*o*(m*52/12)-D*P.p*m; pts.push(v); mx=Math.max(mx,v); mn=Math.min(mn,v)}
+  mx=Math.max(mx,imp)*1.14; mn=Math.min(0,mn*1.14);
+  var tp=28,bt=186,Y=function(v){return tp+(mx-v)/(mx-mn)*(bt-tp)},cw=1000/SS.per,bw=Math.min(70,cw*.54);
+  var c='<defs><linearGradient id="gCh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>'+
+    '<line x1="0" y1="'+Y(0)+'" x2="1000" y2="'+Y(0)+'" stroke="rgba(6,27,73,.16)" stroke-width="1.5"/>'+
+    '<line x1="0" y1="'+Y(imp)+'" x2="1000" y2="'+Y(imp)+'" stroke="#4E4E50" stroke-width="1.6" stroke-dasharray="6 6"/>';
+  pts.forEach(function(v,k){var x=cw*k+cw/2,y=Math.min(Y(v),Y(0)),h=Math.max(Math.abs(Y(v)-Y(0)),1.5),d=addMonths(ini,k);
+    c+='<rect x="'+(x-bw/2)+'" y="'+y+'" width="'+bw+'" height="'+h+'" rx="8" fill="'+(v>=0?"url(#gCh)":"#C9CFDB")+'"'+
+      (quick?'':' style="transform-box:fill-box;transform-origin:50% 100%;animation:barUp .7s cubic-bezier(.22,1,.36,1) both '+(k*45)+'ms"')+'/>'+
+      '<text x="'+x+'" y="'+(y-8)+'" text-anchor="middle" font-family="Exo 2" font-size="'+(SS.per>6?12.5:15)+'" font-weight="800" fill="#061B49">'+curto(v)+'</text>'+
+      '<text x="'+x+'" y="208" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#8A93A7">'+MES[d.getMonth()]+'/'+String(d.getFullYear()).slice(2)+'</text>'});
+  $("#sChart").innerHTML=c;
+  /* contato já com os números */
+  var txt="Simulação Códice de "+hoje.getDate()+" de "+MESL[hoje.getMonth()]+" de "+hoje.getFullYear()+"\n"+
+    "Pacote "+P.n+": "+BR(SS.lojas)+" lojas × "+SS.dpl+" displays = "+BR(D)+" displays\n"+
+    "Cota semanal R$ "+BR(SS.cota)+", agenda vendida "+SS.occ+"%, período de "+SS.per+" meses\n"+
+    "Receita R$ "+BR(rec)+" | Aluguel R$ "+BR(alu)+" | Lucro potencial R$ "+BR(luc)+"\n"+
+    "Início das vendas previsto para "+dLonga(ini);
+  $("#sMail").href="mailto:contato@neoband.com.br?subject="+encodeURIComponent("Simulação Códice · "+BR(D)+" displays")+
+    "&body="+encodeURIComponent("Olá, quero conversar sobre esta simulação.\n\n"+txt);
+  $("#sWpp").href="https://wa.me/5511971787042?text="+encodeURIComponent("Olá, quero falar sobre a Códice.\n\n"+txt);
 }
-$("#occ").addEventListener("click",function(e){var b=e.target.closest("[data-o]"); if(!b)return; ocSel=+b.dataset.o; renderSim()});
 
 /* ─────── Tela 10 · efeito fiscal ─────── */
 (function(){
@@ -1211,26 +1734,6 @@ $("#occ").addEventListener("click",function(e){var b=e.target.closest("[data-o]"
     g.appendChild(mk("text",{x:f.x,y:f.dy+50,"text-anchor":"middle","font-family":"Exo 2","font-size":"33","font-weight":"800",fill:"#fff",class:"fadein",style:"--d:"+(k+3)},f.efetivo));
     g.appendChild(mk("text",{x:f.x,y:f.dy+74,"text-anchor":"middle","font-family":"Inter","font-size":"12.5",fill:"rgba(255,255,255,.78)",class:"fadein",style:"--d:"+(k+4)},"custo efetivo"));
     g.appendChild(mk("text",{x:f.x,y:358,"text-anchor":"middle","font-family":"Inter","font-size":"12.5","font-weight":"700",fill:"rgba(6,27,73,.58)","letter-spacing":"1.5",class:"fadein",style:"--d:"+(k+3)},f.reg));
-  });
-})();
-
-/* ─────── Tela 12 · piloto ─────── */
-(function(){
-  var P=[["30d","Desenhar","Lojas, categorias, contratos, tabela comercial e primeira campanha."],
-         ["60d","Instalar","Montagem, treinamento, agenda ativa e primeira rodada de dados."],
-         ["90d","Ajustar","Primeira leitura de ocupação, preço e execução. Novas marcas entram."],
-         ["180d","Decidir","Relatório final, resultado por loja e decisão de escala para a rede."]];
-  var g=$("#pilotNodes"),xs=[90,503,916,1330];
-  P.forEach(function(s,k){
-    g.appendChild(mk("circle",{cx:xs[k],cy:36,r:15,fill:"none",stroke:"#1DD4C8","stroke-width":1.4,class:"pulse",style:"--k:"+k}));
-    g.appendChild(mk("circle",{cx:xs[k],cy:36,r:13,fill:"#061B49",stroke:"#1DD4C8","stroke-width":3.5,class:"fadein",style:"--d:"+(k+4)}));
-    var anc=k===0?"start":(k===3?"end":"middle"),ox=k===0?-14:(k===3?14:0);
-    g.appendChild(mk("text",{x:xs[k]+ox,y:100,"text-anchor":anc,"font-family":"Exo 2","font-size":"40","font-weight":"800",fill:"#1DD4C8",class:"fadein",style:"--d:"+(k+4)},s[0]));
-    g.appendChild(mk("text",{x:xs[k]+ox,y:132,"text-anchor":anc,"font-family":"Exo 2","font-size":"21","font-weight":"700",fill:"#fff",class:"fadein",style:"--d:"+(k+5)},s[1]));
-    var words=s[2].split(" "),lines=[],c2="";
-    words.forEach(function(w){if((c2+" "+w).length>36){lines.push(c2);c2=w}else c2=c2?c2+" "+w:w}); lines.push(c2);
-    lines.forEach(function(ln,li){g.appendChild(mk("text",{x:xs[k]+ox,y:158+li*18,"text-anchor":anc,"font-family":"Inter","font-size":"13.5",
-      fill:"rgba(255,255,255,.62)",class:"fadein",style:"--d:"+(k+6)},ln))});
   });
 })();
 
@@ -1270,13 +1773,16 @@ function onEnter(sec){
     var t0=null,dur=1150; delete e2.dataset.done;
     function step(ts){if(e2.dataset.done)return; if(!t0)t0=ts;
       var p=Math.min((ts-t0)/dur,1),k=1-Math.pow(1-p,3),v=end*k;
-      e2.textContent=dec?v.toFixed(dec).replace(".",","):Math.round(v);
+      e2.textContent=dec?v.toFixed(dec).replace(".",","):(e2.dataset.fmt?BR(Math.round(v)):Math.round(v));
       if(p<1)requestAnimationFrame(step); else e2.dataset.done="1"}
     e2.textContent=dec?"0,0":"0"; requestAnimationFrame(step)});
   setTimeout(function(){
     $$(".gbar",sec).forEach(function(r){r.setAttribute("height",r.dataset.h); r.setAttribute("y",r.dataset.y)});
   },140);
-  if(sec===slides[SIM]){$("#arc").setAttribute("stroke-dashoffset",754); setTimeout(renderSim,200)}
+  $$(".wbar",sec).forEach(function(b){b.style.width="0"; setTimeout(function(){b.style.width=b.dataset.w+"%"},280)});
+  if(sec===slides[SIS])renderSis();
+  if(sec===slides[TECH]){orbHold=0; orbProgress()}
+  if(sec===slides[SIMU])renderSimu();
   safety(sec);
 }
 function safety(sec){
@@ -1284,7 +1790,8 @@ function safety(sec){
     if(slides[i]!==sec)return;
     var stuck=$$("[data-a]",sec).some(function(e2){return parseFloat(getComputedStyle(e2).opacity)<.99});
     if(stuck)sec.classList.add("noanim");
-    $$("[data-cu]",sec).forEach(function(e2){if(e2.dataset.done)return; e2.dataset.done="1"; e2.textContent=e2.dataset.cu});
+    $$("[data-cu]",sec).forEach(function(e2){if(e2.dataset.done)return; e2.dataset.done="1"; e2.textContent=e2.dataset.fmt?BR(+e2.dataset.cu):e2.dataset.cu});
+    $$(".wbar",sec).forEach(function(b){b.style.width=b.dataset.w+"%"});
     if(stuck){$$(".draw",sec).forEach(function(p){p.style.strokeDashoffset=0}); $$(".fadein",sec).forEach(function(p){p.style.opacity=1})}
   },2600);
 }
@@ -1304,6 +1811,7 @@ $("#next").addEventListener("click",function(){go(i+1)});
 
 /* ─────── Teclado e toque ─────── */
 addEventListener("keydown",function(e){
+  if(e.target.closest&&e.target.closest("input,textarea,select"))return;
   if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();go(i+1)}
   else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();go(i-1)}
   else if(e.key==="Home"){go(0)} else if(e.key==="End"){go(N-1)}
@@ -1311,11 +1819,14 @@ addEventListener("keydown",function(e){
   else if(e.key==="Escape"){closeMenu()}});
 var sx=0,sy=0;
 addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
-addEventListener("touchend",function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+addEventListener("touchend",function(e){if(e.target.closest&&e.target.closest("input"))return; var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
   if(Math.abs(dx)>56&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1)},{passive:true});
 
 /* ─────── Boot ─────── */
-renderSim();
+renderSimu();
+addEventListener("beforeprint",function(){
+  $$(".wbar").forEach(function(b){b.style.width=b.dataset.w+"%"});
+  $$("[data-cu]").forEach(function(e2){e2.dataset.done="1"; e2.textContent=e2.dataset.fmt?BR(+e2.dataset.cu):e2.dataset.cu})});
 slides[0].classList.add("on"); setChrome(); onEnter(slides[0]);
 if(location.hash){var h=parseInt(location.hash.slice(1),10); if(h>0&&h<=N)go(h-1,true)}
 })();

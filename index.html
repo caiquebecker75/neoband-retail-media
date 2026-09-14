@@ -690,6 +690,18 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 .ind-w .ib{background:rgba(29,212,200,.14)}
 .ind-w .ib svg{stroke:#1DD4C8}
 
+/* ---------- setas do símbolo para os três passos ---------- */
+.oq-links{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.oq-p{fill:none;stroke-width:2.2;stroke-linecap:round;opacity:.75}
+.oq-links.go .oq-p{transition:stroke-dashoffset 1s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--k)*220ms + 1150ms);stroke-dashoffset:0!important}
+.oq-dot,.oq-arw,.oq-run{opacity:0}
+.oq-arw{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.oq-links.go .oq-dot{animation:aFade .3s linear both;animation-delay:calc(var(--k)*220ms + 1050ms)}
+.oq-links.go .oq-arw{animation:aFade .3s linear both;animation-delay:calc(var(--k)*220ms + 1950ms)}
+.oq-links.go .oq-run{animation:aFade .3s linear both;animation-delay:calc(var(--k)*220ms + 2100ms)}
+.slide.noanim .oq-p{stroke-dashoffset:0!important;transition:none!important}
+.slide.noanim .oq-dot,.slide.noanim .oq-arw,.slide.noanim .oq-run{animation:none!important;opacity:1!important}
+
 @media print{
   .fx-steps i::after{transform:none!important}
   .mth i{transform:none!important}
@@ -940,7 +952,8 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
         <h2 data-a style="--d:1">A Códice aluga displays inteligentes<br>para a loja <em>vender espaço para as marcas</em>.</h2>
       </div>
       <div class="body">
-        <div style="display:grid;grid-template-columns:500px 1fr;gap:70px;align-items:center">
+        <div id="oqGrid" style="position:relative;display:grid;grid-template-columns:500px 1fr;gap:70px;align-items:center">
+          <svg id="oqLinks" class="oq-links" aria-hidden="true"></svg>
           <div style="position:relative;height:500px">
             <div class="sym" style="left:80px;top:0">
               <img class="p-top" src="assets/codice-face-topo.png" alt="">
@@ -953,9 +966,9 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             <p data-a="fade" style="--d:8;position:absolute;left:0;right:0;top:446px;text-align:center;font-family:'Exo 2';font-size:21px;font-weight:700;color:var(--navy)">Display, manutenção e tecnologia<br><em>numa assinatura só</em>.</p>
           </div>
           <div style="display:flex;flex-direction:column">
-            <div data-a="right" style="--d:3;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">01</div><div><h3 style="font-size:27px">A Códice instala o display</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Projeto, montagem e treinamento da equipe. A rede não compra nenhum móvel.</p></div></div>
-            <div data-a="right" style="--d:4;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:var(--navy)">02</div><div><h3 style="font-size:27px">A rede vende a semana para as marcas</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">A indústria compra a semana do display, com a comunicação da marca inclusa.</p><span class="cota"><svg class="ico" style="width:16px;height:16px;stroke:#061B49"><use href="#i-cal"/></svg>1 cota = 1 semana de 1 display</span></div></div>
-            <div data-a="right" style="--d:5;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">03</div><div><h3 style="font-size:27px">A Códice mantém e mede</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Manutenção, troca de comunicação e relatório para a marca comprar de novo.</p></div></div>
+            <div data-a="right" style="--d:3;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div class="oq-n" style="width:64px;height:64px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">01</div><div><h3 style="font-size:27px">A Códice instala o display</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Projeto, montagem e treinamento da equipe. A rede não compra nenhum móvel.</p></div></div>
+            <div data-a="right" style="--d:4;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div class="oq-n" style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:var(--navy)">02</div><div><h3 style="font-size:27px">A rede vende a semana para as marcas</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">A indústria compra a semana do display, com a comunicação da marca inclusa.</p><span class="cota"><svg class="ico" style="width:16px;height:16px;stroke:#061B49"><use href="#i-cal"/></svg>1 cota = 1 semana de 1 display</span></div></div>
+            <div data-a="right" style="--d:5;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div class="oq-n" style="width:64px;height:64px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">03</div><div><h3 style="font-size:27px">A Códice mantém e mede</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Manutenção, troca de comunicação e relatório para a marca comprar de novo.</p></div></div>
             <div data-a style="--d:7;margin-top:26px;display:flex;align-items:center;gap:22px;padding:18px 22px 18px 26px;border-radius:20px;background:var(--navy);color:#fff">
               <div style="font-family:'Exo 2';font-weight:800;font-size:48px;white-space:nowrap;line-height:1"><small style="font-size:.42em;color:var(--teal);margin-right:4px">R$</small>499</div>
               <div style="font-size:14.5px;line-height:1.45;color:rgba(255,255,255,.75)"><b style="color:#fff;font-family:'Exo 2';font-size:18px;font-weight:700">por display, por mês.</b><br>Instalação, manutenção e plataforma na mesma assinatura.</div>
@@ -1634,6 +1647,27 @@ function renderSimu(quick){
   $("#sWpp").href="https://wa.me/5511971787042?text="+encodeURIComponent("Olá, quero falar sobre a Códice.\n\n"+txt);
 }
 
+/* ─────── O que é a Códice · setas do símbolo para os passos ─────── */
+function offIn(el,root){var x=0,y=0;while(el&&el!==root){x+=el.offsetLeft;y+=el.offsetTop;el=el.offsetParent}return [x,y]}
+function oqLinks(){
+  var grid=$("#oqGrid"),svg=$("#oqLinks"); if(!grid||!svg||!grid.offsetWidth)return;
+  var sym=grid.querySelector(".sym"),so=offIn(sym,grid),sw=sym.offsetWidth,sh=sym.offsetHeight;
+  /* pontos de saída: ponta da face de cima, barras e ponta da base */
+  var A=[[.955,.16],[.99,.55],[.885,.85]],C=["#061B49","#0E9E95","#2F73FF"],h="";
+  svg.setAttribute("viewBox","0 0 "+grid.offsetWidth+" "+grid.offsetHeight);
+  $$(".oq-n",grid).forEach(function(n,k){
+    var o=offIn(n,grid),x0=so[0]+sw*A[k][0]+10,y0=so[1]+sh*A[k][1],x1=o[0]-14,y1=o[1]+n.offsetHeight/2,mx=(x0+x1)/2;
+    var d="M"+x0+" "+y0+" C"+mx+" "+y0+" "+mx+" "+y1+" "+x1+" "+y1;
+    h+='<path class="oq-p" d="'+d+'" stroke="'+C[k]+'" style="--k:'+k+'"/>'+
+      '<circle class="oq-dot" cx="'+x0+'" cy="'+y0+'" r="5.5" fill="'+C[k]+'" style="--k:'+k+'"/>'+
+      '<polyline class="oq-arw" points="'+(x1-9)+' '+(y1-7)+' '+x1+' '+y1+' '+(x1-9)+' '+(y1+7)+'" stroke="'+C[k]+'" style="--k:'+k+'"/>'+
+      '<circle class="oq-run" r="4" fill="'+C[k]+'" style="--k:'+k+'"><animateMotion dur="2.4s" begin="'+(2.2+k*.3)+'s" repeatCount="indefinite" path="'+d+'"/></circle>';
+  });
+  svg.classList.remove("go"); svg.innerHTML=h;
+  $$(".oq-p",svg).forEach(function(p){var L=p.getTotalLength(); p.style.strokeDasharray=L; p.style.strokeDashoffset=L});
+  void svg.getBoundingClientRect(); svg.classList.add("go");
+}
+
 /* ─────── Navegação ─────── */
 function actName(k){for(var j=0;j<ACTS.length;j++){if(k>=ACTS[j][0]&&k<=ACTS[j][1])return ACTS[j][2]}return ""}
 function setChrome(){
@@ -1679,6 +1713,7 @@ function onEnter(sec){
   if(sec===slides[SIS])renderSis();
   if(sec===slides[TECH]){orbHold=0; orbProgress()}
   if(sec===slides[SIMU])renderSimu();
+  if(sec.querySelector("#oqGrid"))setTimeout(oqLinks,40);
   /* displays em 3D sempre começam de frente ao abrir a tela */
   $$("model-viewer",sec).forEach(function(mv){
     if(mv.resetTurntableRotation)mv.resetTurntableRotation(0);

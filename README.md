@@ -8,16 +8,17 @@ fábrica NeoBand e a 75 LAB.
 
 ## O racional
 
-12 telas, uma ideia por tela. Versões anteriores (13 e 19 telas) ficaram no histórico do Git.
+14 telas, uma ideia por tela. Versões anteriores ficaram no histórico do Git.
 
 | Bloco | Telas | Conteúdo |
 |---|---|---|
 | Abertura | 01 | A sua loja já é um veículo de mídia |
 | O que mudou | 02 | A verba desceu para o corredor e o custo de não agir |
 | Quem somos | 03 a 05 | O grupo (NeoBand e 75 LAB, marcas atendidas), o que é a Códice e a plataforma |
-| Por que assinar | 06 | Comprar sozinho × assinar por R$ 499 por display por mês |
-| O produto | 07 a 11 | Seis formatos e os três pacotes em 3D, e a tecnologia embarcada |
-| Decisão | 12 | Simulador da rede (1, 6 ou 12 meses) com cronograma a partir de hoje |
+| Por que assinar | 06 a 07 | Comprar sozinho × assinar por R$ 499 por mês e a vantagem fiscal da assinatura |
+| Por que a marca compra | 08 | As dores da indústria com display próprio e como a cota Códice resolve |
+| O produto | 09 a 13 | Seis formatos e os três pacotes em 3D, e a tecnologia embarcada |
+| Decisão | 14 | Simulador da rede (1, 6 ou 12 meses) com cronograma a partir de hoje |
 
 Métrica da proposta: **R$ 499 por display por mês**. **1 cota = 1 semana de 1 display.**
 
@@ -44,12 +45,12 @@ Métrica da proposta: **R$ 499 por display por mês**. **1 cota = 1 semana de 1 
 ## Navegação
 
 Setas, espaço, PageUp e PageDown, `Home`, `End`, `M` para o índice, `Esc` para fechar.
-Swipe no celular. O link aceita âncora de tela: `#12` abre o simulador.
+Swipe no celular. O link aceita âncora de tela: `#14` abre o simulador.
 
 ## Estrutura
 
 ```
-index.html          apresentação de 12 telas (HTML, CSS e JS em arquivo único)
+index.html          apresentação de 14 telas (HTML, CSS e JS em arquivo único)
 completo.html       versão longa antiga, identidade NeoBand
 assets/3d/          displays em .glb e posters (gerados no repositório de AR)
 assets/vendor/      model-viewer 4.3.1 e gerador de QR code

@@ -8,17 +8,18 @@ fábrica NeoBand e a 75 LAB.
 
 ## O racional
 
-19 telas: primeiro quem é a empresa, depois a dor, a virada, o produto, a prova e a decisão.
+13 telas: primeiro quem é a empresa, depois a dor, a virada, o produto, a prova e a decisão.
+A versão anterior de 19 telas ficou no histórico do Git.
 
 | Bloco | Telas | Conteúdo |
 |---|---|---|
 | Abertura | 01 | A sua loja já é um veículo de mídia |
-| Quem somos | 02 a 05 | Quem é a Códice, o grupo (NeoBand e 75 LAB), a operação e a plataforma |
-| O que mudou | 06 a 07 | A verba desceu para o corredor e o custo de não agir |
-| A solução | 08 a 11 | Display as a Service, quanto custa comprar sozinho, comprar ou assinar e o ciclo |
-| O produto | 12 a 16 | Seis formatos, um slide por pacote (Essencial, Sense, Media) e a tecnologia |
-| A prova | 17 a 18 | A conta em 6 meses e o efeito fiscal |
-| Decisão | 19 | Simulador da rede com cronograma a partir de hoje |
+| Quem somos | 02 a 03 | O grupo (Códice, NeoBand e 75 LAB, com as marcas atendidas) e a operação com a plataforma |
+| O que mudou | 04 | A verba desceu para o corredor, as quatro travas e o custo de não agir |
+| A solução | 05 a 06 | Display as a Service com o ciclo semanal; comprar sozinho × assinar, com o efeito fiscal |
+| O produto | 07 a 11 | Seis formatos, um slide por pacote (Essencial, Sense, Media) e a tecnologia |
+| A prova | 12 | A conta da rede, com projeção de 1 mês ou 6 meses |
+| Decisão | 13 | Simulador da rede (1, 6 ou 12 meses) com cronograma a partir de hoje |
 
 A versão longa antiga continua em [`completo.html`](completo.html), na identidade NeoBand.
 
@@ -47,12 +48,12 @@ A versão longa antiga continua em [`completo.html`](completo.html), na identida
 ## Navegação
 
 Setas, espaço, PageUp e PageDown, `Home`, `End`, `M` para o índice, `Esc` para fechar.
-Swipe no celular. O link aceita âncora de tela: `#19` abre o simulador.
+Swipe no celular. O link aceita âncora de tela: `#13` abre o simulador.
 
 ## Estrutura
 
 ```
-index.html          apresentação de 19 telas (HTML, CSS e JS em arquivo único)
+index.html          apresentação de 13 telas (HTML, CSS e JS em arquivo único)
 completo.html       versão longa antiga, identidade NeoBand
 assets/foto-*       fotos da empresa e da operação
 assets/sis-*        telas do sistema Códice em modo demonstração (dados fictícios)

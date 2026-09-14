@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="module" src="assets/vendor/model-viewer.min.js"></script>
+<script src="assets/vendor/qrcode.min.js"></script>
 <style>
 /* ==========================================================================
    CÓDICE  ×  75 LAB
@@ -468,7 +470,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 /* índice */
 #menu{position:absolute;inset:0;z-index:95;background:rgba(6,27,73,.98);display:none;padding:92px var(--pad) 78px;flex-direction:column;gap:22px}
 #menu.on{display:flex;animation:trFadeIn .3s both}
-#menuList{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:5px 40px;flex:1;grid-auto-flow:column;grid-template-rows:repeat(7,1fr)}
+#menuList{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:5px 40px;flex:1;grid-auto-flow:column;grid-template-rows:repeat(6,1fr)}
 #menuList button{width:100%;display:flex;align-items:center;gap:14px;padding:9px 14px;border-radius:12px;transition:.22s}
 #menuList button:hover{background:rgba(29,212,200,.14)}
 #menuList button.cur{background:var(--teal);color:var(--navy)}
@@ -488,9 +490,86 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 #rotate span{font-size:14px;color:rgba(255,255,255,.7);max-width:32ch;line-height:1.5}
 @media (max-width:900px) and (orientation:portrait){#rotate{display:flex}}
 
+/* ---------- transição com a marca Códice ---------- */
+#tcov{position:absolute;inset:0;z-index:85;pointer-events:none;display:none;background:var(--navy);place-items:center}
+#tcov.go{display:grid;animation:tcov .9s cubic-bezier(.65,0,.35,1) both}
+@keyframes tcov{0%{clip-path:inset(0 100% 0 0)}36%,64%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 100%)}}
+#tcov .tc-in{display:flex;align-items:center;gap:clamp(12px,1.6vh,20px)}
+#tcov img{display:block;width:auto}
+#tcov .tc-sym{height:clamp(44px,8vh,84px)}
+#tcov .tc-wm{height:clamp(26px,4.6vh,48px)}
+#tcov.go .tc-sym{animation:tcSym .9s cubic-bezier(.22,1,.36,1) both}
+#tcov.go .tc-wm{animation:tcWm .9s cubic-bezier(.22,1,.36,1) both}
+@keyframes tcSym{0%,18%{opacity:0;transform:scale(.55) rotate(-30deg)}42%,70%{opacity:1;transform:none}100%{opacity:0;transform:scale(1.05)}}
+@keyframes tcWm{0%,26%{opacity:0;transform:translateX(-18px)}48%,70%{opacity:1;transform:none}100%{opacity:0}}
+#tcov .lt{display:none}
+#tcov.lite{background:var(--off)}
+#tcov.lite .dk{display:none}
+#tcov.lite .lt{display:block}
+
+/* ---------- 3D ---------- */
+.mvbox{position:relative;border-radius:30px;border:1px solid var(--cardln);overflow:hidden;
+  background:radial-gradient(58% 46% at 50% 64%,#fff 0%,rgba(255,255,255,0) 72%),linear-gradient(165deg,#E6EBF3 0%,#F8FAFC 100%)}
+.mvbox.dark{border-color:rgba(255,255,255,.08);
+  background:radial-gradient(56% 44% at 50% 66%,rgba(47,115,255,.32) 0%,rgba(6,27,73,0) 72%),linear-gradient(165deg,#0B2765 0%,#061B49 100%)}
+.mvbox model-viewer{position:absolute;inset:0;width:100%;height:100%;background:transparent;--poster-color:transparent;--progress-bar-color:#1DD4C8;--progress-bar-height:3px}
+.mvbox .drag{position:absolute;left:22px;top:20px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#8A93A7;pointer-events:none}
+.mvbox.dark .drag{color:rgba(255,255,255,.5)}
+.mvbox .mvtag{position:absolute;left:20px;bottom:20px;display:inline-flex;align-items:center;gap:8px;font-family:'Exo 2';font-size:13px;font-weight:700;
+  padding:9px 15px;border-radius:100px;background:#061B49;color:#fff;pointer-events:none}
+.mvbox.dark .mvtag{background:#fff;color:#061B49}
+.mvqr{position:absolute;right:18px;bottom:18px;display:flex;align-items:center;gap:12px;background:#fff;color:#061B49;border-radius:16px;padding:10px 16px 10px 10px;box-shadow:0 12px 28px rgba(6,27,73,.16)}
+.mvqr .qr{width:78px;height:78px}
+.mvqr .qr svg{display:block;width:100%;height:100%}
+.mvqr span{font-family:'Exo 2';font-size:14px;font-weight:700;line-height:1.2}
+.hot3d{width:20px;height:20px;border-radius:50%;background:#fff;border:0;padding:0;position:relative;box-shadow:0 0 0 5px rgba(29,212,200,.4),0 6px 16px rgba(3,14,40,.3)}
+.hot3d::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#1DD4C8}
+.hot3d b{position:absolute;left:32px;top:50%;transform:translateY(-50%);white-space:nowrap;background:#fff;color:#061B49;font-family:'Exo 2';font-size:13.5px;font-weight:700;
+  padding:8px 14px;border-radius:100px;box-shadow:0 10px 24px rgba(3,14,40,.28);transition:opacity .3s}
+.hot3d.l b{left:auto;right:32px}
+.hot3d:not([data-visible]){opacity:0}
+.hot3d:not([data-visible]) b{opacity:0}
+
+/* ---------- peças minimalistas ---------- */
+.cota{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:'Exo 2';font-size:14.5px;font-weight:700;color:#061B49;background:rgba(29,212,200,.18);border-radius:100px;padding:7px 15px}
+.plain{list-style:none;display:flex;flex-direction:column;gap:12px}
+.plain li{display:flex;gap:12px;align-items:center;font-size:16px;line-height:1.35}
+.plain svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+#sisList button{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center;padding:8px 12px;border-radius:14px;transition:background .3s,color .3s;width:100%}
+#sisList .si{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:#fff;box-shadow:0 4px 12px rgba(6,27,73,.06);transition:background .3s}
+#sisList .si svg{width:19px;height:19px}
+#sisList b{display:block;font-family:'Exo 2';font-size:17px;font-weight:700}
+#sisList small{display:block;font-size:12.5px;color:var(--fg2);margin-top:1px}
+#sisList button.on{background:var(--navy);color:#fff}
+#sisList button.on small{color:rgba(255,255,255,.7)}
+#sisList button.on .si{background:rgba(255,255,255,.12)}
+#sisList button.on .si svg{stroke:#1DD4C8}
+.zoomchip{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:8px;background:#061B49;color:#fff;font-family:'Exo 2';font-size:13px;font-weight:700;
+  padding:9px 15px;border-radius:100px;box-shadow:0 10px 24px rgba(6,27,73,.3);pointer-events:none;transition:transform .3s var(--ease)}
+.zoomchip svg{width:14px;height:14px;stroke:#1DD4C8;fill:none;stroke-width:2.4;stroke-linecap:round}
+#sisView:hover .zoomchip{transform:scale(1.06)}
+
+/* ---------- tela cheia da plataforma ---------- */
+#lb{position:fixed;inset:0;z-index:9990;background:rgba(3,14,40,.96);display:flex;flex-direction:column;gap:14px;padding:18px 24px 20px;animation:trFadeIn .25s both}
+#lb[hidden]{display:none}
+.lb-top{display:flex;align-items:center;gap:16px;color:#fff}
+.lb-tt{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.lb-tt img{height:26px;width:auto}
+.lb-tt b{font-family:'Exo 2';font-size:20px;font-weight:700;white-space:nowrap}
+.lb-tt span{font-size:14px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-n{font-family:'Exo 2';font-size:14px;font-weight:700;color:rgba(255,255,255,.6)}
+.lb-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;color:#fff;transition:.2s;flex:0 0 46px}
+.lb-btn:hover{background:#1DD4C8;color:#061B49;border-color:#1DD4C8}
+.lb-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.lb-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:20px}
+#lbImg{max-width:min(1386px,calc(100% - 140px));max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#F5F7FA}
+.lb-dots{display:flex;justify-content:center;gap:10px}
+.lb-dots button{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);transition:.25s}
+.lb-dots button.on{background:#1DD4C8;transform:scale(1.35)}
+
 @media print{
   html,body{overflow:visible;height:auto}
-  #cur,#curDot,#wipe,#blinds,#menu,#hint,#top,#bot,#prog,#rotate{display:none!important}
+  #cur,#curDot,#tcov,#lb,#menu,#hint,#top,#bot,#prog,#rotate{display:none!important}
   #deck{position:static;overflow:visible}
   #stage{position:static;transform:none!important;width:1600px;height:auto}
   .slide{position:relative!important;display:block!important;height:900px;page-break-after:always;opacity:1!important;animation:none!important}
@@ -539,13 +618,16 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 <symbol id="i-money" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2.2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></symbol>
 <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7z"/><circle cx="6" cy="18.4" r="1.6"/><circle cx="17" cy="18.4" r="1.6"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
 <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><polyline points="8.5 14 7 22 12 19 17 22 15.5 14"/></symbol>
 </svg>
 
 <div id="deck" data-tone="dark" data-slide="0">
   <div id="prog"></div>
-  <div id="wipe"><div class="w1"></div><div class="w2"></div></div>
-  <div id="blinds"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="tcov" aria-hidden="true"><div class="tc-in">
+    <img class="tc-sym dk" src="assets/codice-simbolo-branco.png" alt=""><img class="tc-wm dk" src="assets/codice-logotipo-branco.png" alt="">
+    <img class="tc-sym lt" src="assets/codice-simbolo.png" alt=""><img class="tc-wm lt" src="assets/codice-logotipo.png" alt="">
+  </div></div>
 
   <div id="top">
     <div class="brandbar">
@@ -604,130 +686,24 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
       <h1 class="xl" data-a style="--d:2;margin-top:16px">A sua loja já é<br>um <em>veículo<br>de mídia</em>.</h1>
       <p class="lede" data-a style="--d:4;font-size:20px;max-width:48ch;margin-top:22px">Falta cobrar por isso. Displays inteligentes por assinatura: a rede vende a semana, a Códice instala, mantém e mede.</p>
       <div class="btns" data-a style="--d:5;margin-top:28px">
-        <button class="btn pri" data-go="1">Conhecer a Códice <svg><use href="#i-r"/></svg></button>
-        <button class="btn wht" data-go="11">Ver os números</button>
-        <button class="btn gho" data-go="12">Simular a minha rede</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ QUEM SOMOS · O GRUPO ═══ -->
-  <section class="slide" data-tr="push" data-tone="dark">
-    <div class="pad">
-      <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos</div>
-        <h2 data-a style="--d:1">A Códice nasce dentro de um grupo<br>que <em>já faz o varejo acontecer</em>.</h2>
-      </div>
-      <div class="body" style="gap:16px">
-        <div style="display:grid;grid-template-columns:490px 52px 1fr 52px 490px;align-items:stretch">
-          <div class="gp" data-a="left" style="--d:2">
-            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
-              <img src="assets/neoband-wordmark-white.png" alt="NeoBand" style="height:32px;width:auto"><span class="tag">A fábrica</span></div>
-            <p style="font-size:14px;line-height:1.45;color:var(--fg2)">Projeta e fabrica mobiliário de PDV para grandes marcas. Constrói cada display da Códice.</p>
-            <div class="gk">
-              <div><b><span data-cu="40">0</span>+</b><small>anos de fabricação</small></div>
-              <div><b><span data-cu="100">0</span>%</b><small>design e produção no Brasil</small></div>
-              <div><b>FSC</b><small>materiais certificados</small></div>
-              <div><b>24 h</b><small>fábrica de segunda a sexta</small></div>
-            </div>
-            <ul>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Fornecedor do Ano, Brazil Promotion 2025</li>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Homologada por Disney/FAMA e JCDecaux</li>
-            </ul>
-          </div>
-          <svg class="fadein" style="--d:5;align-self:center;width:52px;height:24px;overflow:visible" viewBox="0 0 52 24" aria-hidden="true"><line x1="0" y1="12" x2="52" y2="12" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#061B49" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="52" cy="12" r="5" fill="#fff" stroke="#1DD4C8" stroke-width="2.4"/><circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M0 12 H52"/></circle></svg>
-          <div data-a="pop" style="--d:4;border-radius:22px;background:#fff;color:var(--navy);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 60px rgba(3,14,40,.45)">
-            <div style="position:relative;height:150px;flex:0 0 150px;overflow:hidden">
-              <img src="assets/foto-sede.jpg" alt="Sede da Códice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 36%">
-              <span style="position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;background:#061B49;color:#fff;font-family:'Exo 2';font-size:12px;font-weight:700;padding:6px 12px;border-radius:100px"><svg class="mb" style="fill:#1DD4C8"><use href="#mb"/></svg>Sede Códice</span></div>
-            <div style="flex:1;padding:16px 20px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px">
-              <img src="assets/codice-logo-h.png" alt="Códice, displays inteligentes para grandes resultados" style="height:46px;width:auto">
-              <p style="font-size:13.5px;line-height:1.45;color:#58627A;max-width:34ch">Transforma o espaço da loja em mídia que se vende, se mantém e se mede, num contrato por display e por mês.</p>
-              <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:5px">
-                <span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Mobiliário</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Instalação</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Manutenção</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Mídia</span><span class="tag" style="color:#061B49;border-color:rgba(6,27,73,.2)">Dados</span></div>
-            </div>
-          </div>
-          <svg class="fadein" style="--d:5;align-self:center;width:52px;height:24px;overflow:visible" viewBox="0 0 52 24" aria-hidden="true"><line x1="0" y1="12" x2="52" y2="12" stroke="#2F73FF" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#fff" stroke="#2F73FF" stroke-width="2.4"/><circle cx="52" cy="12" r="5" fill="#061B49" stroke="#2F73FF" stroke-width="2.4"/><circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M52 12 H0"/></circle></svg>
-          <div class="gp" data-a="right" style="--d:2">
-            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
-              <img src="assets/75lab-wordmark-paper.png" alt="75 LAB" style="height:40px;width:auto"><span class="tag">Trade e tecnologia</span></div>
-            <p style="font-size:14px;line-height:1.45;color:var(--fg2)">Estratégia de trade, design de PDV e tecnologia. Desenha a experiência e mede o resultado.</p>
-            <div class="gk">
-              <div><b>+<span data-cu="15">0</span></b><small>anos no trade marketing</small></div>
-              <div><b><span data-cu="15000" data-fmt="br">0</span>+</b><small>PDVs positivados</small></div>
-              <div><b><span data-cu="95">0</span>%</b><small>projetos aprovados</small></div>
-              <div><b><span data-cu="84">0</span></b><small>cases entregues</small></div>
-            </div>
-            <ul>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Estratégia de trade, categoria e design de PDV</li>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plataforma, dados e prova de execução</li>
-            </ul>
-          </div>
-        </div>
-        <div data-a style="--d:7;display:flex;flex-direction:column;gap:8px">
-          <div class="kicker">Marcas que o grupo já atende</div>
-          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>NeoBand</div><div class="mt"><div class="trk" id="mq1"></div></div></div>
-          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>75 LAB</div><div class="mt"><div class="trk rev" id="mq2"></div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ OPERAÇÃO E PLATAFORMA ═══ -->
-  <section class="slide light" data-tr="curtain" data-tone="light">
-    <div class="pad">
-      <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Operação e plataforma</div>
-        <h2 data-a style="--d:1">Por trás de cada display, uma operação inteira.<br>E tudo <em>numa plataforma só</em>.</h2>
-      </div>
-      <div class="body">
-        <div style="display:grid;grid-template-columns:660px 1fr;gap:40px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div class="kicker" data-a="fade" style="--d:2">A operação</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:232px 232px;gap:10px">
-              <figure class="shot fade rv" style="--d:2"><img src="assets/foto-engenharia.jpg" alt="Engenharia Códice" style="object-position:46% 40%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">01</span><span class="stt" style="font-size:17px;margin-top:0">Engenharia</span></figcaption></figure>
-              <figure class="shot fade rv" style="--d:3"><img src="assets/foto-montagem.jpg" alt="Montagem Códice" style="object-position:30% 50%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">02</span><span class="stt" style="font-size:17px;margin-top:0">Montagem</span></figcaption></figure>
-              <figure class="shot fade rv" style="--d:4"><img src="assets/foto-estoque.jpg" alt="Estoque Códice" style="object-position:62% 50%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">03</span><span class="stt" style="font-size:17px;margin-top:0">Estoque</span></figcaption></figure>
-              <figure class="shot fade rv" style="--d:5"><img src="assets/foto-logistica.jpg" alt="Logística Códice" style="object-position:38% 50%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">04</span><span class="stt" style="font-size:17px;margin-top:0">Logística</span></figcaption></figure>
-              <figure class="shot fade rv" style="--d:6"><img src="assets/foto-monitoramento.jpg" alt="Monitoramento Códice" style="object-position:46% 40%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">05</span><span class="stt" style="font-size:17px;margin-top:0">Monitoramento</span></figcaption></figure>
-              <figure class="shot fade rv" style="--d:7"><img src="assets/foto-suporte.jpg" alt="Suporte Códice" style="object-position:70% 50%"><figcaption style="display:flex;align-items:center;gap:9px"><span class="sn">06</span><span class="stt" style="font-size:17px;margin-top:0">Suporte</span></figcaption></figure>
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div class="kicker" data-a="fade" style="--d:2">A plataforma</div>
-            <div data-a="right" style="--d:4;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(6,27,73,.1);box-shadow:0 30px 60px rgba(6,27,73,.16)">
-              <div style="height:36px;display:flex;align-items:center;gap:7px;padding:0 10px 0 14px;background:#E9EEF5">
-                <i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i>
-                <span style="margin-left:14px;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#58627A;background:#fff;border-radius:100px;padding:4px 14px"><img src="assets/codice-simbolo.png" alt="" style="height:13px;width:auto">Plataforma Códice · <span id="sisUrl">Painel</span></span>
-                <span style="margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8A93A7">Demonstração</span>
-                <div id="sisDots" style="display:flex;margin-left:8px"></div>
-              </div>
-              <div style="height:3px;background:rgba(6,27,73,.06)"><div id="sisProg" style="height:100%;width:0;background:linear-gradient(90deg,#0E9E95,#2F73FF)"></div></div>
-              <div id="sisView" style="position:relative;aspect-ratio:1386/868;background:#F5F7FA;overflow:hidden">
-                <img id="sisImg" src="assets/sis-painel.jpg" alt="Painel da plataforma Códice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .3s">
-                <div id="sisCap" style="position:absolute;left:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:12px;background:#061B49;color:#fff;border-radius:14px;padding:10px 16px 10px 12px;box-shadow:0 14px 30px rgba(6,27,73,.35)">
-                  <span class="sn" id="sisCount">01 / 07</span>
-                  <span><b id="sisT" style="display:block;font-family:'Exo 2';font-size:16px;font-weight:700">Painel</b><small id="sisD" style="display:block;font-size:12px;color:rgba(255,255,255,.75);margin-top:1px">Ocupação, receita e SLA da semana</small></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button class="btn pri" data-go="1">Começar <svg><use href="#i-r"/></svg></button>
+        <button class="btn wht" data-go="6">Ver os displays</button>
+        <button class="btn gho" data-go="11">Simular a minha rede</button>
       </div>
     </div>
   </section>
 
   <!-- ═══ O QUE MUDOU ═══ -->
-  <section class="slide" data-tr="iris" data-tone="dark">
+  <section class="slide" data-tr="push" data-tone="dark">
     <img class="decor" src="assets/codice-face-topo.png" alt="" style="right:-210px;top:-160px;width:600px;--op:.12">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O que mudou</div>
-        <h2 data-a style="--d:1">A verba desceu para o corredor.<br>O espaço <em>ainda não está pronto</em>.</h2>
+        <h2 data-a style="--d:1">A verba de mídia desceu para o corredor.<br>A loja <em>ainda não cobra por isso</em>.</h2>
       </div>
       <div class="body">
-        <div style="display:grid;grid-template-columns:1fr 470px;gap:44px;align-items:stretch">
-          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+        <div style="display:grid;grid-template-columns:1fr 470px;gap:60px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:22px">
             <svg viewBox="0 0 960 250" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
               <defs>
                 <linearGradient id="gF1" gradientUnits="userSpaceOnUse" x1="168" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#34497F"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
@@ -757,19 +733,9 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
                 <text x="742" y="178" font-family="Exo 2" font-size="28" font-weight="800" fill="#1DD4C8">+37% ao ano</text>
               </g>
             </svg>
-            <div data-a="fade" style="--d:5;display:flex;align-items:center;gap:16px">
-              <span style="font-family:'Exo 2';font-size:19px;font-weight:700;white-space:nowrap">Quatro travas separam a sua loja dessa verba</span>
-              <span style="flex:1;height:1px;background:var(--ln)"></span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="card" data-a style="--d:6;padding:14px 18px;flex-direction:row;align-items:center;gap:14px"><svg class="ico" style="width:24px;height:24px"><use href="#i-tag"/></svg><div><h3 style="font-size:16.5px">Espaço sem pacote</h3><p style="font-size:12.5px;line-height:1.4;margin-top:3px">Ponta e corredor negociados caso a caso, sem tabela.</p></div></div>
-            <div class="card" data-a style="--d:7;padding:14px 18px;flex-direction:row;align-items:center;gap:14px"><svg class="ico" style="width:24px;height:24px"><use href="#i-box"/></svg><div><h3 style="font-size:16.5px">Material sem padrão</h3><p style="font-size:12.5px;line-height:1.4;margin-top:3px">Cada indústria manda um formato diferente.</p></div></div>
-            <div class="card" data-a style="--d:8;padding:14px 18px;flex-direction:row;align-items:center;gap:14px"><svg class="ico" style="width:24px;height:24px"><use href="#i-doc"/></svg><div><h3 style="font-size:16.5px">Sem comprovação</h3><p style="font-size:12.5px;line-height:1.4;margin-top:3px">A marca paga e não recebe evidência.</p></div></div>
-            <div class="card" data-a style="--d:9;padding:14px 18px;flex-direction:row;align-items:center;gap:14px"><svg class="ico" style="width:24px;height:24px"><use href="#i-wrench"/></svg><div><h3 style="font-size:16.5px">Manutenção vira atrito</h3><p style="font-size:12.5px;line-height:1.4;margin-top:3px">Móvel quebrado derruba o valor e a renovação.</p></div></div>
-            </div>
-            <div class="note" data-a style="--d:10">Fontes: IAB Brasil e Propmark, Digital Adspend 2026. Contexto de mercado, não projeção desta proposta.</div>
+            <div class="note" data-a style="--d:6">Fonte: IAB Brasil e Propmark, Digital Adspend 2026.</div>
           </div>
-          <div class="card hl" data-a="right" style="--d:4;padding:30px 32px;justify-content:center;gap:0;border-radius:24px">
+          <div class="card hl" data-a="right" style="--d:4;padding:32px 34px;justify-content:center;gap:0;border-radius:24px">
             <svg class="gw" viewBox="0 0 64 40" style="width:64px;height:40px" aria-hidden="true">
               <rect x="0" y="22" width="11" height="18" rx="5.5" fill="url(#gBarV)"/><rect x="17.5" y="13" width="11" height="27" rx="5.5" fill="url(#gBarV)"/>
               <rect x="35" y="6" width="11" height="34" rx="5.5" fill="url(#gBarV)"/><rect x="52.5" y="0" width="11" height="40" rx="5.5" fill="url(#gBarV)"/></svg>
@@ -781,82 +747,124 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
               <span style="font-size:36px;font-weight:700;color:#0E9E95">milhões</span>
             </div>
             <div style="font-family:'Exo 2';font-size:22px;font-weight:700;margin-top:10px;color:#061B49">por ano. <em style="background-image:linear-gradient(90deg,#0E9E95,#2F73FF)">Todo ano.</em></div>
-            <div class="btns" style="margin-top:22px"><button class="btn pri" data-go="4">Como virar esse jogo <svg><use href="#i-r"/></svg></button></div>
-            <p style="font-size:11.5px;line-height:1.5;color:#8A93A7;margin-top:16px">10 lojas com 4 displays cada, metade das 2.080 cotas do ano vendida a R$ 1.500, já descontado o aluguel Essencial.</p>
+            <div class="btns" style="margin-top:22px"><button class="btn pri" data-go="2">Conhecer a Códice <svg><use href="#i-r"/></svg></button></div>
+            <p style="font-size:11.5px;line-height:1.5;color:#8A93A7;margin-top:16px">10 lojas com 4 displays. Metade das cotas do ano vendida a R$ 1.500, já descontados R$ 499 por display por mês. 1 cota = 1 semana de 1 display.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ A SOLUÇÃO ═══ -->
+  <!-- ═══ O GRUPO ═══ -->
+  <section class="slide" data-tr="rise" data-tone="dark">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Quem somos</div>
+        <h2 data-a style="--d:1">A Códice nasce dentro de um grupo<br>que <em>já faz o varejo acontecer</em>.</h2>
+      </div>
+      <div class="body" style="gap:22px">
+        <div style="display:grid;grid-template-columns:1fr 52px 330px 52px 1fr;align-items:stretch">
+          <div class="gp" data-a="left" style="--d:2;gap:18px">
+            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+              <img src="assets/neoband-wordmark-white.png" alt="NeoBand" style="height:32px;width:auto"><span class="tag">A fábrica</span></div>
+            <p style="font-size:15px;line-height:1.45;color:var(--fg2)">Fabrica cada display da Códice, com 40 anos de mobiliário de PDV.</p>
+            <div class="gk">
+              <div><b><span data-cu="40">0</span>+</b><small>anos de fabricação</small></div>
+              <div><b><span data-cu="100">0</span>%</b><small>produção no Brasil</small></div>
+              <div><b>FSC</b><small>materiais certificados</small></div>
+              <div><b>2025</b><small>Fornecedor do Ano</small></div>
+            </div>
+          </div>
+          <svg class="fadein" style="--d:5;align-self:center;width:52px;height:24px;overflow:visible" viewBox="0 0 52 24" aria-hidden="true"><line x1="0" y1="12" x2="52" y2="12" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#061B49" stroke="#1DD4C8" stroke-width="2.4"/><circle cx="52" cy="12" r="5" fill="#fff" stroke="#1DD4C8" stroke-width="2.4"/><circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M0 12 H52"/></circle></svg>
+          <div data-a="pop" style="--d:4;border-radius:22px;background:#fff;color:var(--navy);padding:26px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;box-shadow:0 30px 60px rgba(3,14,40,.45)">
+            <img src="assets/codice-simbolo.png" alt="" style="height:84px;width:auto">
+            <img src="assets/codice-logotipo.png" alt="Códice" style="height:34px;width:auto">
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0E9E95">O serviço</div>
+            <p style="font-size:14px;line-height:1.45;color:#58627A;max-width:24ch">Une a fábrica e a inteligência num contrato por display.</p>
+          </div>
+          <svg class="fadein" style="--d:5;align-self:center;width:52px;height:24px;overflow:visible" viewBox="0 0 52 24" aria-hidden="true"><line x1="0" y1="12" x2="52" y2="12" stroke="#2F73FF" stroke-width="2.4"/><circle cx="0" cy="12" r="5" fill="#fff" stroke="#2F73FF" stroke-width="2.4"/><circle cx="52" cy="12" r="5" fill="#061B49" stroke="#2F73FF" stroke-width="2.4"/><circle r="3.4" fill="#fff"><animateMotion dur="1.8s" repeatCount="indefinite" path="M52 12 H0"/></circle></svg>
+          <div class="gp" data-a="right" style="--d:2;gap:18px">
+            <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+              <img src="assets/75lab-wordmark-paper.png" alt="75 LAB" style="height:40px;width:auto"><span class="tag">Trade e tecnologia</span></div>
+            <p style="font-size:15px;line-height:1.45;color:var(--fg2)">Desenha a experiência na loja, cria a plataforma e mede o resultado.</p>
+            <div class="gk">
+              <div><b>+<span data-cu="15">0</span></b><small>anos no trade marketing</small></div>
+              <div><b><span data-cu="15000" data-fmt="br">0</span>+</b><small>PDVs positivados</small></div>
+              <div><b><span data-cu="95">0</span>%</b><small>projetos aprovados</small></div>
+              <div><b><span data-cu="84">0</span></b><small>cases entregues</small></div>
+            </div>
+          </div>
+        </div>
+        <div data-a style="--d:7;display:flex;flex-direction:column;gap:8px">
+          <div class="kicker">Marcas que o grupo já atende</div>
+          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>NeoBand</div><div class="mt"><div class="trk" id="mq1"></div></div></div>
+          <div class="mq"><div class="ml"><svg class="mb" style="fill:var(--teal)"><use href="#mb"/></svg>75 LAB</div><div class="mt"><div class="trk rev" id="mq2"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ O QUE É A CÓDICE ═══ -->
   <section class="slide white" data-tr="rise" data-tone="light">
     <div class="pad">
       <div class="hd">
-        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A solução · Display as a Service</div>
-        <h2 data-a style="--d:1">Três compras separadas viram <em>uma assinatura</em>.<br>E um ciclo que se repete toda semana.</h2>
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O que é a Códice</div>
+        <h2 data-a style="--d:1">A Códice aluga displays inteligentes<br>para a loja <em>vender espaço para as marcas</em>.</h2>
       </div>
       <div class="body">
-        <div style="display:grid;grid-template-columns:600px 1fr;gap:40px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:22px">
-            <div style="position:relative;width:600px;height:336px">
-              <div style="position:absolute;left:0;top:0;width:830px;height:480px;transform:scale(.7);transform-origin:0 0">
-                <div class="sym">
-                  <img class="p-top" src="assets/codice-face-topo.png" alt="">
-                  <img class="p-left" src="assets/codice-face-esq.png" alt="">
-                  <img class="p-base" src="assets/codice-face-base.png" alt="">
-                  <img class="p-b1" src="assets/codice-barra-1.png" alt="">
-                  <img class="p-b2" src="assets/codice-barra-2.png" alt="">
-                  <img class="p-b3" src="assets/codice-barra-3.png" alt="">
-                </div>
-                <svg viewBox="0 0 830 480" style="position:absolute;inset:0;width:830px;height:480px;overflow:visible" aria-hidden="true">
-                  <g fill="none" stroke="#061B49" stroke-width="2.2" stroke-linecap="round" stroke-opacity=".55">
-                    <path class="draw" style="--len:270;--d:8" d="M389 105 H500 C540 105 540 58 580 58 H650"/>
-                    <path class="draw" style="--len:90;--d:8" d="M271 250 H200"/>
-                    <path class="draw" style="--len:100;--d:9" d="M559 250 H650"/>
-                    <path class="draw" style="--len:270;--d:9" d="M379 385 H500 C540 385 540 440 580 440 H650"/>
-                  </g>
-                  <g class="fadein" style="--d:8">
-                    <circle cx="389" cy="105" r="5.5" fill="#061B49"/><circle cx="271" cy="250" r="5.5" fill="#061B49"/>
-                    <circle cx="559" cy="250" r="5.5" fill="#061B49"/><circle cx="379" cy="385" r="5.5" fill="#061B49"/>
-                    <circle cx="650" cy="58" r="7" fill="#fff" stroke="#0E9E95" stroke-width="3"/>
-                    <circle cx="200" cy="250" r="7" fill="#fff" stroke="#0E9E95" stroke-width="3"/>
-                    <circle cx="650" cy="250" r="7" fill="#fff" stroke="#2F73FF" stroke-width="3"/>
-                    <circle cx="650" cy="440" r="7" fill="#fff" stroke="#0E9E95" stroke-width="3"/>
-                  </g>
-                  <g class="fadein" style="--d:10">
-                    <text x="668" y="58" font-family="Exo 2" font-size="25" font-weight="700" fill="#061B49">MOBILIÁRIO</text>
-                    <text x="668" y="84" font-family="Inter" font-size="17" fill="#58627A">projeto e fabricação</text>
-                    <text x="184" y="252" text-anchor="end" font-family="Exo 2" font-size="25" font-weight="700" fill="#061B49">MANUTENÇÃO</text>
-                    <text x="184" y="278" text-anchor="end" font-family="Inter" font-size="17" fill="#58627A">instalação e conserto</text>
-                    <text x="668" y="258" font-family="Exo 2" font-size="30" font-weight="800" fill="url(#gTB)">RECEITA</text>
-                    <text x="668" y="284" font-family="Inter" font-size="17" font-weight="600" fill="#2F73FF">recorrente</text>
-                    <text x="668" y="440" font-family="Exo 2" font-size="25" font-weight="700" fill="#061B49">INTELIGÊNCIA</text>
-                    <text x="668" y="466" font-family="Inter" font-size="17" fill="#58627A">tecnologia, dados e prova</text>
-                  </g>
-                </svg>
-              </div>
+        <div style="display:grid;grid-template-columns:500px 1fr;gap:70px;align-items:center">
+          <div style="position:relative;height:500px">
+            <div class="sym" style="left:80px;top:0">
+              <img class="p-top" src="assets/codice-face-topo.png" alt="">
+              <img class="p-left" src="assets/codice-face-esq.png" alt="">
+              <img class="p-base" src="assets/codice-face-base.png" alt="">
+              <img class="p-b1" src="assets/codice-barra-1.png" alt="">
+              <img class="p-b2" src="assets/codice-barra-2.png" alt="">
+              <img class="p-b3" src="assets/codice-barra-3.png" alt="">
             </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-              <div class="card" data-a style="--d:11;padding:14px 16px;gap:8px"><div style="width:36px;height:36px;border-radius:50%;background:var(--navy);display:grid;place-items:center"><svg class="ico" style="width:18px;height:18px;stroke:#fff"><use href="#i-money"/></svg></div><h3 style="font-size:16px;line-height:1.15">Zero investimento inicial</h3><p style="font-size:12.5px;line-height:1.4">A rede paga por mês, por ponto ativo.</p></div>
-              <div class="card" data-a style="--d:12;padding:14px 16px;gap:8px"><div style="width:36px;height:36px;border-radius:50%;background:var(--teal);display:grid;place-items:center"><svg class="ico" style="width:18px;height:18px;stroke:var(--navy)"><use href="#i-shield"/></svg></div><h3 style="font-size:16px;line-height:1.15">Ponto sempre vendável</h3><p style="font-size:12.5px;line-height:1.4">Manutenção e troca de comunicação inclusas.</p></div>
-              <div class="card" data-a style="--d:13;padding:14px 16px;gap:8px"><div style="width:36px;height:36px;border-radius:50%;background:var(--blue);display:grid;place-items:center"><svg class="ico" style="width:18px;height:18px;stroke:#fff"><use href="#i-chart"/></svg></div><h3 style="font-size:16px;line-height:1.15">Evidência que renova</h3><p style="font-size:12.5px;line-height:1.4">Prova de execução para a marca comprar de novo.</p></div>
+            <p data-a="fade" style="--d:8;position:absolute;left:0;right:0;top:446px;text-align:center;font-family:'Exo 2';font-size:21px;font-weight:700;color:var(--navy)">Display, manutenção e tecnologia<br><em>numa assinatura só</em>.</p>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-a="right" style="--d:3;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">01</div><div><h3 style="font-size:27px">A Códice instala o display</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Projeto, montagem e treinamento da equipe. A rede não compra nenhum móvel.</p></div></div>
+            <div data-a="right" style="--d:4;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:var(--navy)">02</div><div><h3 style="font-size:27px">A rede vende a semana para as marcas</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">A indústria compra a semana do display, com a comunicação da marca inclusa.</p><span class="cota"><svg class="ico" style="width:16px;height:16px;stroke:#061B49"><use href="#i-cal"/></svg>1 cota = 1 semana de 1 display</span></div></div>
+            <div data-a="right" style="--d:5;display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)"><div style="width:64px;height:64px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Exo 2';font-size:22px;font-weight:800;color:#fff">03</div><div><h3 style="font-size:27px">A Códice mantém e mede</h3><p style="font-size:16px;color:var(--fg2);line-height:1.5;margin-top:6px;max-width:52ch">Manutenção, troca de comunicação e relatório para a marca comprar de novo.</p></div></div>
+            <div data-a style="--d:7;margin-top:26px;display:flex;align-items:center;gap:22px;padding:18px 22px 18px 26px;border-radius:20px;background:var(--navy);color:#fff">
+              <div style="font-family:'Exo 2';font-weight:800;font-size:48px;white-space:nowrap;line-height:1"><small style="font-size:.42em;color:var(--teal);margin-right:4px">R$</small>499</div>
+              <div style="font-size:14.5px;line-height:1.45;color:rgba(255,255,255,.75)"><b style="color:#fff;font-family:'Exo 2';font-size:18px;font-weight:700">por display, por mês.</b><br>Instalação, manutenção e plataforma na mesma assinatura.</div>
+              <button class="btn" data-go="4" style="margin-left:auto;color:#061B49;background-image:linear-gradient(100deg,#1DD4C8 0%,#2F73FF 100%)">Ver a plataforma <svg><use href="#i-r"/></svg></button>
             </div>
           </div>
-          <div style="position:relative">
-            <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:240px 240px;gap:22px">
-            <div class="card" data-a="pop" style="--d:4;grid-row:1;grid-column:1;padding:0;gap:0"><figure class="shot" style="height:140px;border-radius:0;flex:0 0 140px"><img src="assets/foto-instalacao.jpg" alt="Instalamos" style="object-position:50% 45%"></figure><div style="padding:12px 16px 14px;display:flex;gap:12px;align-items:flex-start"><span class="sn" style="margin-top:1px">01</span><div><h3 style="font-size:19px">Instalamos</h3><p style="font-size:13px;line-height:1.4;margin-top:3px">Vistoria, montagem, treinamento da loja e aceite digital com foto.</p></div></div></div>
-            <div class="card" data-a="pop" style="--d:6;grid-row:1;grid-column:2;padding:0;gap:0"><figure class="shot" style="height:140px;border-radius:0;flex:0 0 140px"><img src="assets/foto-planejamento.jpg" alt="Você vende a semana" style="object-position:40% 42%"></figure><div style="padding:12px 16px 14px;display:flex;gap:12px;align-items:flex-start"><span class="sn" style="margin-top:1px">02</span><div><h3 style="font-size:19px">Você vende a semana</h3><p style="font-size:13px;line-height:1.4;margin-top:3px">A rede vende cotas por categoria e posição, com tabela própria.</p></div></div></div>
-            <div class="card" data-a="pop" style="--d:8;grid-row:2;grid-column:2;padding:0;gap:0"><figure class="shot" style="height:140px;border-radius:0;flex:0 0 140px"><img src="assets/foto-auditoria.jpg" alt="Nós mantemos" style="object-position:58% 45%"></figure><div style="padding:12px 16px 14px;display:flex;gap:12px;align-items:flex-start"><span class="sn" style="margin-top:1px">03</span><div><h3 style="font-size:19px">Nós mantemos</h3><p style="font-size:13px;line-height:1.4;margin-top:3px">Vistoria, troca de comunicação e reposição. O ponto segue vendável.</p></div></div></div>
-            <div class="card" data-a="pop" style="--d:10;grid-row:2;grid-column:1;padding:0;gap:0"><figure class="shot" style="height:140px;border-radius:0;flex:0 0 140px"><img src="assets/foto-resultados.jpg" alt="O relatório renova" style="object-position:48% 40%"></figure><div style="padding:12px 16px 14px;display:flex;gap:12px;align-items:flex-start"><span class="sn" style="margin-top:1px">04</span><div><h3 style="font-size:19px">O relatório renova</h3><p style="font-size:13px;line-height:1.4;margin-top:3px">A evidência chega à marca e a segunda compra fica mais fácil.</p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ A PLATAFORMA ═══ -->
+  <section class="slide light" data-tr="curtain" data-tone="light">
+    <div class="pad">
+      <div class="hd">
+        <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A plataforma</div>
+        <h2 data-a style="--d:1">Tudo o que acontece na loja,<br><em>numa plataforma só</em>.</h2>
+      </div>
+      <div class="body">
+        <div style="display:grid;grid-template-columns:1fr 830px;gap:50px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div id="sisList" style="display:flex;flex-direction:column;gap:3px"></div>
+            <div data-a style="--d:10;display:flex;align-items:center;gap:16px;margin-top:4px">
+              <button class="btn pri" id="sisFull" type="button"><svg><use href="#i-expand"/></svg>Ver em tela cheia</button>
+              <span class="note" style="max-width:22ch">Modo demonstração, com dados fictícios.</span>
             </div>
-            <span class="fadein" style="--d:9;position:absolute;left:50%;top:120px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#fff;border:1.5px solid rgba(6,27,73,.14);display:grid;place-items:center;z-index:5;box-shadow:0 6px 14px rgba(6,27,73,.1)"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#2F73FF;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transform:rotate(0deg)"><polyline points="9 18 15 12 9 6"/></svg></span>
-            <span class="fadein" style="--d:10;position:absolute;left:75%;top:251px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#fff;border:1.5px solid rgba(6,27,73,.14);display:grid;place-items:center;z-index:5;box-shadow:0 6px 14px rgba(6,27,73,.1)"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#2F73FF;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg)"><polyline points="9 18 15 12 9 6"/></svg></span>
-            <span class="fadein" style="--d:11;position:absolute;left:50%;top:382px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#fff;border:1.5px solid rgba(6,27,73,.14);display:grid;place-items:center;z-index:5;box-shadow:0 6px 14px rgba(6,27,73,.1)"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#2F73FF;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transform:rotate(180deg)"><polyline points="9 18 15 12 9 6"/></svg></span>
-            <span class="fadein" style="--d:12;position:absolute;left:25%;top:251px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#fff;border:1.5px solid rgba(6,27,73,.14);display:grid;place-items:center;z-index:5;box-shadow:0 6px 14px rgba(6,27,73,.1)"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#2F73FF;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-90deg)"><polyline points="9 18 15 12 9 6"/></svg></span>
-            <div data-a="pop" style="--d:10;position:absolute;left:50%;top:50%;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;background:#061B49;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:6;box-shadow:0 0 0 7px #fff,0 16px 34px rgba(6,27,73,.3)">
-              <svg class="ico" style="width:24px;height:24px;stroke:#1DD4C8;animation:spin 6s linear infinite"><use href="#i-refresh"/></svg>
-              <span style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:center;line-height:1.3">Toda<br>semana</span>
+          </div>
+          <div data-a="right" style="--d:3;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(6,27,73,.1);box-shadow:0 30px 60px rgba(6,27,73,.16)">
+            <div style="height:36px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#E9EEF5">
+              <i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i><i style="width:10px;height:10px;border-radius:50%;background:#C9D1DE"></i>
+              <span style="margin-left:14px;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#58627A;background:#fff;border-radius:100px;padding:4px 14px"><img src="assets/codice-simbolo.png" alt="" style="height:13px;width:auto">Plataforma Códice · <span id="sisUrl">Painel</span></span>
+              <span id="sisCount" style="margin-left:auto;font-family:'Exo 2';font-size:12px;font-weight:700;color:#8A93A7">01 / 07</span>
+            </div>
+            <div style="height:3px;background:rgba(6,27,73,.06)"><div id="sisProg" style="height:100%;width:0;background:linear-gradient(90deg,#0E9E95,#2F73FF)"></div></div>
+            <div id="sisView" role="button" tabindex="0" aria-label="Ver a tela em tela cheia" style="position:relative;aspect-ratio:1386/868;background:#F5F7FA;overflow:hidden">
+              <img id="sisImg" src="assets/sis-painel.jpg" alt="Painel da plataforma Códice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .3s">
+              <span class="zoomchip"><svg><use href="#i-expand"/></svg>Clique para ampliar</span>
             </div>
           </div>
         </div>
@@ -865,99 +873,69 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   </section>
 
   <!-- ═══ COMPRAR OU ASSINAR ═══ -->
-  <section class="slide" data-tr="blinds" data-tone="dark">
+  <section class="slide" data-tr="zoom" data-tone="dark">
+    <img class="decor" src="assets/codice-face-base.png" alt="" style="right:-170px;bottom:-160px;width:620px;--op:.1">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Comprar ou assinar</div>
-        <h2 data-a style="--d:1">O preço do display é só a ponta.<br>Assinar <em>começa vendendo</em>.</h2>
+        <h2 data-a style="--d:1">Comprar exige capital antes de vender.<br>Assinar a Códice custa <em>R$ 499 por mês</em>.</h2>
       </div>
-      <div class="body" style="gap:14px">
-        <div style="display:grid;grid-template-columns:540px 1fr;gap:44px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div class="kicker" data-a="fade" style="--d:1">Comprar sozinho · custo por display</div>
-            <svg viewBox="0 0 720 490" style="width:540px;height:auto;overflow:visible" aria-hidden="true">
-              <defs>
-                <linearGradient id="gIce" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="0" y2="480"><stop offset="0" stop-color="#11307A"/><stop offset="1" stop-color="#0A2360"/></linearGradient>
-                <linearGradient id="gSea" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="0" y2="490"><stop offset="0" stop-color="#2F73FF" stop-opacity=".18"/><stop offset="1" stop-color="#2F73FF" stop-opacity="0"/></linearGradient>
-              </defs>
-              <rect class="fadein" style="--d:0" x="0" y="150" width="720" height="340" fill="url(#gSea)"/>
-              <path class="fadein" style="--d:2" d="M168 150 H552 L640 262 L602 398 L470 478 H262 L118 404 L82 262 Z" fill="url(#gIce)" stroke="rgba(29,212,200,.5)" stroke-width="1.6"/>
-              <g data-a style="--d:1"><path d="M248 150 L318 62 L352 88 L396 34 L472 150 Z" fill="#fff"/><path d="M396 34 L472 150 H404 Z" fill="#D5DEEE"/></g>
-              <path class="draw" style="--len:760;--d:1" d="M0 150 C40 142 80 158 120 150 S200 142 240 150 S320 158 360 150 S440 142 480 150 S560 158 600 150 S680 142 720 150" fill="none" stroke="#1DD4C8" stroke-width="2.4"/>
-              <text class="fadein" style="--d:2" x="716" y="178" text-anchor="end" font-family="Inter" font-size="13" font-weight="700" fill="rgba(255,255,255,.45)" letter-spacing="1.6">LINHA D'ÁGUA</text>
-              <g class="fadein" style="--d:2">
-                <line x1="470" y1="98" x2="512" y2="74" stroke="rgba(255,255,255,.4)" stroke-width="1.6"/>
-                <text x="716" y="62" text-anchor="end" font-family="Exo 2" font-size="44" font-weight="800" fill="#fff">R$ <tspan data-cu="3200" data-fmt="br">0</tspan></text>
-                <text x="716" y="90" text-anchor="end" font-family="Inter" font-size="16" fill="rgba(255,255,255,.66)">o que aparece na nota</text>
-              </g>
-              <g class="fadein" style="--d:4" stroke="rgba(255,255,255,.14)" stroke-dasharray="4 5">
-                <line x1="116" y1="238" x2="604" y2="238"/><line x1="104" y1="298" x2="616" y2="298"/><line x1="120" y1="358" x2="600" y2="358"/></g>
-              <g class="fadein" style="--d:4" font-family="Inter" font-size="19" fill="rgba(255,255,255,.88)">
-                <text x="160" y="220">Instalação</text><text x="120" y="280">Manutenção no 1º ano</text><text x="128" y="340">Operação no 1º ano</text></g>
-              <g class="fadein" style="--d:5" font-family="Exo 2" font-size="25" font-weight="800" fill="#1DD4C8" text-anchor="end">
-                <text x="575" y="220">R$ 350</text><text x="600" y="280">R$ 600</text><text x="590" y="340">R$ 240</text></g>
-              <g class="fadein" style="--d:5" text-anchor="middle">
-                <text x="362" y="410" font-family="Inter" font-size="17" fill="rgba(255,255,255,.62)">Projeto, peças e reforma</text>
-                <text x="362" y="436" font-family="Inter" font-size="14" font-weight="600" fill="rgba(255,255,255,.45)">sem preço fechado</text></g>
-            </svg>
-            <div data-a style="--d:6;display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:16px;background:rgba(29,212,200,.1);border-left:3px solid var(--teal)">
-              <span style="font-family:'Exo 2';font-size:32px;font-weight:800;white-space:nowrap">R$ 4.390</span>
-              <span style="font-size:14px;color:var(--fg2);line-height:1.4">por display no 1º ano, <b style="color:#fff">37% acima da nota</b>.<br>Numa loja com 4 displays: <b style="color:#fff">R$ 17.560</b>.</span>
-            </div>
+      <div class="body" style="gap:22px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch">
+          <div class="card" data-a="left" style="--d:2;padding:28px 32px;gap:0">
+            <div class="kicker">Comprar sozinho</div>
+            <div style="display:flex;align-items:baseline;gap:16px;margin-top:14px"><span class="big" style="font-size:74px"><small>R$ </small>3.620</span><span style="font-size:15px;color:var(--fg2);line-height:1.4">por display<br>no primeiro mês</span></div>
+            <div style="height:10px;border-radius:5px;background:rgba(255,255,255,.08);margin-top:18px;overflow:hidden"><div class="wbar" data-w="100" style="height:100%;width:0;border-radius:5px;background:#8E97AB"></div></div>
+            <ul class="plain" style="margin-top:22px">
+              <li><svg viewBox="0 0 24 24" style="stroke:rgba(255,255,255,.45)"><path d="M6 6l12 12M18 6L6 18"/></svg>Display pago antes da primeira venda</li>
+              <li><svg viewBox="0 0 24 24" style="stroke:rgba(255,255,255,.45)"><path d="M6 6l12 12M18 6L6 18"/></svg>Instalação e manutenção por conta da rede</li>
+              <li><svg viewBox="0 0 24 24" style="stroke:rgba(255,255,255,.45)"><path d="M6 6l12 12M18 6L6 18"/></svg>Tecnologia que envelhece no balanço</li>
+            </ul>
           </div>
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div class="cmp" data-a="right" style="--d:3">
-              <div class="cr ch"><div class="ck"></div><div class="cb">Comprar sozinho</div><div class="cc"><svg class="mb" style="fill:var(--navy)"><use href="#mb"/></svg>Assinar a Códice</div></div>
-              <div class="cr" data-a style="--d:4"><div class="ck"><span>Caixa no 1º mês<br><span style="opacity:.7;letter-spacing:.04em;text-transform:none;font-weight:600">loja com 4 displays</span></span></div><div class="cb"><div style="flex:1;min-width:0"><b style="font-family:'Exo 2';font-size:18px;font-weight:800;color:#fff">R$ 14.480</b><div style="height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden"><div class="wbar" data-w="100" style="height:100%;width:0;border-radius:4px;background:#8E97AB"></div></div></div></div><div class="cc"><div style="flex:1;min-width:0"><b style="font-family:'Exo 2';font-size:18px;font-weight:800;color:#fff">R$ 3.956</b><small style="font-size:12px;color:#1DD4C8;font-weight:700;margin-left:8px">73% menos</small><div style="height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden"><div class="wbar" data-w="27.3" style="height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#1DD4C8,#2F73FF)"></div></div></div></div></div>
-              <div class="cr" data-a style="--d:5"><div class="ck">Cotas para pagar o 1º mês</div><div class="cb"><span style="display:flex;gap:4px"><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i><i class="sq" style="background:#8E97AB"></i></span><b style="font-family:'Exo 2';font-size:18px;color:#fff;margin-left:auto">10</b></div><div class="cc"><span style="display:flex;gap:4px"><i class="sq" style="background:#1DD4C8"></i><i class="sq" style="background:#1DD4C8"></i><i class="sq" style="background:#1DD4C8"></i></span><b style="font-family:'Exo 2';font-size:18px;color:#fff;margin-left:auto">3</b></div></div>
-              <div class="cr" data-a style="--d:6"><div class="ck">Manutenção</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Orçamento a cada avaria</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Inclusa, com prazo</div></div>
-              <div class="cr" data-a style="--d:7"><div class="ck">Tecnologia</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Envelhece no balanço</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Evolui por camada</div></div>
-              <div class="cr" data-a style="--d:8"><div class="ck">Prova de execução</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Não existe</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Relatório por campanha</div></div>
-              <div class="cr" data-a style="--d:9"><div class="ck">Padrão entre lojas</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Cada compra, um móvel</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Sistema modular único</div></div>
-              <div class="cr" data-a style="--d:10"><div class="ck">Risco do ativo</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Fica com a rede</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Fica com a Códice</div></div>
-              <div class="cr" data-a style="--d:11"><div class="ck">Contábil</div><div class="cb"><svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Imobilizado e depreciação</div><div class="cc"><svg class="v" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Despesa operacional no mês</div></div>
-            </div>
-            <div class="strip" data-a style="--d:12;padding:13px 18px;gap:16px">
-              <svg class="ico" style="width:26px;height:26px"><use href="#i-shield"/></svg>
-              <div style="flex:1;min-width:0"><div class="st" style="font-size:17px">E parte do aluguel volta em imposto.</div>
-              <div class="ss" style="font-size:12.5px;line-height:1.4">No Lucro Real, R$ 12.000 de aluguel custam de fato R$ 10.200 a R$ 9.000. Não é crédito automático.</div></div>
-              <div style="display:flex;gap:6px"><div style="text-align:center;padding:7px 12px;border-radius:12px;background:rgba(255,255,255,.06)"><b style="font-family:'Exo 2';font-size:16px;display:block;white-space:nowrap">R$ 12.000</b><small style="font-size:9.5px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Sem Lucro Real</small></div><div style="text-align:center;padding:7px 12px;border-radius:12px;background:rgba(255,255,255,.06)"><b style="font-family:'Exo 2';font-size:16px;display:block;white-space:nowrap">R$ 10.200</b><small style="font-size:9.5px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">IRPJ 15%</small></div><div style="text-align:center;padding:7px 12px;border-radius:12px;background:rgba(29,212,200,.16)"><b style="font-family:'Exo 2';font-size:16px;display:block;white-space:nowrap">R$ 9.000</b><small style="font-size:9.5px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">IRPJ 25%</small></div></div>
-            </div>
+          <div class="card hl" data-a="right" style="--d:3;padding:28px 32px;gap:0">
+            <div style="display:flex;align-items:center;justify-content:space-between"><div class="kicker" style="color:#0E9E95">Assinar a Códice</div><span class="tag t">86% menos no 1º mês</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;margin-top:14px"><span class="big" style="font-size:74px;color:#061B49"><small>R$ </small>499</span><span style="font-size:15px;color:#58627A;line-height:1.4">por display<br>por mês</span></div>
+            <div style="height:10px;border-radius:5px;background:rgba(6,27,73,.08);margin-top:18px;overflow:hidden"><div class="wbar" data-w="13.8" style="height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,#1DD4C8,#2F73FF)"></div></div>
+            <ul class="plain" style="margin-top:22px;color:#061B49">
+              <li><svg viewBox="0 0 24 24" style="stroke:#0E9E95"><polyline points="20 6 9 17 4 12"/></svg>Instalação e manutenção inclusas</li>
+              <li><svg viewBox="0 0 24 24" style="stroke:#0E9E95"><polyline points="20 6 9 17 4 12"/></svg>Tecnologia que evolui por camada</li>
+              <li><svg viewBox="0 0 24 24" style="stroke:#0E9E95"><polyline points="20 6 9 17 4 12"/></svg>Despesa operacional: no Lucro Real, parte volta em imposto</li>
+            </ul>
           </div>
         </div>
-        <div class="note" data-a style="--d:13;max-width:none">Premissas do plano de negócio: display R$ 3.200, instalação R$ 350, manutenção R$ 50 e operação R$ 20 por mês. Mês 1 da Códice: Essencial R$ 499 mais implantação de R$ 490 por display. Em 12 meses a compra pode custar menos no papel; a assinatura troca capital e risco por serviço e receita. Efeito fiscal sujeito ao regime da rede e à contabilidade, não é parecer fiscal.</div>
+        <div class="strip" data-a style="--d:6;padding:20px 26px;gap:22px">
+          <svg class="ico" style="width:30px;height:30px"><use href="#i-cal"/></svg>
+          <div style="flex:1"><div class="st" style="font-size:25px">1 cota vendida paga 3 meses de aluguel.</div>
+          <div class="ss" style="font-size:14.5px">1 cota = 1 semana de 1 display. A marca paga R$ 1.500 pela semana e o display custa R$ 499 por mês.</div></div>
+          <button class="btn pri" data-go="6">Ver os displays <svg><use href="#i-r"/></svg></button>
+        </div>
+        <div class="note" data-a style="--d:7;max-width:none">Comprar, pelas premissas do plano de negócio: display R$ 3.200, instalação R$ 350, manutenção R$ 50 e operação R$ 20 no mês. O efeito fiscal depende do regime tributário da rede.</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 06 · SEIS FORMATOS ═══ -->
+  <!-- ═══ SEIS FORMATOS ═══ -->
   <section class="slide light" data-tr="zoom" data-tone="light">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O produto</div>
-        <h2 data-a style="--d:1">Seis formatos, <em>seis conversas</em> com a indústria.</h2>
+        <h2 data-a style="--d:1">Seis formatos. <em>Gire e veja cada um.</em></h2>
       </div>
-      <div class="body" style="justify-content:flex-start;padding-top:14px">
-        <div style="display:grid;grid-template-columns:500px 1fr;gap:40px;flex:1;min-height:0;align-items:center">
-          <div data-a="left" style="--d:2;display:flex;flex-direction:column;gap:14px">
-            <div style="display:flex;align-items:center;gap:14px">
-              <span class="num" id="fmtNum" style="font-size:12.5px"></span>
-              <span style="flex:1;height:1px;background:var(--ln)"></span></div>
-            <h3 id="fmtTitle" style="font-size:50px;letter-spacing:-.02em;line-height:1"></h3>
-            <p class="lede" id="fmtDesc" style="font-size:17px;max-width:40ch"></p>
-            <div class="rows" id="fmtRows" style="margin-top:2px;max-width:470px"></div>
-            <div id="fmtGal" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"></div>
+      <div class="body" style="padding-top:6px">
+        <div style="display:grid;grid-template-columns:1fr 860px;gap:50px;align-items:center;flex:1;min-height:0">
+          <div data-a="left" style="--d:2;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:14px"><span class="num" id="fmtNum" style="font-size:12.5px"></span><span style="flex:1;height:1px;background:var(--ln)"></span></div>
+            <div id="fmtTxt"><h3 id="fmtTitle" style="font-size:54px;letter-spacing:-.02em;line-height:1"></h3>
+            <p class="lede" id="fmtDesc" style="font-size:18px;max-width:34ch;margin-top:14px"></p></div>
+            <div class="rows" id="fmtRows" style="max-width:520px"></div>
+            <div id="fmtGal" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
           </div>
-          <div style="position:relative;height:100%;display:grid;place-items:center">
-            <div id="fmtTile" style="position:absolute;width:680px;height:500px;border-radius:72px;left:50%;top:50%;transform:translate(-50%,-50%);transition:background .6s var(--ease)"></div>
-            <img class="decor" src="assets/codice-modulos.png" alt="" style="left:0;bottom:0;width:112px;z-index:4">
-            <div class="frame fmtFrame" id="fmtFrame" style="position:relative;z-index:3;--fc:#061B49;--fs:54px;--fo:-24px">
-              <i></i><i></i><i></i><i></i>
-              <img id="fmtImg" src="assets/cfmt-ponta.jpg" alt="" style="display:block;height:540px;max-width:620px;width:auto;object-fit:contain;border-radius:24px;box-shadow:0 34px 70px rgba(6,27,73,.28);transition:opacity .3s var(--ease),transform .5s var(--ease-out)">
-            </div>
+          <div class="mvbox" data-a="fade" style="--d:3;height:580px">
+            <model-viewer id="fmtMv" camera-controls disable-pan auto-rotate auto-rotate-delay="5000" rotation-per-second="12deg" camera-orbit="16deg 82deg auto" min-camera-orbit="auto 30deg auto" max-camera-orbit="auto 95deg auto" interaction-prompt="none" shadow-intensity="1.1" shadow-softness="0.9" environment-image="neutral" exposure="1.05" ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor" src="assets/3d/essencial.glb" poster="assets/3d/essencial-poster.webp" alt="Ponta de gôndola Códice em 3D"></model-viewer>
+            <span class="drag"><svg class="ico" style="width:15px;height:15px;stroke:currentColor"><use href="#i-refresh"/></svg>Arraste para girar</span>
+            <div class="mvqr"><div class="qr" id="fmtQr"></div><span>Veja em<br>tamanho real</span></div>
           </div>
         </div>
-        <div class="note" data-a style="--d:5">Clique em cada formato. Renders do sistema modular. Dimensões e capacidade de carga confirmadas na vistoria da loja.</div>
       </div>
     </div>
   </section>
@@ -979,7 +957,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
         <h2 data-a style="--d:1">Todas as tecnologias possíveis.<br>Sensor só entra quando <em>gera uma decisão</em>.</h2>
       </div>
       <div class="body" style="justify-content:flex-start">
-        <div style="display:grid;grid-template-columns:500px 1fr 400px;gap:36px;flex:1;min-height:0;align-items:center">
+        <div style="display:grid;grid-template-columns:600px 1fr;gap:80px;flex:1;min-height:0;align-items:center">
           <svg viewBox="150 8 460 454" id="orbit" style="width:100%;height:auto;max-height:500px;overflow:visible" aria-hidden="true">
             <g class="spin"><circle cx="380" cy="235" r="128" fill="none" stroke="rgba(6,27,73,.3)" stroke-width="2.4" stroke-dasharray="0.1 11" stroke-linecap="round"/></g>
             <g class="spin rev"><circle cx="380" cy="235" r="196" fill="none" stroke="rgba(6,27,73,.22)" stroke-width="2.4" stroke-dasharray="0.1 12" stroke-linecap="round"/></g>
@@ -1006,71 +984,8 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
               <svg class="ico" style="width:22px;height:22px;stroke:var(--navy)"><use href="#i-lock"/></svg>
               <p style="font-size:13px;color:var(--fg2);line-height:1.45">Contagem agregada, sem reconhecimento facial e sem identificar o shopper.</p></div>
           </div>
-          <figure class="shot rv" style="--d:3;height:540px;box-shadow:0 30px 60px rgba(6,27,73,.2)"><img src="assets/foto-laboratorio.jpg" alt="Bancada de testes da Códice" style="object-position:8% 50%">
-            <span style="position:absolute;left:16px;top:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-family:'Exo 2';font-size:13px;font-weight:700;padding:8px 14px;border-radius:100px"><svg class="mb" style="fill:var(--blue)"><use href="#mb"/></svg>Bancada de testes</span>
-            <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;padding:60px 20px 20px;background:linear-gradient(0deg,rgba(6,27,73,.94),rgba(6,27,73,0));color:#fff">
-              <b style="font-family:'Exo 2';font-size:19px;font-weight:700">Tecnologia validada na bancada</b>
-              <span style="display:block;font-size:13px;color:rgba(255,255,255,.8);margin-top:4px;line-height:1.4">Sensores, conectividade e telas testados antes de chegar à loja.</span></div>
-          </figure>
         </div>
         <div class="note" data-a style="--d:6">As tecnologias trocam sozinhas, devagar. Clique em um módulo para fixar. A camada interna entra nos pacotes; a externa entra por projeto.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ A CONTA ═══ -->
-  <section class="slide" data-tr="blinds" data-tone="dark">
-    <img class="decor" src="assets/codice-face-base.png" alt="" style="right:-170px;bottom:-160px;width:620px;--op:.12">
-    <div class="pad">
-      <div class="hd">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:20px">
-          <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>A conta da rede</div>
-          <div data-a="fade" style="--d:2;display:flex;align-items:center;gap:12px">
-            <span class="kicker" style="font-size:10px">Projeção em</span>
-            <div class="pknav" id="cmTog"><button data-cm="1" style="font-size:15px;padding:9px 22px">1 mês</button><button data-cm="6" class="cur" style="font-size:15px;padding:9px 22px">6 meses</button></div>
-          </div>
-        </div>
-        <h2 data-a style="--d:1">Cada display vende a semana por R$ 1.500.<br>Em <span id="cmPer">6 meses</span>, <em>o lucro sai com o aluguel pago</em>.</h2>
-      </div>
-      <div class="body" style="gap:16px">
-        <div style="display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr 44px 1.15fr 44px 1.35fr;align-items:stretch">
-          <div class="card" data-a="pop" style="--d:2;padding:14px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-layers"/></svg><div class="big" style="font-size:50px;margin-top:4px" data-cu="4">0</div><p style="font-size:13px">displays por loja</p></div>
-          <div data-a="fade" style="--d:3;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
-          <div class="card" data-a="pop" style="--d:4;padding:14px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-store"/></svg><div class="big" style="font-size:50px;margin-top:4px" data-cu="10">0</div><p style="font-size:13px">lojas da rede</p></div>
-          <div data-a="fade" style="--d:5;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
-          <div class="card" data-a="pop" style="--d:6;padding:14px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-cal"/></svg><div class="big" style="font-size:50px;margin-top:4px"><span id="cmSem" data-cu="26">0</span></div><p style="font-size:13px" id="cmSemL">semanas em 6 meses</p></div>
-          <div data-a="fade" style="--d:7;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">×</div>
-          <div class="card" data-a="pop" style="--d:8;padding:14px;align-items:center;text-align:center;gap:4px;justify-content:center"><svg class="ico" style="width:24px;height:24px"><use href="#i-tag"/></svg><div class="big" style="font-size:42px;margin-top:8px"><small>R$ </small><span data-cu="1500" data-fmt="br">0</span></div><p style="font-size:13px;margin-top:4px">por semana, comunicação inclusa</p></div>
-          <div data-a="fade" style="--d:9;display:grid;place-items:center;font-family:'Exo 2';font-size:34px;font-weight:700;color:var(--teal)">=</div>
-          <div class="card hl" data-a="pop" style="--d:10;padding:14px 18px;align-items:center;text-align:center;gap:4px;justify-content:center"><div class="num">Receita das cotas</div><div class="big" style="font-size:36px;margin-top:8px;color:var(--navy);white-space:nowrap"><small>R$ </small><span id="cmRec" data-cu="1560000" data-fmt="br">0</span></div><p style="font-size:13px;margin-top:4px"><b id="cmCot">1.040</b> <span id="cmCotL">cotas vendidas</span></p></div>
-        </div>
-        <svg viewBox="0 0 1480 190" style="width:100%;height:auto;overflow:visible" aria-hidden="true">
-          <defs>
-            <linearGradient id="gRec" gradientUnits="userSpaceOnUse" x1="230" y1="0" x2="1470" y2="0"><stop offset="0" stop-color="#11307A"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
-            <linearGradient id="gLuc" gradientUnits="userSpaceOnUse" x1="230" y1="0" x2="1375" y2="0"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
-          </defs>
-          <g font-family="Inter" font-size="14" font-weight="600" fill="rgba(255,255,255,.66)">
-            <text x="0" y="36">Receita das cotas</text><text x="0" y="98">Aluguel Códice</text><text id="cmLucL" x="0" y="164" fill="#fff" font-size="16" font-weight="700">Lucro em 6 meses</text></g>
-          <rect x="230" y="12" width="1240" height="42" rx="12" fill="rgba(255,255,255,.06)"/>
-          <rect class="gx" style="--d:11" x="230" y="12" width="1240" height="42" rx="12" fill="url(#gRec)"/>
-          <text id="cmRecT" class="fadein" style="--d:12" x="254" y="40" font-family="Exo 2" font-size="19" font-weight="800" fill="#fff">R$ 1.560.000</text>
-          <line class="fadein" style="--d:13" x1="1375" y1="54" x2="1375" y2="76" stroke="rgba(255,255,255,.4)" stroke-width="1.6" stroke-dasharray="3 4"/>
-          <rect class="gx rt" style="--d:13" x="1375" y="76" width="95" height="36" rx="10" fill="#8E97AB"/>
-          <text id="cmAluT" class="fadein" style="--d:14" x="1358" y="100" text-anchor="end" font-family="Exo 2" font-size="18" font-weight="800" fill="#fff">menos R$ 119.760</text>
-          <line class="fadein" style="--d:15" x1="1375" y1="112" x2="1375" y2="134" stroke="rgba(255,255,255,.4)" stroke-width="1.6" stroke-dasharray="3 4"/>
-          <rect class="gx" style="--d:15" x="230" y="134" width="1145" height="54" rx="14" fill="url(#gLuc)"/>
-          <text class="fadein" style="--d:16" x="256" y="170" font-family="Exo 2" font-size="26" font-weight="800" fill="#061B49">R$ <tspan id="cmLuc" data-cu="1440240" data-fmt="br">0</tspan></text>
-          <text class="fadein" style="--d:16" x="1360" y="167" text-anchor="end" font-family="Inter" font-size="13" font-weight="700" fill="#061B49" letter-spacing="1">92% DA RECEITA</text>
-        </svg>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1.25fr auto;gap:14px;align-items:stretch">
-          <div class="card" data-a style="--d:12;padding:14px 20px;gap:2px"><div class="kicker" style="font-size:10px">Lucro por loja</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span id="cmLoja" data-cu="144024" data-fmt="br">0</span></div></div>
-          <div class="card" data-a style="--d:13;padding:14px 20px;gap:2px"><div class="kicker" style="font-size:10px">Lucro por display</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span id="cmDisp" data-cu="36006" data-fmt="br">0</span></div></div>
-          <div class="card" data-a style="--d:14;padding:14px 20px;gap:2px;border-color:rgba(29,212,200,.45)"><div class="kicker" style="font-size:10px;color:var(--teal)">Com metade da agenda vendida</div><div class="big" style="font-size:32px;margin-top:6px"><small>R$ </small><span id="cmHalf" data-cu="660240" data-fmt="br">0</span><small style="font-size:.42em;font-weight:600;color:var(--fg2)"> ainda sobra</small></div></div>
-          <div data-a style="--d:15;display:flex;flex-direction:column;gap:8px;justify-content:center">
-            <button class="btn pri" data-go="12" style="justify-content:center">Simular a minha rede <svg><use href="#i-r"/></svg></button>
-            <button class="btn gho" data-go="7" style="justify-content:center;padding:12px 24px">Rever os pacotes</button></div>
-        </div>
-        <div class="note" id="cmNote" data-a="fade" style="--d:16;max-width:none">Aluguel do pacote Essencial: 40 displays × R$ 499 × 6 meses = R$ 119.760. Mês médio de 4,3 semanas (52 semanas ÷ 12). Não considera a implantação (R$ 490 por display, cobrada uma vez), a produção das peças e os impostos. Preço de referência: o valor real depende da negociação com cada indústria.</div>
       </div>
     </div>
   </section>
@@ -1092,10 +1007,10 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             <div class="ctl"><label>Pacote</label><div class="seg" id="sPlan"></div></div>
             <div class="ctl"><label>Displays por loja</label><div class="stp" data-k="dpl"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sDpl" aria-label="Displays por loja"><button data-s="1" aria-label="Mais">+</button></div></div>
             <div class="ctl"><label>Lojas da rede</label><div class="stp" data-k="lojas"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sLojas" aria-label="Lojas"><button data-s="1" aria-label="Mais">+</button></div></div>
-            <div class="ctl"><label>Cota semanal por display <output>comunicação inclusa</output></label><div class="stp" data-k="cota"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sCota" aria-label="Cota semanal em reais"><button data-s="1" aria-label="Mais">+</button></div></div>
+            <div class="ctl"><label>Preço da cota <output>1 cota = 1 semana de 1 display</output></label><div class="stp" data-k="cota"><button data-s="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" id="sCota" aria-label="Cota semanal em reais"><button data-s="1" aria-label="Mais">+</button></div></div>
             <div class="ctl"><label>Agenda vendida <output id="sOccTxt">100%</output></label><input type="range" class="rng" id="sOcc" min="10" max="100" step="5" value="100" aria-label="Agenda vendida"></div>
             <div class="ctl"><label>Período do contrato</label><div class="seg" id="sPer"></div></div>
-            <p style="font-size:11.5px;line-height:1.45;color:#8A93A7;margin-top:auto">Implantação de R$ 490 por display, cobrada uma vez e mostrada à parte. Valores antes de impostos.</p>
+            <p style="font-size:11.5px;line-height:1.45;color:#8A93A7;margin-top:auto">A marca compra a semana do display, com a comunicação inclusa. Valores antes de impostos.</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
             <div data-a style="--d:3;display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:12px">
@@ -1115,7 +1030,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
                 <div class="kicker" style="color:#8A93A7" id="sChartT">Lucro acumulado mês a mês</div>
                 <div style="display:flex;gap:16px;font-size:11.5px;color:#58627A;align-items:center">
                   <span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:3px;background:linear-gradient(180deg,#1DD4C8,#2F73FF)"></i>lucro acumulado</span>
-                  <span style="display:flex;align-items:center;gap:6px"><i style="width:16px;border-top:2px dashed #4E4E50"></i>implantação</span></div></div>
+                  </div></div>
               <svg id="sChart" viewBox="0 0 1000 214" style="width:100%;flex:1;min-height:0;overflow:visible" aria-hidden="true"></svg>
             </div>
             <div data-a style="--d:6;display:flex;gap:10px;align-items:center">
@@ -1132,6 +1047,20 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 
   </div><!-- /stage -->
 </div><!-- /deck -->
+
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Tela da plataforma em tela cheia">
+  <div class="lb-top">
+    <div class="lb-tt"><img src="assets/codice-simbolo-branco.png" alt=""><b id="lbT">Painel</b><span id="lbD"></span></div>
+    <span class="lb-n" id="lbCount">01 / 07</span>
+    <button class="lb-btn" id="lbX" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-btn" id="lbPrev" type="button" aria-label="Tela anterior"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <img id="lbImg" src="assets/sis-painel.jpg" alt="">
+    <button class="lb-btn" id="lbNext" type="button" aria-label="Próxima tela"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
 
 <div id="rotate">
   <img src="assets/codice-logo-h-branco.png" alt="Códice" style="height:64px;width:auto;margin-bottom:6px">
@@ -1159,7 +1088,7 @@ addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;document.body
 addEventListener("mouseleave",function(){document.body.classList.add("hidecur")});
 (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform="translate3d("+cx+"px,"+cy+"px,0)";requestAnimationFrame(loop)})();
 addEventListener("mouseover",function(e){
-  document.body.classList.toggle("hot",!!e.target.closest("button,a,input,[data-go],.card,.shot,[data-g],[data-orb]"))});
+  document.body.classList.toggle("hot",!!e.target.closest("button,a,input,[data-go],.card,[data-g],[data-orb],model-viewer,#sisView"))});
 
 /* ─────── Palco ─────── */
 var stage=$("#stage"),deck=$("#deck");
@@ -1174,80 +1103,54 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 fit();
 
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
-var TITLES=["A sua loja já é um veículo de mídia","O grupo por trás da Códice","Operação e plataforma",
- "A verba desceu para o corredor","Display as a Service","Comprar ou assinar",
- "Seis formatos","Pacote Essencial","Pacote Sense","Pacote Media","Tecnologia embarcada",
- "A conta em 1 e 6 meses","Simulador da sua rede"];
-var ACTS=[[0,0,"Abertura"],[1,2,"Quem somos"],[3,3,"O que mudou"],[4,5,"A solução"],
-          [6,10,"O produto"],[11,11,"A prova"],[12,12,"Decisão"]];
-var SIS=2,TECH=10,CONTA=11,SIMU=12;
+var TITLES=["A sua loja já é um veículo de mídia","A verba desceu para o corredor","O grupo por trás da Códice",
+ "O que é a Códice","A plataforma","Comprar ou assinar","Seis formatos","Pacote Essencial","Pacote Sense","Pacote Media",
+ "Tecnologia embarcada","Simulador da sua rede"];
+var ACTS=[[0,0,"Abertura"],[1,1,"O que mudou"],[2,4,"Quem somos"],[5,5,"Por que assinar"],[6,10,"O produto"],[11,11,"Decisão"]];
+var SIS=4,TECH=10,SIMU=11;
+var AR_BASE="https://projetos.75lab.com.br/ar/codice-displays/";
+var MVATTR='camera-controls disable-pan auto-rotate auto-rotate-delay="5000" rotation-per-second="12deg" camera-orbit="16deg 82deg auto" min-camera-orbit="auto 30deg auto" max-camera-orbit="auto 95deg auto" interaction-prompt="none" shadow-intensity="1.1" shadow-softness="0.9" environment-image="neutral" exposure="1.05" ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor"';
+function qrSvg(url){if(!window.qrcode)return "";var q=qrcode(0,"M");q.addData(url);q.make();return q.createSvgTag({cellSize:4,margin:0,scalable:true})}
+function mvSet(mv,id){mv.setAttribute("poster","assets/3d/"+id+"-poster.webp");mv.setAttribute("ios-src",AR_BASE+id+".usdz");mv.setAttribute("src","assets/3d/"+id+".glb")}
 
-/* ─────── Tela 06 · seis formatos ─────── */
-var GRADS=["linear-gradient(140deg,#061B49 0%,#0B5C8F 58%,#1DD4C8 100%)",
-           "linear-gradient(140deg,#1DD4C8 0%,#2F73FF 100%)",
-           "linear-gradient(140deg,#061B49 0%,#2F73FF 100%)"];
+/* ─────── Seis formatos em 3D ─────── */
 var FMT=[
- {img:"cfmt-ponta",lb:"Ponta",n:"Formato 01",t:"Ponta de gôndola",
-  d:"O ponto mais disputado da loja. Testeira alta, laterais de comunicação e prateleiras inclinadas para giro rápido.",
-  r:[["Melhor uso","Campanha de marca e oferta"],["Comunicação","Testeira, 2 laterais e frentes"],["Categoria","Alto giro e sazonalidade"]]},
- {img:"cfmt-ilha",lb:"Ilha",n:"Formato 02",t:"Ilha dupla face",
-  d:"Duas frentes de venda no mesmo ativo. Ideal para corredor largo e para dividir a cota entre duas marcas.",
-  r:[["Melhor uso","Dominar categoria"],["Comunicação","Testeira dupla e laterais"],["Categoria","Mercearia e bebidas"]]},
- {img:"cfmt-painel",lb:"Painel",n:"Formato 03",t:"Painel de acessórios",
-  d:"Painel ripado com ganchos e suportes. Organiza item pequeno de alto valor sem perder área de comunicação.",
-  r:[["Melhor uso","Acessório e utilidade"],["Comunicação","Testeira e lateral vertical"],["Categoria","Bazar e conveniência"]]},
- {img:"cfmt-vitrine",lb:"Vitrine",n:"Formato 04",t:"Vitrine premium",
-  d:"Porta de acrílico com fechamento. Protege item de alto valor e sustenta preço mais alto por cota.",
-  r:[["Melhor uso","Lançamento e premium"],["Comunicação","Testeira e laterais"],["Categoria","Eletro, perfumaria e destilados"]]},
- {img:"cfmt-cosmeticos",lb:"Categoria",n:"Formato 05",t:"Expositor de categoria",
-  d:"Prateleiras mistas com iluminação e frente de marca. Feito para construir mundo de categoria dentro da loja.",
-  r:[["Melhor uso","Construção de marca"],["Comunicação","Testeira, base e laterais"],["Categoria","Cosméticos e higiene"]]},
- {img:"cfmt-gavetas",lb:"Multiuso",n:"Formato 06",t:"Multiuso com gavetas",
-  d:"Bandejas, cestos e gavetas no mesmo corpo. Absorve estoque de apoio e reduz ruptura no ponto extra.",
-  r:[["Melhor uso","Apoio de estoque"],["Comunicação","Testeira e lateral"],["Categoria","Alto giro e volume"]]}];
+ {id:"essencial",lb:"Ponta",t:"Ponta de gôndola",d:"O ponto mais disputado da loja, com testeira e banners laterais.",uso:"Campanha de marca e oferta",med:"202 × 104 × 55 cm"},
+ {id:"ilha",lb:"Ilha",t:"Ilha dupla face",d:"Duas frentes de venda no mesmo display, para corredor largo.",uso:"Dominar uma categoria",med:"190 × 120 × 96 cm"},
+ {id:"painel",lb:"Painel",t:"Painel de acessórios",d:"Painel canaletado com ganchos para item pequeno de alto valor.",uso:"Acessórios e conveniência",med:"195 × 122 × 42 cm"},
+ {id:"vitrine",lb:"Vitrine",t:"Vitrine premium",d:"Portas de vidro que protegem o produto e valorizam a cota.",uso:"Lançamento e premium",med:"192 × 122 × 54 cm"},
+ {id:"categoria",lb:"Categoria",t:"Expositor de categoria",d:"Prateleiras com acrílico e faixa de marca na base.",uso:"Cosméticos e higiene",med:"200 × 100 × 46 cm"},
+ {id:"multiuso",lb:"Multiuso",t:"Multiuso com gavetas",d:"Prateleiras em cima e estoque de apoio embaixo.",uso:"Alto giro e volume",med:"195 × 74 × 52 cm"}];
 var gsel=0;
 $("#fmtGal").innerHTML=FMT.map(function(f,k){
-  return '<button data-g="'+k+'" style="padding:10px 16px;border-radius:100px;font-family:\'Exo 2\';font-size:13px;font-weight:700;'+
+  return '<button data-g="'+k+'" style="padding:10px 18px;border-radius:100px;font-family:\'Exo 2\';font-size:14px;font-weight:700;'+
     'border:1.5px solid rgba(6,27,73,.16);color:rgba(6,27,73,.72);transition:.28s">'+f.lb+'</button>'}).join("");
 function renderFmt(){
-  var f=FMT[gsel],img=$("#fmtImg"),fr=$("#fmtFrame");
+  var f=FMT[gsel];
   $$("#fmtGal [data-g]").forEach(function(b,k){var on=k===gsel;
-    b.style.background=on?"#061B49":"transparent"; b.style.borderColor=on?"#061B49":"rgba(6,27,73,.16)";
-    b.style.color=on?"#fff":"rgba(6,27,73,.72)"});
-  $("#fmtTile").style.background=GRADS[gsel%3];
-  $("#fmtNum").textContent=f.n; $("#fmtTitle").textContent=f.t; $("#fmtDesc").textContent=f.d;
-  $("#fmtRows").innerHTML=f.r.map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
-  img.style.opacity=0;
-  setTimeout(function(){img.src="assets/"+f.img+".jpg"; img.alt=f.t; img.style.opacity=1;
-    fr.classList.remove("go"); void fr.offsetWidth; fr.classList.add("go")},170);
+    b.style.background=on?"#061B49":"transparent"; b.style.borderColor=on?"#061B49":"rgba(6,27,73,.16)"; b.style.color=on?"#fff":"rgba(6,27,73,.72)"});
+  $("#fmtNum").textContent="Formato "+String(gsel+1).padStart(2,"0")+" de 06";
+  $("#fmtTitle").textContent=f.t; $("#fmtDesc").textContent=f.d;
+  $("#fmtRows").innerHTML=[["Melhor uso",f.uso],["Medidas de referência",f.med]].map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
+  var tx=$("#fmtTxt"); tx.classList.remove("swap"); void tx.offsetWidth; tx.classList.add("swap");
+  var mv=$("#fmtMv"); mv.setAttribute("alt",f.t+" Códice em 3D"); mvSet(mv,f.id);
+  $("#fmtQr").innerHTML=qrSvg(AR_BASE+"?modelo="+f.id);
 }
 $("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-g]"); if(!b)return; gsel=+b.dataset.g; renderFmt()});
 renderFmt();
 
-/* ─────── Pacotes · uma tela por pacote ─────── */
+/* ─────── Pacotes · uma tela por pacote, com o display em 3D ─────── */
 var PLANS=[{n:"Essencial",p:499},{n:"Sense",p:849},{n:"Media",p:1290}];
 var PK=[
- {img:"foto-ilha-supermercado",pos:"72% 50%",side:"r",badge:"Ideal para começar",
-  quem:"Para a rede que quer começar a vender espaço já, com baixa complexidade.",
-  ind:"A indústria compra espaço e comunicação padronizados, semana a semana.",
-  f:[["i-layers","Display modular padronizado","mesmo padrão em todas as lojas",1],["i-refresh","Comunicação cambiável","troca de campanha sem obra",1],
-     ["i-qr","QR patrimonial e do shopper","controle do ativo e cupom da marca",1],["i-pin","Check-in com geolocalização","prova de visita da equipe",1],
-     ["i-wrench","Manutenção programada","inclusa na mensalidade",1],["i-truck","Instalação e treinamento","a loja recebe pronta para vender",1]],
-  hs:[[294,96,"r","Testeira com a marca"],[508,250,"l","Comunicação cambiável"],[300,470,"r","Módulos padronizados"]]},
- {img:"foto-consultoria",pos:"65% 50%",side:"l",badge:"Mais vendido",
-  quem:"Para pontos de maior fluxo e categorias com verba de trade.",
-  ind:"A indústria compra posição com sinal de fluxo. A melhor posição vale mais.",
-  f:[["i-check","Tudo do Essencial","display, comunicação, QR e manutenção",0],["i-users","Sensor de proximidade","passagens e permanência na zona",1],
-     ["i-wifi","Conectividade e alertas","o display avisa quando cai",1],["i-chart","Painel de execução","loja, campanha e evidência",1],
-     ["i-tag","Preço por posição","a cota vale o fluxo que recebe",1],["i-shield","Uptime e rota de manutenção","técnico vai onde precisa",1]],
-  hs:[[412,440,"r","Painel de execução"],[640,300,"l","Sensor de proximidade"]]},
- {img:"foto-ilha-touch",pos:"59% 50%",side:"r",badge:"Maior valor por cota",inset:"foto-parede-eletro",
-  quem:"Para lançamento, campanha premium e ativação especial.",
-  ind:"A indústria compra veiculação com prova de exibição, por dia e por loja.",
-  f:[["i-check","Tudo do Sense","sensor, alertas e painel de execução",0],["i-screen","Tela e player integrados","vídeo e conteúdo no ponto",1],
-     ["i-cal","Playlist por dia e loja","conteúdo trocado sem visita",1],["i-doc","Prova de veiculação","arquivo, horário e falhas",1],
-     ["i-bolt","Iluminação inteligente","destaque com baixo consumo",1],["i-target","Venda premium","a cota de maior valor da rede",1]],
-  hs:[[254,255,"l","Tela e player integrados"],[433,191,"r","Conteúdo trocado remotamente"],[293,556,"r","Iluminação inteligente"]]}];
+ {id:"essencial",side:"r",badge:"Ideal para começar",quem:"Para começar a vender espaço já, com baixa complexidade.",
+  f:[["i-layers","Display modular"],["i-refresh","Comunicação cambiável"],["i-qr","QR patrimonial"],["i-wrench","Manutenção inclusa"]],
+  hs:[["0.4m 1.23m -0.2m","QR patrimonial","l"]]},
+ {id:"sense",side:"l",badge:"Mais vendido",quem:"Para pontos de maior fluxo, com prova de que o público passou.",
+  f:[["i-check","Tudo do Essencial"],["i-users","Sensor de proximidade"],["i-wifi","Alertas de conexão"],["i-chart","Painel de execução"]],
+  hs:[["0m 1.68m -0.14m","Sensor de proximidade","r"]]},
+ {id:"media",side:"r",badge:"Maior valor por cota",quem:"Para lançamentos e campanhas premium, com vídeo dentro da loja.",
+  f:[["i-check","Tudo do Sense"],["i-screen","Tela e player"],["i-cal","Conteúdo remoto"],["i-doc","Prova de veiculação"]],
+  hs:[["0.3m 1.52m -0.17m","Tela com conteúdo remoto","r"],["-0.3m 1.705m -0.16m","Iluminação inteligente","l"]]}];
 (function(){
   $$("[data-pk]").forEach(function(sec){
     var k=+sec.dataset.pk,P=PK[k],L=PLANS[k],lt=sec.classList.contains("light");
@@ -1256,31 +1159,26 @@ var PK=[
     var meter='<div class="pkmeter" data-a style="--d:2;max-width:520px">'+PLANS.map(function(q,j){
       return '<span><i'+(j<=k?' class="on"':'')+'></i><b'+(j===k?' class="on"':'')+'>Camada '+(j+1)+' · '+q.n+'</b></span>'}).join("")+'</div>';
     var feats='<div class="feats">'+P.f.map(function(f,j){
-      return '<div class="feat'+(f[3]?(k?' new':''):' base')+'" data-a style="--d:'+(j+5)+'"><span class="fi"><svg class="ico"><use href="#'+f[0]+'"/></svg></span>'+
-        '<span><b>'+f[1]+'</b><small>'+f[2]+'</small></span></div>'}).join("")+'</div>';
-    var txt='<div style="display:flex;flex-direction:column;gap:14px">'+
+      return '<div class="feat'+(k&&j?' new':'')+'" data-a style="--d:'+(j+5)+'"><span class="fi"><svg class="ico"><use href="#'+f[0]+'"/></svg></span><span><b>'+f[1]+'</b></span></div>'}).join("")+'</div>';
+    var txt='<div style="display:flex;flex-direction:column;gap:18px">'+
       '<div class="pkname" data-a style="--d:1">'+L.n+'</div>'+meter+
-      '<div data-a style="--d:3;display:flex;align-items:center;gap:14px;margin-top:4px">'+
-        '<span style="font-family:\'Exo 2\';font-size:60px;font-weight:800;letter-spacing:-.02em;line-height:1;white-space:nowrap">R$ '+BR(L.p)+'</span>'+
-        '<span style="font-size:14px;color:var(--fg2);line-height:1.4">por display por mês<br>manutenção programada inclusa</span></div>'+
-      '<p class="lede" data-a style="--d:4;font-size:17.5px;max-width:46ch">'+P.quem+'</p>'+feats+
-      '<div data-a style="--d:11;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:14px;border-left:3px solid var(--acc);background:'+(lt?'#fff':'rgba(29,212,200,.1)')+'">'+
-        '<svg class="ico" style="width:22px;height:22px"><use href="#i-tag"/></svg><span style="font-size:14px;line-height:1.4">'+P.ind+'</span></div>'+
-      '<div class="btns" data-a style="--d:12"><button class="btn pri" data-plan="'+k+'">Simular com o '+L.n+' <svg><use href="#i-r"/></svg></button>'+
-        (k<2?'<button class="btn gho" data-go="'+(8+k)+'">Próximo pacote: '+PLANS[k+1].n+'</button>':'<button class="btn gho" data-go="10">Ver a tecnologia</button>')+'</div></div>';
-    var ph='<div class="pkph rv2" style="--d:3;height:600px">'+
-      '<div class="ph"><img src="assets/'+P.img+'.jpg" alt="Pacote '+L.n+' em loja" style="object-position:'+P.pos+'"></div>'+
-      '<div class="frame" style="inset:0;z-index:3;--fc:'+(lt?'#061B49':'#1DD4C8')+';--fs:50px;--fo:-18px"><i></i><i></i><i></i><i></i></div>'+
-      P.hs.map(function(h,j){return '<div class="hs '+h[2]+'" style="left:'+h[0]+'px;top:'+h[1]+'px;--d:'+j+'"><span>'+h[3]+'</span></div>'}).join("")+
-      '<span data-a="pop" style="--d:9;position:absolute;right:18px;bottom:18px;z-index:5;display:inline-flex;align-items:center;gap:8px;background:'+(lt?'#061B49':'#fff')+';color:'+(lt?'#fff':'#061B49')+
-        ';font-family:\'Exo 2\';font-size:13px;font-weight:700;padding:9px 15px;border-radius:100px;box-shadow:0 10px 24px rgba(3,14,40,.3)"><svg class="mb" style="fill:'+(lt?'#1DD4C8':'#2F73FF')+'"><use href="#mb"/></svg>'+P.badge+'</span>'+
-      (P.inset?'<figure class="shot" style="position:absolute;left:-34px;top:-34px;width:250px;height:141px;z-index:6;border:5px solid var(--navy);box-shadow:0 20px 40px rgba(0,0,0,.4)">'+
-        '<img src="assets/'+P.inset+'.jpg" alt="Media em parede modular" style="object-position:50% 40%"><span class="sn" style="position:absolute;left:10px;bottom:10px;z-index:2">Também em parede</span></figure>':'')+
-      '</div>';
+      '<div data-a style="--d:3;display:flex;align-items:center;gap:16px;margin-top:4px">'+
+        '<span style="font-family:\'Exo 2\';font-size:66px;font-weight:800;letter-spacing:-.02em;line-height:1;white-space:nowrap">R$ '+BR(L.p)+'</span>'+
+        '<span style="font-size:15px;color:var(--fg2);line-height:1.4">por display, por mês<br>manutenção inclusa</span></div>'+
+      '<p class="lede" data-a style="--d:4;font-size:19px;max-width:40ch">'+P.quem+'</p>'+feats+
+      '<div class="btns" data-a style="--d:10;margin-top:4px"><button class="btn pri" data-plan="'+k+'">Simular com o '+L.n+' <svg><use href="#i-r"/></svg></button>'+
+        (k<2?'<button class="btn gho" data-go="'+(8+k)+'">Próximo: '+PLANS[k+1].n+'</button>':'<button class="btn gho" data-go="10">Ver a tecnologia</button>')+'</div></div>';
+    var hs=P.hs.map(function(h,j){return '<button class="hot3d '+h[2]+'" slot="hotspot-'+j+'" data-visibility-attribute="visible" data-position="'+h[0]+'" data-normal="0m 0m 1m" aria-label="'+h[1]+'"><b>'+h[1]+'</b></button>'}).join("");
+    var ph='<div class="mvbox'+(lt?'':' dark')+'" data-a="fade" style="--d:3;height:610px">'+
+      '<model-viewer class="pkmv" data-id="'+P.id+'" '+MVATTR+' alt="Display Códice do pacote '+L.n+' em 3D">'+hs+'</model-viewer>'+
+      '<span class="drag"><svg class="ico" style="width:15px;height:15px;stroke:currentColor"><use href="#i-refresh"/></svg>Arraste para girar</span>'+
+      '<span class="mvtag"><svg class="mb" style="fill:#1DD4C8"><use href="#mb"/></svg>'+P.badge+'</span>'+
+      '<div class="mvqr"><div class="qr">'+qrSvg(AR_BASE+"?modelo="+P.id)+'</div><span>Veja em<br>tamanho real</span></div></div>';
     sec.innerHTML='<div class="pad"><div class="hd" style="flex-direction:row;align-items:center;justify-content:space-between">'+
       '<div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>Pacote '+(k+1)+' de 3</div>'+nav+'</div>'+
-      '<div class="body" style="padding-top:8px"><div style="display:grid;grid-template-columns:'+(P.side==="l"?'740px 1fr':'1fr 740px')+';gap:54px;align-items:center">'+
+      '<div class="body" style="padding-top:4px"><div style="display:grid;grid-template-columns:'+(P.side==="l"?'700px 1fr':'1fr 700px')+';gap:70px;align-items:center">'+
       (P.side==="l"?ph+txt:txt+ph)+'</div></div></div>';
+    mvSet(sec.querySelector("model-viewer"),P.id);
   });
 })();
 document.addEventListener("click",function(e){var b=e.target.closest("[data-plan]"); if(!b)return; SS.plan=+b.dataset.plan; renderSimu(); go(SIMU)});
@@ -1298,32 +1196,48 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-plan
   $("#mq2").innerHTML=one(B)+one(B,1);
 })();
 
-/* ─────── A plataforma · telas que trocam sozinhas ─────── */
-var SISD=[["sis-painel","i-chart","Painel","Ocupação, receita e SLA da semana"],
+/* ─────── A plataforma · telas que trocam sozinhas e abrem em tela cheia ─────── */
+var SISD=[["sis-painel","i-chart","Painel","Ocupação, receita e prazos da semana"],
  ["sis-inventario","i-cal","Inventário de mídia","Cada display vira cotas semanais"],
- ["sis-campanhas","i-tag","Campanhas","Da reserva à veiculação, com valor e prazo"],
+ ["sis-campanhas","i-tag","Campanhas","Da reserva à veiculação"],
  ["sis-sensores","i-users","Sensores das lojas","Pessoas que param e tempo de atenção"],
  ["sis-mapa","i-pin","Mapa da frota","Cada loja e cada display no mapa"],
  ["sis-excecoes","i-shield","Exceções","O que saiu do esperado vira tarefa"],
  ["sis-campo","i-qr","Modo campo","Instalação e vistoria pelo QR"]];
-var sisSel=0,sisT0=0,SIS_MS=6000;
-$("#sisDots").innerHTML=SISD.map(function(s,k){
-  return '<button data-sis="'+k+'" aria-label="'+s[2]+'" style="width:18px;height:18px;display:grid;place-items:center">'+
-    '<i style="width:8px;height:8px;border-radius:50%;background:rgba(6,27,73,.2);transition:background .3s,transform .3s"></i></button>'}).join("");
+var sisSel=0,sisT0=0,SIS_MS=6000,lbOpen=false;
+$("#sisList").innerHTML=SISD.map(function(s,k){
+  return '<button data-sis="'+k+'" data-a="left" style="--d:'+(k+2)+'"><span class="si"><svg class="ico"><use href="#'+s[1]+'"/></svg></span>'+
+    '<span><b>'+s[2]+'</b><small>'+s[3]+'</small></span></button>'}).join("");
+$("#lbDots").innerHTML=SISD.map(function(s,k){return '<button data-lb="'+k+'" aria-label="'+s[2]+'"></button>'}).join("");
 function renderSis(){
   var S=SISD[sisSel];
-  $$("#sisDots [data-sis]").forEach(function(b,k){var d=b.firstChild,on=k===sisSel;
-    d.style.background=on?"#2F73FF":"rgba(6,27,73,.2)"; d.style.transform=on?"scale(1.4)":"none"});
+  $$("#sisList [data-sis]").forEach(function(b,k){b.classList.toggle("on",k===sisSel)});
   var im=$("#sisImg"); im.style.opacity=0;
   setTimeout(function(){im.src="assets/"+S[0]+".jpg"; im.alt=S[2]+" da plataforma Códice"; im.style.opacity=1},170);
-  $("#sisUrl").textContent=S[2]; $("#sisT").textContent=S[2]; $("#sisD").textContent=S[3];
+  $("#sisUrl").textContent=S[2];
   $("#sisCount").textContent=String(sisSel+1).padStart(2,"0")+" / "+String(SISD.length).padStart(2,"0");
-  var cap=$("#sisCap"); cap.classList.remove("swap"); void cap.offsetWidth; cap.classList.add("swap");
   var p=$("#sisProg"); p.style.transition="none"; p.style.width="0"; p.getBoundingClientRect();
   p.style.transition="width "+SIS_MS+"ms linear"; p.style.width="100%"; sisT0=Date.now();
 }
-$("#sisDots").addEventListener("click",function(e){var b=e.target.closest("[data-sis]"); if(!b)return; sisSel=+b.dataset.sis; renderSis()});
-$("#sisView").addEventListener("click",function(){sisSel=(sisSel+1)%SISD.length; renderSis()});
+function lbRender(){
+  var S=SISD[sisSel];
+  $("#lbImg").src="assets/"+S[0]+".jpg"; $("#lbImg").alt=S[2]+" da plataforma Códice";
+  $("#lbT").textContent=S[2]; $("#lbD").textContent=S[3];
+  $("#lbCount").textContent=String(sisSel+1).padStart(2,"0")+" / "+String(SISD.length).padStart(2,"0");
+  $$("#lbDots [data-lb]").forEach(function(b,k){b.classList.toggle("on",k===sisSel)});
+}
+function lbShow(){lbOpen=true; $("#lb").hidden=false; lbRender(); $("#lbX").focus()}
+function lbHide(){lbOpen=false; $("#lb").hidden=true; renderSis()}
+function lbStep(d){sisSel=(sisSel+d+SISD.length)%SISD.length; lbRender()}
+$("#sisList").addEventListener("click",function(e){var b=e.target.closest("[data-sis]"); if(!b)return; sisSel=+b.dataset.sis; renderSis()});
+$("#sisView").addEventListener("click",lbShow);
+$("#sisView").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault(); lbShow()}});
+$("#sisFull").addEventListener("click",lbShow);
+$("#lbX").addEventListener("click",lbHide);
+$("#lbPrev").addEventListener("click",function(){lbStep(-1)});
+$("#lbNext").addEventListener("click",function(){lbStep(1)});
+$("#lbDots").addEventListener("click",function(e){var b=e.target.closest("[data-lb]"); if(!b)return; sisSel=+b.dataset.lb; lbRender()});
+$("#lb").addEventListener("click",function(e){if(e.target===this||e.target.classList.contains("lb-stage"))lbHide()});
 SISD.forEach(function(s){var im=new Image(); im.src="assets/"+s[0]+".jpg"});
 
 /* ─────── Tela 08 · órbita de tecnologia ─────── */
@@ -1404,14 +1318,14 @@ renderOrb();
 setInterval(function(){
   if(document.hidden)return;
   var now=Date.now(),sec=slides[i];
-  if(sec===slides[SIS]&&now-sisT0>=SIS_MS){sisSel=(sisSel+1)%SISD.length; renderSis()}
+  if(sec===slides[SIS]&&!lbOpen&&now-sisT0>=SIS_MS){sisSel=(sisSel+1)%SISD.length; renderSis()}
   if(sec===slides[TECH]&&!orbPaused&&now-orbT0>=orbDur){osel=(osel+1)%ORB.length; orbHold=0; renderOrb()}
 },400);
 
 /* ─────── Simulador da rede, com cronograma que parte do dia de hoje ─────── */
 var MES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
 var MESL=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-var SS={plan:0,dpl:4,lojas:10,cota:1500,occ:100,per:6},IMPL=490;
+var SS={plan:0,dpl:4,lojas:10,cota:1500,occ:100,per:6};
 var LIM={dpl:[1,40,1],lojas:[1,5000,1],cota:[100,50000,100]};
 function addDays(d,n){var x=new Date(d); x.setDate(x.getDate()+n); return x}
 function addMonths(d,n){var x=new Date(d),day=x.getDate(); x.setMonth(x.getMonth()+n); if(x.getDate()<day)x.setDate(0); return x}
@@ -1435,7 +1349,7 @@ $$(".stp").forEach(function(st){
 $("#sOcc").addEventListener("input",function(){SS.occ=+this.value; renderSimu(true)});
 function renderSimu(quick){
   var P=PLANS[SS.plan],D=SS.dpl*SS.lojas,W=SS.per*52/12,o=SS.occ/100;
-  var cot=Math.round(D*W*o),rec=Math.round(D*W*o*SS.cota),alu=D*P.p*SS.per,luc=rec-alu,imp=D*IMPL,wl=W%1?W.toFixed(1).replace(".",","):W;
+  var cot=Math.round(D*W*o),rec=Math.round(D*W*o*SS.cota),alu=D*P.p*SS.per,luc=rec-alu,wl=W%1?W.toFixed(1).replace(".",","):W;
   $$("#sPlan [data-pl]").forEach(function(b,k){b.classList.toggle("on",k===SS.plan)});
   $$("#sPer [data-per]").forEach(function(b){b.classList.toggle("on",+b.dataset.per===SS.per)});
   [["sDpl","dpl",""],["sLojas","lojas",""],["sCota","cota","R$ "]].forEach(function(p){var el=$("#"+p[0]);
@@ -1443,16 +1357,16 @@ function renderSimu(quick){
   var r=$("#sOcc"); r.value=SS.occ; r.style.setProperty("--p",((SS.occ-10)/90*100)+"%"); $("#sOccTxt").textContent=SS.occ+"%";
   $("#kRec").textContent=BR(rec); $("#kRecS").textContent=BR(cot)+" cotas em "+wl+" semanas";
   $("#kAlu").textContent=BR(alu); $("#kAluS").textContent=BR(D)+" displays × R$ "+BR(P.p)+" × "+meses(SS.per);
-  $("#kLuc").textContent=BR(luc); $("#kLucS").textContent="Descontada a implantação: R$ "+BR(luc-imp);
+  $("#kLuc").textContent=BR(luc); var cpa=Math.ceil(alu/SS.cota); $("#kLucS").textContent=BR(cpa)+(cpa>1?" cotas pagam":" cota paga")+" todo o aluguel";
   /* cronograma */
   var hoje=new Date(); hoje.setHours(12,0,0,0);
   var ini=addDays(hoje,60),fim=addMonths(ini,SS.per);
-  var wNet=SS.cota*o*D-D*P.p*12/52,pw=wNet>0?Math.max(1,Math.ceil(imp/wNet)):0,pay=pw&&pw<=W?addDays(ini,pw*7):null;
+  var pw=SS.cota*o>0?Math.max(1,Math.ceil(P.p/(SS.cota*o))):0,pay=pw&&pw<=W?addDays(ini,pw*7):null;
   var semanas=function(n){return n+(n>1?" semanas":" semana")};
   $("#simDate").textContent="Simulação de "+hoje.getDate()+" de "+MESL[hoje.getMonth()]+" de "+hoje.getFullYear();
-  $("#sPay").textContent=pay?"Implantação paga em "+semanas(pw)+" de venda":"Neste cenário a implantação não se paga no período";
+  $("#sPay").textContent=pay?"O aluguel do mês se paga com "+semanas(pw)+" de venda":"Neste cenário o aluguel não se paga no período";
   var M=[[hoje,"Aprovação","Proposta aceita e lojas definidas"],[addDays(hoje,30),"Projeto","Formatos, contratos e agenda"],
-         [ini,"Instalação","Displays no ar e vendas abertas"],[pay,"Implantação paga",pay?"Com "+semanas(pw)+" de venda":"Fora do período"],
+         [ini,"Instalação","Displays no ar e vendas abertas"],[pay,"Aluguel do mês pago",pay?"Com "+semanas(pw)+" de venda":"Fora do período"],
          [fim,"Fim do ciclo","Lucro potencial de "+curto(luc)]];
   var tot=(fim-hoje)/864e5,X=function(d){return 18+((d-hoje)/864e5)/tot*964},COR=["#061B49","#061B49","#061B49","#0E9E95","#2F73FF"];
   var s='<defs><linearGradient id="gTl" gradientUnits="userSpaceOnUse" x1="18" y1="0" x2="982" y2="0"><stop offset="0" stop-color="#0E9E95"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>'+
@@ -1481,11 +1395,10 @@ function renderSimu(quick){
   }
   pts.forEach(function(v){mx=Math.max(mx,v); mn=Math.min(mn,v)});
   $("#sChartT").textContent=SS.per===1?"Lucro acumulado semana a semana":"Lucro acumulado mês a mês";
-  mx=Math.max(mx,imp)*1.14; mn=Math.min(0,mn*1.14);
+  mx=Math.max(mx,1)*1.14; mn=Math.min(0,mn*1.14);
   var tp=28,bt=186,Y=function(v){return tp+(mx-v)/(mx-mn)*(bt-tp)},cw=1000/pts.length,bw=Math.min(70,cw*.54);
   var c='<defs><linearGradient id="gCh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient></defs>'+
-    '<line x1="0" y1="'+Y(0)+'" x2="1000" y2="'+Y(0)+'" stroke="rgba(6,27,73,.16)" stroke-width="1.5"/>'+
-    '<line x1="0" y1="'+Y(imp)+'" x2="1000" y2="'+Y(imp)+'" stroke="#4E4E50" stroke-width="1.6" stroke-dasharray="6 6"/>';
+    '<line x1="0" y1="'+Y(0)+'" x2="1000" y2="'+Y(0)+'" stroke="rgba(6,27,73,.16)" stroke-width="1.5"/>';
   pts.forEach(function(v,k){var x=cw*k+cw/2,y=Math.min(Y(v),Y(0)),h=Math.max(Math.abs(Y(v)-Y(0)),1.5);
     c+='<rect x="'+(x-bw/2)+'" y="'+y+'" width="'+bw+'" height="'+h+'" rx="8" fill="'+(v>=0?"url(#gCh)":"#C9CFDB")+'"'+
       (quick?'':' style="transform-box:fill-box;transform-origin:50% 100%;animation:barUp .7s cubic-bezier(.22,1,.36,1) both '+(k*45)+'ms"')+'/>'+
@@ -1502,34 +1415,6 @@ function renderSimu(quick){
     "&body="+encodeURIComponent("Olá, quero conversar sobre esta simulação.\n\n"+txt);
   $("#sWpp").href="https://wa.me/5511971787042?text="+encodeURIComponent("Olá, quero falar sobre a Códice.\n\n"+txt);
 }
-
-/* ─────── A conta · projeção de 1 ou 6 meses ─────── */
-var CM=6;
-function tween(el,to,dec){
-  var from=parseFloat((el.textContent||"0").replace(/\./g,"").replace(",","."))||0,t0=Date.now(),dur=750,tok={};
-  el._tw=tok; el.dataset.cu=dec?String(to).replace(".",","):String(to);
-  if(dec)el.dataset.dec=dec; else delete el.dataset.dec;
-  el.dataset.done="1";
-  function f(v){return dec?v.toFixed(dec).replace(".",","):(el.dataset.fmt?BR(Math.round(v)):String(Math.round(v)))}
-  function step(){if(el._tw!==tok)return; var p=Math.min((Date.now()-t0)/dur,1),k=1-Math.pow(1-p,3); el.textContent=f(from+(to-from)*k); if(p<1)requestAnimationFrame(step)}
-  requestAnimationFrame(step);
-  /* garante o valor final mesmo com a aba em segundo plano */
-  setTimeout(function(){if(el._tw===tok)el.textContent=f(to)},dur+60);
-}
-function renderConta(){
-  var m=CM,W=m*52/12,D=40,rec=Math.round(D*1500*W),alu=D*499*m,luc=rec-alu,half=Math.round(rec/2)-alu,cot=Math.round(D*W),ml=meses(m);
-  $$("#cmTog [data-cm]").forEach(function(b){b.classList.toggle("cur",+b.dataset.cm===m)});
-  $("#cmPer").textContent=ml;
-  tween($("#cmSem"),m===1?4.3:26,m===1?1:0); $("#cmSemL").textContent="semanas em "+ml;
-  tween($("#cmRec"),rec); $("#cmCot").textContent=(m===1?"média de ":"")+BR(cot); $("#cmCotL").textContent=m===1?"cotas no mês":"cotas vendidas";
-  $("#cmRecT").textContent="R$ "+BR(rec); $("#cmAluT").textContent="menos R$ "+BR(alu); $("#cmLucL").textContent="Lucro em "+ml;
-  tween($("#cmLuc"),luc); tween($("#cmLoja"),Math.round(luc/10)); tween($("#cmDisp"),Math.round(luc/40)); tween($("#cmHalf"),half);
-  $("#cmNote").textContent="Aluguel do pacote Essencial: 40 displays × R$ 499 × "+ml+" = R$ "+BR(alu)+". Mês médio de 4,3 semanas (52 semanas ÷ 12). "+
-    "Não considera a implantação (R$ 490 por display, cobrada uma vez), a produção das peças e os impostos. Preço de referência: o valor real depende da negociação com cada indústria.";
-  $$(".gx",slides[CONTA]).forEach(function(r,k){r.style.animation="none"; r.getBoundingClientRect();
-    r.style.animation="barX .8s cubic-bezier(.22,1,.36,1) both "+(k*140)+"ms"});
-}
-$("#cmTog").addEventListener("click",function(e){var b=e.target.closest("[data-cm]"); if(!b)return; CM=+b.dataset.cm; renderConta()});
 
 /* ─────── Navegação ─────── */
 function actName(k){for(var j=0;j<ACTS.length;j++){if(k>=ACTS[j][0]&&k<=ACTS[j][1])return ACTS[j][2]}return ""}
@@ -1548,18 +1433,17 @@ function go(n,quiet){
   if(n===i||busy)return;
   busy=true;
   var old=slides[i],nu=slides[n];
-  if(!quiet){
-    if(nu.getAttribute("data-tr")==="blinds"){
-      var bl=$("#blinds"); bl.classList.toggle("lite",nu.getAttribute("data-tone")==="light");
-      bl.classList.remove("go"); void bl.offsetWidth; bl.classList.add("go");
-      setTimeout(function(){bl.classList.remove("go")},1050);
-    } else { var w=$("#wipe"); w.classList.remove("go"); void w.offsetWidth; w.classList.add("go"); }
+  function swap(){
+    old.classList.remove("on","noanim"); old.classList.add("out");
+    setTimeout(function(){old.classList.remove("out")},580);
+    i=n; nu.classList.add("on");
+    setChrome(); onEnter(nu);
   }
-  old.classList.remove("on","noanim"); old.classList.add("out");
-  setTimeout(function(){old.classList.remove("out")},580);
-  i=n; nu.classList.add("on");
-  setChrome(); onEnter(nu);
-  setTimeout(function(){busy=false},540);
+  if(quiet||matchMedia("(prefers-reduced-motion: reduce)").matches){swap(); setTimeout(function(){busy=false},300); return}
+  var tc=$("#tcov"); tc.classList.toggle("lite",nu.getAttribute("data-tone")==="light");
+  tc.classList.remove("go"); void tc.offsetWidth; tc.classList.add("go");
+  setTimeout(swap,330);
+  setTimeout(function(){tc.classList.remove("go"); busy=false},900);
 }
 function onEnter(sec){
   $$("[data-cu]",sec).forEach(function(e2){
@@ -1577,6 +1461,10 @@ function onEnter(sec){
   if(sec===slides[SIS])renderSis();
   if(sec===slides[TECH]){orbHold=0; orbProgress()}
   if(sec===slides[SIMU])renderSimu();
+  /* displays em 3D sempre começam de frente ao abrir a tela */
+  $$("model-viewer",sec).forEach(function(mv){
+    if(mv.resetTurntableRotation)mv.resetTurntableRotation(0);
+    mv.cameraOrbit=mv.getAttribute("camera-orbit"); if(mv.jumpCameraToGoal)mv.jumpCameraToGoal()});
   safety(sec);
 }
 function safety(sec){
@@ -1605,6 +1493,10 @@ $("#next").addEventListener("click",function(){go(i+1)});
 
 /* ─────── Teclado e toque ─────── */
 addEventListener("keydown",function(e){
+  if(lbOpen){
+    if(e.key==="Escape")lbHide(); else if(e.key==="ArrowRight"||e.key===" ")lbStep(1); else if(e.key==="ArrowLeft")lbStep(-1);
+    if(/^(Escape|ArrowRight|ArrowLeft| )$/.test(e.key))e.preventDefault(); return;
+  }
   if(e.target.closest&&e.target.closest("input,textarea,select"))return;
   if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();go(i+1)}
   else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();go(i-1)}
@@ -1613,7 +1505,7 @@ addEventListener("keydown",function(e){
   else if(e.key==="Escape"){closeMenu()}});
 var sx=0,sy=0;
 addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
-addEventListener("touchend",function(e){if(e.target.closest&&e.target.closest("input"))return; var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+addEventListener("touchend",function(e){if(lbOpen||(e.target.closest&&e.target.closest("input,model-viewer")))return; var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
   if(Math.abs(dx)>56&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1)},{passive:true});
 
 /* ─────── Boot ─────── */

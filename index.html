@@ -888,7 +888,7 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             </div>
             <div style="font-family:'Exo 2';font-size:22px;font-weight:700;margin-top:10px;color:#061B49">por ano. <em style="background-image:linear-gradient(90deg,#0E9E95,#2F73FF)">Todo ano.</em></div>
             <div class="btns" style="margin-top:22px"><button class="btn pri" data-go="2">Conhecer a Códice <svg><use href="#i-r"/></svg></button></div>
-            <p style="font-size:11.5px;line-height:1.5;color:#8A93A7;margin-top:16px">10 lojas com 4 displays. Metade das cotas do ano vendida a R$ 1.500, já descontados R$ 499 por display por mês. 1 cota = 1 semana de 1 display.</p>
+            <p style="font-size:11.5px;line-height:1.5;color:#8A93A7;margin-top:16px">10 lojas com 4 displays. Metade das cotas do ano vendida a R$ 500, já descontados R$ 499 por display por mês. 1 cota = 1 semana de 1 display.</p>
           </div>
         </div>
       </div>
@@ -1053,11 +1053,11 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
         </div>
         <div class="cotarow" data-a style="--d:9">
           <div class="ct"><span class="ib"><svg class="ico"><use href="#i-cal"/></svg></span>
-            <div><b>1 cota vendida paga 3 meses de aluguel.</b><small>1 cota = 1 semana de 1 display, vendida para a marca.</small></div></div>
+            <div><b>1 cota vendida paga o mês do módulo.</b><small>1 cota = 1 semana de 1 display, vendida para a marca.</small></div></div>
           <div class="cv">
-            <div class="cq"><small>1 cota</small><b>R$ 1.500</b></div>
+            <div class="cq"><small>1 cota</small><b>R$ 500</b></div>
             <span class="eq">=</span>
-            <div class="mth" style="--k:0"><i></i><small>Mês 1</small><b>R$ 499</b><span class="mk ok"><svg><use href="#i-check"/></svg></span></div><div class="mth" style="--k:1"><i></i><small>Mês 2</small><b>R$ 499</b><span class="mk ok"><svg><use href="#i-check"/></svg></span></div><div class="mth" style="--k:2"><i></i><small>Mês 3</small><b>R$ 499</b><span class="mk ok"><svg><use href="#i-check"/></svg></span></div>
+            <div class="mth" style="--k:0"><i></i><small>Assinatura do mês</small><b>R$ 499</b><span class="mk ok"><svg><use href="#i-check"/></svg></span></div>
           </div>
           <button class="btn pri" data-go="6">Ver a vantagem fiscal <svg><use href="#i-r"/></svg></button>
         </div>
@@ -1551,7 +1551,7 @@ setInterval(function(){
 /* ─────── Simulador da rede, com cronograma que parte do dia de hoje ─────── */
 var MES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
 var MESL=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-var SS={plan:0,dpl:4,lojas:10,cota:1500,occ:100,per:6};
+var SS={plan:0,dpl:4,lojas:10,cota:500,occ:100,per:6};
 var LIM={dpl:[1,40,1],lojas:[1,5000,1],cota:[100,50000,100]};
 function addDays(d,n){var x=new Date(d); x.setDate(x.getDate()+n); return x}
 function addMonths(d,n){var x=new Date(d),day=x.getDate(); x.setMonth(x.getMonth()+n); if(x.getDate()<day)x.setDate(0); return x}

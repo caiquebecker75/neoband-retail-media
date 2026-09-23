@@ -531,7 +531,7 @@ em{font-style:normal;color:var(--red-hi)}
       <div class="btns" data-a style="--d:5;margin-top:36px;justify-content:center">
         <button class="btn pri" data-go="4">Como virar esse jogo <svg><use href="#i-r"/></svg></button>
       </div>
-      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:76ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 1.500, já descontada a assinatura. Detalhamento nas telas 14 a 16.</div>
+      <div class="note" data-a style="--d:6;margin-top:26px;text-align:center;max-width:76ch">Cálculo do próprio modelo desta proposta: 4 displays por loja, 52 das 104 cotas semanais vendidas a R$ 500, já descontada a assinatura. Detalhamento nas telas 14 a 16.</div>
     </div>
   </section>
 
@@ -637,7 +637,7 @@ em{font-style:normal;color:var(--red-hi)}
       </div>
       <div class="body" style="justify-content:flex-start">
         <div style="position:relative;flex:1;min-height:0;display:grid;place-items:center">
-          <img src="assets/fmt-ponta.jpg" alt="Display modular NeoBand" data-a="pop" style="--d:2;
+          <img src="https://projetos.75lab.com.br/ar/codice-display-universal/ilha-poster.webp?v=2" alt="Display Universal Códice" data-a="pop" style="--d:2;
             height:100%;max-height:376px;width:auto;object-fit:contain;position:relative;z-index:3;
             border-radius:26px;box-shadow:0 30px 70px rgba(0,0,0,.6)">
           <svg viewBox="0 0 1480 420" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:4;overflow:visible" aria-hidden="true">
@@ -682,7 +682,7 @@ em{font-style:normal;color:var(--red-hi)}
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#sp"/></svg></span>Ato 03 · O produto</div>
-        <h2 data-a style="--d:1">Seis formatos, <em>seis conversas</em><br>diferentes com a indústria.</h2>
+        <h2 data-a style="--d:1">Sete formatos, <em>sete conversas</em><br>diferentes com a indústria.</h2>
       </div>
       <div class="body" style="justify-content:flex-start">
         <div style="display:grid;grid-template-columns:1fr 540px;gap:30px;flex:1;min-height:0;align-items:center">
@@ -696,7 +696,7 @@ em{font-style:normal;color:var(--red-hi)}
             <div id="fmtGal" style="display:flex;gap:8px;margin-top:14px"></div>
           </div>
           <div style="position:relative;display:grid;place-items:center;height:100%">
-            <img id="fmtImg" src="assets/fmt-ponta.jpg" alt="" style="max-height:404px;max-width:100%;
+            <img id="fmtImg" src="https://projetos.75lab.com.br/ar/codice-display-universal/torre-poster.webp?v=2" alt="" style="max-height:404px;max-width:100%;
               object-fit:contain;position:relative;z-index:3;border-radius:24px;
               box-shadow:0 26px 56px rgba(0,0,0,.55);transition:opacity .3s var(--ease)"></div>
         </div>
@@ -876,7 +876,7 @@ em{font-style:normal;color:var(--red-hi)}
               <div class="card" style="gap:6px;padding:22px">
                 <div class="num">Receita de campanhas</div>
                 <div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span id="simRec">156.000</span></div>
-                <p style="font-size:12.5px">R$ 1.500 por display por semana</p></div>
+                <p style="font-size:12.5px">R$ 500 por display por semana</p></div>
               <div class="card" style="gap:6px;padding:22px">
                 <div class="num">Assinatura NeoBand</div>
                 <div class="big" style="font-size:44px;margin-top:8px"><small>R$ </small><span id="simAlu">12.000</span></div>
@@ -1278,7 +1278,7 @@ fit();
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
 var TITLES=["A sua loja já é um veículo de mídia","A verba mudou de lugar","O espaço não está pronto",
  "O custo de não agir","A virada","Display as a Service","Como funciona","Anatomia do display",
- "Seis formatos","Três planos","Onde aplicar na loja","Camada de inteligência","Agora a conta",
+ "Sete formatos","Três planos","Onde aplicar na loja","Camada de inteligência","Agora a conta",
  "4 pontos, 104 cotas","Simulação de receita","A curva do semestre","Comprar ou assinar",
  "O painel da rede","Por que a NeoBand","Quem faz o quê","O piloto de 6 meses",
  "O piloto prova, a rede escala","Próximo passo"];
@@ -1307,25 +1307,29 @@ var ACTS=[[0,0,"Abertura"],[1,3,"Ato 01 · O que mudou"],[4,6,"Ato 02 · A virad
 })();
 
 /* ─────── 09 · seis formatos ─────── */
+var ARU="https://projetos.75lab.com.br/ar/codice-display-universal/";
 var FMT=[
- {img:"fmt-ponta",lb:"Ponta",n:"Formato 01",t:"Ponta de gôndola",c:"#D20A11",
-  d:"O ponto mais disputado da loja. Testeira alta, laterais de comunicação e prateleiras inclinadas para giro rápido.",
-  r:[["Melhor uso","Campanha de marca e oferta"],["Comunicação","Testeira, 2 laterais e frentes"],["Categoria","Alto giro e sazonalidade"]]},
- {img:"fmt-ilha",lb:"Ilha",n:"Formato 02",t:"Ilha dupla face",c:"#F3A800",
-  d:"Duas frentes de venda no mesmo ativo. Ideal para corredor largo e para dividir a cota entre duas marcas.",
-  r:[["Melhor uso","Dominar categoria"],["Comunicação","Testeira dupla e laterais"],["Categoria","Mercearia e bebidas"]]},
- {img:"fmt-painel",lb:"Painel",n:"Formato 03",t:"Painel de acessórios",c:"#66256D",
-  d:"Painel ripado com ganchos e suportes. Organiza item pequeno de alto valor sem perder área de comunicação.",
-  r:[["Melhor uso","Acessório e utilidade"],["Comunicação","Testeira e lateral vertical"],["Categoria","Bazar e conveniência"]]},
- {img:"fmt-vitrine",lb:"Vitrine",n:"Formato 04",t:"Vitrine premium",c:"#D20A11",
-  d:"Porta de acrílico com fechamento. Protege item de alto valor e sustenta preço mais alto por cota.",
-  r:[["Melhor uso","Lançamento e premium"],["Comunicação","Testeira e laterais"],["Categoria","Eletro, perfumaria e destilados"]]},
- {img:"fmt-cosmeticos",lb:"Categoria",n:"Formato 05",t:"Expositor de categoria",c:"#E7D0B1",
-  d:"Prateleiras mistas com iluminação e frente de marca. Feito para construir mundo de categoria dentro da loja.",
-  r:[["Melhor uso","Construção de marca"],["Comunicação","Testeira, base e laterais"],["Categoria","Cosméticos e higiene"]]},
- {img:"fmt-gavetas",lb:"Multiuso",n:"Formato 06",t:"Multiuso com gavetas",c:"#F3A800",
-  d:"Bandejas, cestos e gavetas no mesmo corpo. Absorve estoque de apoio e reduz ruptura no ponto extra.",
-  r:[["Melhor uso","Apoio de estoque"],["Comunicação","Testeira e lateral"],["Categoria","Alto giro e volume"]]}];
+ {img:ARU+"torre-poster.webp?v=2",lb:"Torre",n:"Formato 01",t:"Torre",c:"#1DD4C8",
+  d:"Módulo único do Display Universal: uma frente de marca no menor espaço da loja.",
+  r:[["Assinatura","R$ 499/mês · 1 módulo"],["Medidas","62 × 65 × 170 cm"],["Melhor uso","Ponta de gôndola e corredor"]]},
+ {img:ARU+"duplo-poster.webp?v=2",lb:"Duplo",n:"Formato 02",t:"Duplo",c:"#2F73FF",
+  d:"Dois módulos lado a lado: duas frentes de marca num só ponto.",
+  r:[["Assinatura","R$ 998/mês · 2 módulos"],["Medidas","110 × 56 × 170 cm"],["Melhor uso","Dobrar a exposição"]]},
+ {img:ARU+"ilha-poster.webp?v=2",lb:"Ilha",n:"Formato 03",t:"Ilha (4 módulos)",c:"#1DD4C8",
+  d:"Ilha de quatro módulos: quatro frentes de marca, alto impacto no corredor.",
+  r:[["Assinatura","R$ 1.996/mês · 4 módulos"],["Medidas","111 × 112 × 170 cm"],["Melhor uso","Dominar uma categoria"]]},
+ {img:ARU+"ilha-frentes-poster.webp?v=2",lb:"2 frentes",n:"Formato 04",t:"Ilha 2 frentes",c:"#2F73FF",
+  d:"Ilha configurada em duas grandes frentes de marca.",
+  r:[["Assinatura","R$ 1.996/mês · 4 módulos"],["Medidas","112 × 112 × 170 cm"],["Melhor uso","Dois patrocinadores"]]},
+ {img:ARU+"baixa-poster.webp?v=2",lb:"Baixa",n:"Formato 05",t:"Ilha baixa",c:"#1DD4C8",
+  d:"Ilha baixa (90 cm): alto impacto sem fechar a visão da loja.",
+  r:[["Assinatura","R$ 1.996/mês · 4 módulos"],["Medidas","90 × 112 × 110 cm"],["Melhor uso","Pontas e áreas de fluxo"]]},
+ {img:ARU+"baixa-aereo-poster.webp?v=2",lb:"Baixa + aéreo",n:"Formato 06",t:"Ilha baixa com aéreo",c:"#2F73FF",
+  d:"Ilha baixa com testeira aérea, vista do outro lado da loja.",
+  r:[["Assinatura","R$ 1.996/mês · 4 módulos"],["Medidas","118 × 112 × 110 cm"],["Melhor uso","Chamar de longe"]]},
+ {img:ARU+"baixa-torre-poster.webp?v=2",lb:"Baixa + torre",n:"Formato 07",t:"Ilha baixa com torre central",c:"#1DD4C8",
+  d:"Ilha baixa com uma torre central elevada: destaque no meio da ilha sem fechar a visão.",
+  r:[["Assinatura","R$ 1.996/mês · 4 módulos"],["Medidas","118 × 112 × 110 cm"],["Melhor uso","Destaque central"]]}];
 var gsel=0;
 $("#fmtGal").innerHTML=FMT.map(function(f,k){
   return '<button data-g="'+k+'" style="flex:1;padding:10px 4px;border-radius:10px;border:1px solid var(--line);'+
@@ -1343,7 +1347,7 @@ function renderFmt(){
   $("#fmtRows").innerHTML=f.r.map(function(x){
     return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
   img.style.opacity=0;
-  setTimeout(function(){img.src="assets/"+f.img+".jpg"; img.alt=f.t; img.style.opacity=1},170);
+  setTimeout(function(){img.src=f.img; img.alt=f.t; img.style.opacity=1},170);
 }
 $("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-g]");
   if(!b)return; gsel=+b.dataset.g; renderFmt()});
@@ -1507,7 +1511,7 @@ renderOrb();
 })();
 
 /* ─────── 15 · simulação ─────── */
-var PRECO=1500,COTAS=104,ALUGUEL=12000,OCC=[25,50,75,100],ocSel=3,MAXBAR=640,MAXV=156000;
+var PRECO=500,COTAS=104,ALUGUEL=12000,OCC=[25,50,75,100],ocSel=3,MAXBAR=640,MAXV=52000;
 $("#occ").innerHTML=OCC.map(function(o,k){
   return '<button data-o="'+k+'" style="font-size:13px;font-weight:800;border-radius:100px;padding:11px 22px;'+
    'border:1px solid var(--line);background:transparent;color:var(--mute);transition:.28s">Ocupação de '+o+'%</button>'}).join("");

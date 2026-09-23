@@ -1344,7 +1344,8 @@ var FMT=[
  {id:"ilha",lb:"Ilha",t:"Ilha (4 módulos)",d:"Quatro frentes de marca, alto impacto no corredor.",uso:"Dominar uma categoria",med:"170 × 111 × 112 cm",mod:"4 módulos · R$ 1.996/mês"},
  {id:"ilha-frentes",lb:"2 frentes",t:"Ilha 2 frentes",d:"Ilha configurada em duas grandes frentes de marca.",uso:"Dois patrocinadores ou duas campanhas",med:"170 × 112 × 112 cm",mod:"4 módulos · R$ 1.996/mês"},
  {id:"baixa",lb:"Baixa",t:"Ilha baixa",d:"90 cm de altura: alto impacto sem fechar a visão da loja.",uso:"Pontas e áreas de fluxo",med:"90 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"},
- {id:"baixa-aereo",lb:"Baixa + aéreo",t:"Ilha baixa com aéreo",d:"Ilha baixa com testeira aérea, vista do outro lado da loja.",uso:"Chamar de longe sem bloquear",med:"118 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"}];
+ {id:"baixa-aereo",lb:"Baixa + aéreo",t:"Ilha baixa com aéreo",d:"Ilha baixa com testeira aérea, vista do outro lado da loja.",uso:"Chamar de longe sem bloquear",med:"118 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"},
+ {id:"baixa-torre",lb:"Baixa + torre",t:"Ilha baixa com torre central",d:"Ilha baixa com uma torre central elevada, destaque no meio da ilha.",uso:"Destaque central sem fechar a visão",med:"118 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"}];
 var gsel=0;
 $("#fmtGal").innerHTML=FMT.map(function(f,k){
   return '<button data-g="'+k+'" style="padding:10px 18px;border-radius:100px;font-family:\'Exo 2\';font-size:14px;font-weight:700;'+
@@ -1353,7 +1354,7 @@ function renderFmt(){
   var f=FMT[gsel];
   $$("#fmtGal [data-g]").forEach(function(b,k){var on=k===gsel;
     b.style.background=on?"#061B49":"transparent"; b.style.borderColor=on?"#061B49":"rgba(6,27,73,.16)"; b.style.color=on?"#fff":"rgba(6,27,73,.72)"});
-  $("#fmtNum").textContent="Formato "+String(gsel+1).padStart(2,"0")+" de 06";
+  $("#fmtNum").textContent="Formato "+String(gsel+1).padStart(2,"0")+" de "+String(FMT.length).padStart(2,"0");
   $("#fmtTitle").textContent=f.t; $("#fmtDesc").textContent=f.d;
   $("#fmtRows").innerHTML=[["Assinatura",f.mod],["Melhor uso",f.uso],["Medidas",f.med],["Acessórios","Régua de preço, testeira e módulo aéreo"]].map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
   var tx=$("#fmtTxt"); tx.classList.remove("swap"); void tx.offsetWidth; tx.classList.add("swap");

@@ -1145,12 +1145,12 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
     </div>
   </section>
 
-  <!-- ═══ SEIS FORMATOS ═══ -->
+  <!-- ═══ SETE FORMATOS ═══ -->
   <section class="slide light" data-tr="zoom" data-tone="light">
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O produto</div>
-        <h2 data-a style="--d:1">Seis formatos. <em>Gire e veja cada um.</em></h2>
+        <h2 data-a style="--d:1">Sete formatos. <em>Gire e veja cada um.</em></h2>
       </div>
       <div class="body" style="padding-top:6px">
         <div style="display:grid;grid-template-columns:1fr 860px;gap:50px;align-items:center;flex:1;min-height:0">
@@ -1328,7 +1328,7 @@ fit();
 
 var slides=$$(".slide"),N=slides.length,i=0,busy=false;
 var TITLES=["A sua loja já é um veículo de mídia","A verba desceu para o corredor","O grupo por trás da Códice",
- "O que é a Códice","A plataforma","Comprar ou assinar","Vantagem fiscal","Vantagem para a indústria","Seis formatos", "Tecnologia embarcada","Simulador da sua rede"];
+ "O que é a Códice","A plataforma","Comprar ou assinar","Vantagem fiscal","Vantagem para a indústria","Sete formatos", "Tecnologia embarcada","Simulador da sua rede"];
 var ACTS=[[0,0,"Abertura"],[1,1,"O que mudou"],[2,4,"Quem somos"],[5,6,"Por que assinar"],[7,7,"Por que a marca compra"],[8,12,"O produto"],[13,13,"Decisão"]];
 var SIS=4,TECH=12,SIMU=13;
 var AR_BASE="https://projetos.75lab.com.br/ar/codice-displays/";
@@ -1337,7 +1337,7 @@ var MVATTR='camera-controls disable-pan auto-rotate auto-rotate-delay="5000" rot
 function qrSvg(url){if(!window.qrcode)return "";var q=qrcode(0,"M");q.addData(url);q.make();return q.createSvgTag({cellSize:4,margin:0,scalable:true})}
 function mvSet(mv,id){mv.setAttribute("poster","assets/3d/"+id+"-poster.webp");mv.setAttribute("ios-src",AR_BASE+id+".usdz");mv.setAttribute("src","assets/3d/"+id+".glb")}
 
-/* ─────── Seis formatos em 3D ─────── */
+/* ─────── Sete formatos em 3D ─────── */
 var FMT=[
  {id:"torre",lb:"Torre",t:"Torre",d:"Módulo único: uma frente de marca no menor espaço da loja.",uso:"Ponta de gôndola e corredor",med:"170 × 62 × 65 cm",mod:"1 módulo · R$ 499/mês"},
  {id:"duplo",lb:"Duplo",t:"Duplo",d:"Dois módulos lado a lado, duas frentes de marca num só ponto.",uso:"Dobrar a exposição da marca",med:"170 × 110 × 56 cm",mod:"2 módulos · R$ 998/mês"},

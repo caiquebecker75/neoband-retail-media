@@ -703,39 +703,61 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 .slide.noanim .oq-dot,.slide.noanim .oq-arw,.slide.noanim .oq-run{animation:none!important;opacity:1!important}
 
 
-/* ---------- Slide cinematográfico: um chassi, toda marca ---------- */
-.cine{background:radial-gradient(118% 92% at 30% 58%,#12387F 0%,#0A2360 40%,#050F33 76%,#030E28 100%)}
-.cine .pad{padding:80px 60px 62px 922px}
-.cine-stage{position:absolute;left:-24px;bottom:-18px;width:960px;height:918px;z-index:2}
-.cine-stage .glow{position:absolute;left:15%;bottom:7%;width:72%;height:66%;border-radius:50%;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(29,212,200,.34),transparent 70%)}
-.cine-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom center;
-  filter:drop-shadow(0 34px 54px rgba(0,0,0,.6))}
-.cine-stage .cb{opacity:0}
-.slide.on .cine-stage .ca{animation:cineA 8s var(--ease) infinite}
-.slide.on .cine-stage .cb{animation:cineB 8s var(--ease) infinite}
-@keyframes cineA{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
-@keyframes cineB{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
-/* linha de luz que passa na troca da comunicação */
-.cine-scan{position:absolute;left:8%;right:8%;top:0;height:170px;pointer-events:none;mix-blend-mode:screen;opacity:0;
-  background:linear-gradient(to bottom,transparent,rgba(29,212,200,.5),rgba(255,255,255,.8),rgba(29,212,200,.5),transparent)}
-.slide.on .cine-scan{animation:cineScan 8s linear infinite}
-@keyframes cineScan{0%,40%{opacity:0;transform:translateY(-190px)}44%{opacity:.85}
-  50%{opacity:0;transform:translateY(880px)}90%{opacity:0;transform:translateY(-190px)}
-  94%{opacity:.85}100%{opacity:0;transform:translateY(880px)}}
-.cine-mk{position:absolute;left:0;right:0;bottom:34px;height:30px;z-index:4;pointer-events:none}
-.cine-mk span{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2);
-  border:1px solid var(--ln2);border-radius:100px;padding:6px 14px;background:rgba(6,27,73,.55)}
+/* ---------- Slide cinematográfico: troque a marca, não o móvel ---------- */
+.cine{background:#02060F}
+.cine::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(90% 70% at 34% 52%,#0B2454 0%,#061632 42%,#02060F 78%)}
+.cine .pad{padding:78px 60px 60px 922px;z-index:6}
+.cine-stage{position:absolute;left:-70px;bottom:0;width:960px;height:918px;z-index:2}
+/* luz de fundo e sombra de contato: o display sai do escuro */
+.cine-stage .glow{position:absolute;left:30%;bottom:16%;width:56%;height:56%;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(60,170,255,.36),rgba(29,212,200,.12) 48%,transparent 72%);filter:blur(12px)}
+.cine-stage .floor{position:absolute;left:30%;bottom:6%;width:52%;height:52px;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.85),transparent 72%);filter:blur(8px)}
+.cine-zoom{position:absolute;inset:0}
+.slide.on .cine-zoom{animation:cineKen 12s var(--ease) infinite}
+@keyframes cineKen{0%{transform:scale(1.03)}46%{transform:scale(1.11)}50%{transform:scale(1.0)}96%{transform:scale(1.09)}100%{transform:scale(1.03)}}
+.cine-zoom img{position:absolute;left:0;bottom:0;width:100%;height:auto;
+  filter:drop-shadow(-26px 24px 40px rgba(0,0,0,.85)) contrast(1.14) brightness(.92) saturate(1.06)}
+.cine-zoom .cb{opacity:0}
+.slide.on .cine-zoom .ca{animation:cineA 12s steps(1,end) infinite}
+.slide.on .cine-zoom .cb{animation:cineB 12s steps(1,end) infinite}
+@keyframes cineA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes cineB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+/* vinheta: escurece as bordas e deixa o centro aceso */
+.cine-vig{position:absolute;inset:-2px;z-index:5;pointer-events:none;
+  background:radial-gradient(62% 62% at 46% 48%,transparent 40%,rgba(2,6,15,.72) 100%)}
+/* setas para as partes do display */
+.cine-ar{position:absolute;inset:0;z-index:4;overflow:visible;fill:none;stroke:var(--teal);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.cine-ar .pt{fill:var(--teal);stroke:none}
+.cine-ar .pr{fill:none;stroke:var(--teal);stroke-width:1.4;opacity:.55}
+.slide.on .cine-ar .pr{animation:aFade .4s linear both;animation-delay:calc(var(--d,0)*70ms + 320ms)}
+.slide.on .cine-ar .pt{animation:aFade .4s linear both;animation-delay:calc(var(--d,0)*70ms + 180ms)}
+.cine-lb{position:absolute;z-index:6;max-width:196px}
+.cine-lb b{display:block;font-size:13.5px;font-weight:700;color:#fff;letter-spacing:.01em}
+.cine-lb small{display:block;font-size:11.5px;line-height:1.35;color:var(--fg3);margin-top:3px}
+.cine-lb:nth-of-type(1){--d:4}.cine-lb:nth-of-type(2){--d:6}.cine-lb:nth-of-type(3){--d:8}
+/* marca no ar */
+.cine-mk{position:absolute;left:560px;bottom:16px;z-index:6;display:block;width:260px;height:30px}
+.cine-mk b{position:absolute;left:0;top:0;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:#fff;border:1px solid var(--ln2);border-radius:100px;padding:7px 15px;background:rgba(2,6,15,.6)}
 .cine-mk .cb{opacity:0}
-.slide.on .cine-mk .ca{animation:cineA 8s var(--ease) infinite}
-.slide.on .cine-mk .cb{animation:cineB 8s var(--ease) infinite}
-/* palavras de força */
-.pw{list-style:none;display:flex;flex-direction:column}
-.pw li{display:flex;align-items:baseline;gap:18px;padding:13px 0;border-bottom:1px solid var(--ln)}
-.pw li:first-child{border-top:1px solid var(--ln)}
-.pw b{font-family:'Exo 2',Inter,sans-serif;font-weight:800;font-size:34px;line-height:1;letter-spacing:-.02em;color:#fff;flex:0 0 250px}
-.pw small{font-size:13.5px;line-height:1.35;color:var(--fg2)}
+.slide.on .cine-mk .ca{animation:cineA 12s steps(1,end) infinite}
+.slide.on .cine-mk .cb{animation:cineB 12s steps(1,end) infinite}
+/* título e palavras que entram e saem */
+.cine-h{font-size:60px;line-height:1.02}
+.pwx{position:relative;height:250px;margin-top:38px}
+.pwx>div{position:absolute;left:0;top:0;width:100%;opacity:0}
+.pwx b{display:block;font-family:'Exo 2',Inter,sans-serif;font-weight:800;font-size:76px;line-height:.98;letter-spacing:-.03em;color:#fff}
+.pwx small{display:block;font-size:16px;line-height:1.4;color:var(--fg2);margin-top:14px;max-width:34ch}
+.slide.on .pwx>div{animation:pwCycle 12s var(--ease) infinite;animation-delay:calc(var(--k)*2s + .4s)}
+@keyframes pwCycle{
+  0%{opacity:0;transform:translateY(34px) scale(.965);filter:blur(7px)}
+  3%{opacity:1;transform:none;filter:blur(0)}
+  15%{opacity:1;transform:none;filter:blur(0)}
+  17.5%{opacity:0;transform:translateY(-26px) scale(1.03);filter:blur(7px)}
+  100%{opacity:0;transform:translateY(34px) scale(.965);filter:blur(7px)}}
+.cine-ft{display:flex;align-items:center;gap:18px;margin-top:26px}
 
 /* ---------- Atributos de design da 75 LAB (slide do grupo) ---------- */
 .dts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
@@ -746,7 +768,9 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 .dts small{font-size:10.5px;color:var(--fg2);line-height:1.25}
 
 @media print{
-  .cine-stage .cb,.cine-mk .cb{opacity:0}
+  .cine-zoom .cb,.cine-mk .cb{opacity:0}
+  .pwx>div{position:relative;opacity:1}
+  .pwx{height:auto}
   .fx-steps i::after{transform:none!important}
   .mth i{transform:none!important}
   html,body{overflow:visible;height:auto}
@@ -1197,31 +1221,46 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
     </div>
   </section>
 
-  <!-- ═══ UM CHASSI, TODA MARCA ═══ -->
+  <!-- ═══ TROQUE A MARCA, NÃO O MÓVEL (cinematográfico) ═══ -->
   <section class="slide cine" data-tr="iris" data-tone="dark">
     <div class="cine-stage">
       <span class="glow"></span>
-      <img class="ca" src="assets/marca-lacta.webp" alt="Display Universal Códice com a comunicação da Lacta">
-      <img class="cb" src="assets/marca-bis.webp" alt="O mesmo display com a comunicação do Bis">
-      <span class="cine-scan"></span>
-      <div class="cine-mk"><span class="ca">Comunicação · Lacta</span><span class="cb">Comunicação · Bis</span></div>
+      <span class="floor"></span>
+      <div class="cine-zoom">
+        <img class="ca" src="assets/marca-lacta.webp" alt="Display Universal Códice com a comunicação da Lacta">
+        <img class="cb" src="assets/marca-bis.webp" alt="O mesmo display com a comunicação do Bis">
+      </div>
+      <!-- setas para as partes do display -->
+      <svg class="cine-ar" viewBox="0 0 960 918" aria-hidden="true">
+        <path class="draw" style="--len:330;--d:4" d="M322 124 H452 L556 152"/>
+        <path class="draw" style="--len:240;--d:6" d="M322 458 H418 L512 400"/>
+        <path class="draw" style="--len:330;--d:8" d="M322 848 H516 L612 812"/>
+        <circle class="pt" style="--d:5" cx="556" cy="152" r="5.5"/><circle class="pr" style="--d:5" cx="556" cy="152" r="11"/>
+        <circle class="pt" style="--d:7" cx="512" cy="400" r="5.5"/><circle class="pr" style="--d:7" cx="512" cy="400" r="11"/>
+        <circle class="pt" style="--d:9" cx="612" cy="812" r="5.5"/><circle class="pr" style="--d:9" cx="612" cy="812" r="11"/>
+      </svg>
+      <div class="cine-lb" style="left:112px;top:100px" data-a="left"><b>Testeira iluminada</b><small>a marca vista do fim do corredor</small></div>
+      <div class="cine-lb" style="left:112px;top:430px" data-a="left"><b>Régua de preço</b><small>troca junto com a campanha</small></div>
+      <div class="cine-lb" style="left:112px;top:820px" data-a="left"><b>Módulo inteligente</b><small>sensor e conexão na base</small></div>
+      <span class="cine-mk"><b class="ca">Lacta</b><b class="cb">Bis</b></span>
+      <span class="cine-vig"></span>
     </div>
     <div class="pad">
       <div class="hd">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O produto</div>
-        <h2 data-a style="--d:1">Um chassi.<br><em>Toda marca cabe nele.</em></h2>
+        <h2 class="cine-h" data-a style="--d:1">Troque a marca.<br><em>Não troque o móvel.</em></h2>
       </div>
-      <div class="body" style="gap:24px">
-        <ul class="pw">
-          <li data-a="left" style="--d:2"><b>MODULAR</b><small>um chassi, sete formatos de loja</small></li>
-          <li data-a="left" style="--d:3"><b>CAMBIÁVEL</b><small>a comunicação troca a cada semana, o móvel fica</small></li>
-          <li data-a="left" style="--d:4"><b>EMBARCADO</b><small>sensor, conexão e tela dentro do próprio display</small></li>
-          <li data-a="left" style="--d:5"><b>ADAPTÁVEL</b><small>cresce, encolhe e muda de lugar com a loja</small></li>
-          <li data-a="left" style="--d:6"><b>INTELIGENTE</b><small>cada semana no ar vira dado de audiência</small></li>
-          <li data-a="left" style="--d:7"><b>COMPLETO</b><small>móvel, manutenção, tecnologia e gestão</small></li>
-        </ul>
-        <div data-a style="--d:8;display:flex;align-items:center;gap:18px">
-          <div class="note" style="flex:1;max-width:none">Lacta e Bis no mesmo display: a marca envia só a arte, a Códice mantém a estrutura.</div>
+      <div class="body" style="justify-content:flex-start;gap:0">
+        <div class="pwx">
+          <div style="--k:0"><b>MODULAR</b><small>um chassi, sete formatos de loja</small></div>
+          <div style="--k:1"><b>CAMBIÁVEL</b><small>a comunicação troca a cada semana, o móvel fica</small></div>
+          <div style="--k:2"><b>EMBARCADO</b><small>sensor, conexão e tela dentro do próprio display</small></div>
+          <div style="--k:3"><b>ADAPTÁVEL</b><small>cresce, encolhe e muda de lugar com a loja</small></div>
+          <div style="--k:4"><b>INTELIGENTE</b><small>cada semana no ar vira dado de audiência</small></div>
+          <div style="--k:5"><b>COMPLETO</b><small>móvel, manutenção, tecnologia e gestão</small></div>
+        </div>
+        <div class="cine-ft" data-a style="--d:10">
+          <div class="note" style="flex:1;max-width:none">A marca envia só a arte. O display, a instalação e a manutenção são da Códice.</div>
           <button class="btn pri" data-go="9">Ver os sete formatos <svg><use href="#i-r"/></svg></button>
         </div>
       </div>
@@ -1243,7 +1282,11 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
             <p class="lede" id="fmtDesc" style="font-size:18px;max-width:34ch;margin-top:14px"></p></div>
             <div class="rows" id="fmtRows" style="max-width:520px"></div>
             <div id="fmtGal" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
-            <p style="font-size:13px;color:rgba(6,27,73,.6);margin-top:4px">Exemplos de marca em AR: Lacta · Bis · Pedigree/Whiskas. Escaneie o QR para ver em tamanho real na loja.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+              <div class="kicker">Comunicação da marca no mesmo móvel</div>
+              <div id="fmtMk" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+            </div>
+            <p style="font-size:12.5px;color:rgba(6,27,73,.6);margin-top:2px">Escaneie o QR para ver o display escolhido em tamanho real na loja.</p>
           </div>
           <div class="mvbox" data-a="fade" style="--d:3;height:580px">
             <model-viewer id="fmtMv" camera-controls disable-pan auto-rotate auto-rotate-delay="5000" rotation-per-second="12deg" camera-orbit="16deg 82deg auto" min-camera-orbit="auto 30deg auto" max-camera-orbit="auto 95deg auto" interaction-prompt="none" shadow-intensity="1.1" shadow-softness="0.9" environment-image="neutral" exposure="1.05" ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor" src="https://projetos.75lab.com.br/ar/codice-display-universal/torre.glb" alt="Torre Códice em 3D"></model-viewer>
@@ -1429,23 +1472,37 @@ var FMT=[
  {id:"baixa",lb:"Baixa",t:"Ilha baixa",d:"90 cm de altura: alto impacto sem fechar a visão da loja.",uso:"Pontas e áreas de fluxo",med:"90 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"},
  {id:"baixa-aereo",lb:"Baixa + aéreo",t:"Ilha baixa com aéreo",d:"Ilha baixa com testeira aérea, vista do outro lado da loja.",uso:"Chamar de longe sem bloquear",med:"118 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"},
  {id:"baixa-torre",lb:"Baixa + torre",t:"Ilha baixa com torre central",d:"Ilha baixa com uma torre central elevada, destaque no meio da ilha.",uso:"Destaque central sem fechar a visão",med:"118 × 112 × 110 cm",mod:"4 módulos · R$ 1.996/mês"}];
+// roupagens de marca: os mesmos arquivos da ilha de 4 módulos com outra comunicação
+var MK=[{id:"",lb:"Códice",t:"",d:""},
+ {id:"lacta",lb:"Lacta",t:"Ilha com a marca Lacta",d:"A mesma ilha de 4 módulos, com a comunicação da Lacta aplicada nos painéis e na testeira."},
+ {id:"bis",lb:"Bis",t:"Ilha com a marca Bis",d:"O mesmo móvel, outra campanha: a arte do Bis entra no lugar da anterior."},
+ {id:"pedigree-whiskas",lb:"Pedigree e Whiskas",t:"Ilha com Pedigree e Whiskas",d:"Duas marcas do mesmo fabricante dividindo a ilha, uma frente para cada."}];
+var msel=0;
 var gsel=0;
 $("#fmtGal").innerHTML=FMT.map(function(f,k){
   return '<button data-g="'+k+'" style="padding:10px 18px;border-radius:100px;font-family:\'Exo 2\';font-size:14px;font-weight:700;'+
     'border:1.5px solid rgba(6,27,73,.16);color:rgba(6,27,73,.72);transition:.28s">'+f.lb+'</button>'}).join("");
+$("#fmtMk").innerHTML=MK.map(function(m,k){
+  return '<button data-mk="'+k+'" style="padding:9px 15px;border-radius:100px;font-family:\'Exo 2\';font-size:13px;font-weight:700;'+
+    'border:1.5px solid rgba(6,27,73,.16);color:rgba(6,27,73,.72);transition:.28s">'+m.lb+'</button>'}).join("");
 function renderFmt(){
-  var f=FMT[gsel];
-  $$("#fmtGal [data-g]").forEach(function(b,k){var on=k===gsel;
+  var f=FMT[gsel],m=MK[msel],arq=msel?m.id:f.id;
+  $$("#fmtGal [data-g]").forEach(function(b,k){var on=k===gsel&&!msel;
     b.style.background=on?"#061B49":"transparent"; b.style.borderColor=on?"#061B49":"rgba(6,27,73,.16)"; b.style.color=on?"#fff":"rgba(6,27,73,.72)"});
-  $("#fmtNum").textContent="Formato "+String(gsel+1).padStart(2,"0")+" de "+String(FMT.length).padStart(2,"0");
-  $("#fmtTitle").textContent=f.t; $("#fmtDesc").textContent=f.d;
-  $("#fmtRows").innerHTML=[["Assinatura",f.mod],["Melhor uso",f.uso],["Medidas",f.med],["Acessórios","Régua de preço, testeira e módulo aéreo"]].map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
+  $$("#fmtMk [data-mk]").forEach(function(b,k){var on=k===msel;
+    b.style.background=on?"#2F73FF":"transparent"; b.style.borderColor=on?"#2F73FF":"rgba(6,27,73,.16)"; b.style.color=on?"#fff":"rgba(6,27,73,.72)"});
+  $("#fmtNum").textContent=msel?"Comunicação "+String(msel).padStart(2,"0")+" de "+String(MK.length-1).padStart(2,"0")
+    :"Formato "+String(gsel+1).padStart(2,"0")+" de "+String(FMT.length).padStart(2,"0");
+  $("#fmtTitle").textContent=msel?m.t:f.t; $("#fmtDesc").textContent=msel?m.d:f.d;
+  $("#fmtRows").innerHTML=[["Assinatura",f.mod],[msel?"Comunicação":"Melhor uso",msel?m.lb+", trocada a cada campanha":f.uso],["Medidas",f.med],["Acessórios","Régua de preço, testeira e módulo aéreo"]].map(function(x){return '<div class="row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'}).join("");
   var tx=$("#fmtTxt"); tx.classList.remove("swap"); void tx.offsetWidth; tx.classList.add("swap");
-  var mv=$("#fmtMv"); mv.setAttribute("alt",f.t+" Códice em 3D");
-  mv.removeAttribute("poster"); mv.setAttribute("ios-src",AR_UNIV+f.id+".usdz"); mv.setAttribute("src",AR_UNIV+f.id+".glb");
-  $("#fmtQr").innerHTML=qrSvg(AR_UNIV+"?modelo="+f.id);
+  var mv=$("#fmtMv"); mv.setAttribute("alt",(msel?m.t:f.t)+" da Códice em 3D");
+  mv.removeAttribute("poster"); mv.setAttribute("ios-src",AR_UNIV+arq+".usdz"); mv.setAttribute("src",AR_UNIV+arq+".glb");
+  $("#fmtQr").innerHTML=qrSvg(AR_UNIV+"?modelo="+arq);
 }
-$("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-g]"); if(!b)return; gsel=+b.dataset.g; renderFmt()});
+$("#fmtGal").addEventListener("click",function(e){var b=e.target.closest("[data-g]"); if(!b)return; gsel=+b.dataset.g; msel=0; renderFmt()});
+// as roupagens existem na ilha de 4 módulos: escolher uma marca leva o formato junto
+$("#fmtMk").addEventListener("click",function(e){var b=e.target.closest("[data-mk]"); if(!b)return; msel=+b.dataset.mk; if(msel)gsel=2; renderFmt()});
 renderFmt();
 
 /* ─────── Pacotes · uma tela por pacote, com o display em 3D ─────── */

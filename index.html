@@ -703,61 +703,77 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 .slide.noanim .oq-dot,.slide.noanim .oq-arw,.slide.noanim .oq-run{animation:none!important;opacity:1!important}
 
 
-/* ---------- Slide cinematográfico: troque a marca, não o móvel ---------- */
-.cine{background:#02060F}
-.cine::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(90% 70% at 34% 52%,#0B2454 0%,#061632 42%,#02060F 78%)}
-.cine .pad{padding:78px 60px 60px 922px;z-index:6}
-.cine-stage{position:absolute;left:-70px;bottom:0;width:960px;height:918px;z-index:2}
-/* luz de fundo e sombra de contato: o display sai do escuro */
-.cine-stage .glow{position:absolute;left:30%;bottom:16%;width:56%;height:56%;border-radius:50%;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(60,170,255,.36),rgba(29,212,200,.12) 48%,transparent 72%);filter:blur(12px)}
-.cine-stage .floor{position:absolute;left:30%;bottom:6%;width:52%;height:52px;border-radius:50%;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.85),transparent 72%);filter:blur(8px)}
+/* ---------- Slide cinematográfico: troque a marca, não o móvel ----------
+   A luz e a vinheta cobrem a TELA inteira (se ficarem presas ao palco da peça,
+   aparece um retângulo claro em volta dela).                                   */
+.cine{background:#01050D;overflow:hidden}
+.cine .bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(64% 76% at 30% 46%,#0E2E63 0%,#071B3C 38%,#030C1F 66%,#01050D 100%)}
+.cine .vig{position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(58% 64% at 30% 46%,transparent 46%,rgba(1,5,13,.55) 78%,rgba(1,5,13,.9) 100%)}
+.cine .pad{padding:0;z-index:6}
+/* palco da peça: a imagem preenche o palco, então os marcadores usam % ---- */
+.cine-stage{position:absolute;left:6px;bottom:52px;width:964px;height:767px;z-index:2}
+.cine-stage .spot{position:absolute;left:34%;top:18%;width:58%;height:62%;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(74,182,255,.34),rgba(29,212,200,.10) 52%,transparent 74%);filter:blur(16px)}
+.cine-stage .floor{position:absolute;left:36%;bottom:-16px;width:52%;height:46px;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.9),transparent 70%);filter:blur(10px)}
 .cine-zoom{position:absolute;inset:0}
-.slide.on .cine-zoom{animation:cineKen 12s var(--ease) infinite}
-@keyframes cineKen{0%{transform:scale(1.03)}46%{transform:scale(1.11)}50%{transform:scale(1.0)}96%{transform:scale(1.09)}100%{transform:scale(1.03)}}
+.slide.on .cine-zoom{animation:cineKen 14s var(--ease) infinite}
+@keyframes cineKen{0%{transform:scale(1.02)}48%{transform:scale(1.09)}50%{transform:scale(1.02)}98%{transform:scale(1.09)}100%{transform:scale(1.02)}}
 .cine-zoom img{position:absolute;left:0;bottom:0;width:100%;height:auto;
-  filter:drop-shadow(-26px 24px 40px rgba(0,0,0,.85)) contrast(1.14) brightness(.92) saturate(1.06)}
+  filter:drop-shadow(-18px 26px 46px rgba(0,0,0,.9)) contrast(1.16) brightness(.94) saturate(1.08)}
 .cine-zoom .cb{opacity:0}
-.slide.on .cine-zoom .ca{animation:cineA 12s steps(1,end) infinite}
-.slide.on .cine-zoom .cb{animation:cineB 12s steps(1,end) infinite}
+.slide.on .cine-zoom .ca{animation:cineA 14s steps(1,end) infinite}
+.slide.on .cine-zoom .cb{animation:cineB 14s steps(1,end) infinite}
 @keyframes cineA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
 @keyframes cineB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
-/* vinheta: escurece as bordas e deixa o centro aceso */
-.cine-vig{position:absolute;inset:-2px;z-index:5;pointer-events:none;
-  background:radial-gradient(62% 62% at 46% 48%,transparent 40%,rgba(2,6,15,.72) 100%)}
-/* setas para as partes do display */
-.cine-ar{position:absolute;inset:0;z-index:4;overflow:visible;fill:none;stroke:var(--teal);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
-.cine-ar .pt{fill:var(--teal);stroke:none}
-.cine-ar .pr{fill:none;stroke:var(--teal);stroke-width:1.4;opacity:.55}
-.slide.on .cine-ar .pr{animation:aFade .4s linear both;animation-delay:calc(var(--d,0)*70ms + 320ms)}
-.slide.on .cine-ar .pt{animation:aFade .4s linear both;animation-delay:calc(var(--d,0)*70ms + 180ms)}
-.cine-lb{position:absolute;z-index:6;max-width:196px}
-.cine-lb b{display:block;font-size:13.5px;font-weight:700;color:#fff;letter-spacing:.01em}
-.cine-lb small{display:block;font-size:11.5px;line-height:1.35;color:var(--fg3);margin-top:3px}
-.cine-lb:nth-of-type(1){--d:4}.cine-lb:nth-of-type(2){--d:6}.cine-lb:nth-of-type(3){--d:8}
-/* marca no ar */
-.cine-mk{position:absolute;left:560px;bottom:16px;z-index:6;display:block;width:260px;height:30px}
-.cine-mk b{position:absolute;left:0;top:0;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:#fff;border:1px solid var(--ln2);border-radius:100px;padding:7px 15px;background:rgba(2,6,15,.6)}
+/* clarão curto no instante da troca de comunicação */
+.cine-flash{position:absolute;inset:0;z-index:3;pointer-events:none;background:rgba(150,220,255,.5);mix-blend-mode:screen;opacity:0}
+.slide.on .cine-flash{animation:cineFlash 14s linear infinite}
+@keyframes cineFlash{0%,49%{opacity:0}50%{opacity:.5}53%{opacity:0}99%{opacity:0}99.5%{opacity:.5}100%{opacity:0}}
+/* marcadores: ponto na peça, traço curto e rótulo ao lado (sem linha cruzando a tela) */
+.hs{position:absolute;z-index:5;width:0;height:0}
+.hs i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 4px rgba(29,212,200,.22),0 0 16px rgba(29,212,200,.9)}
+.slide.on .hs i{animation:hsPulse 2.6s var(--ease) infinite;animation-delay:calc(var(--d,0)*220ms)}
+@keyframes hsPulse{0%,100%{box-shadow:0 0 0 4px rgba(29,212,200,.22),0 0 16px rgba(29,212,200,.9)}
+  50%{box-shadow:0 0 0 9px rgba(29,212,200,.06),0 0 22px rgba(29,212,200,.55)}}
+.hs::before{content:"";position:absolute;right:6px;top:-.5px;width:34px;height:1px;background:linear-gradient(to left,var(--teal),rgba(29,212,200,.25))}
+.hs span{position:absolute;right:46px;top:50%;transform:translateY(-50%);white-space:nowrap;text-align:right;
+  padding:8px 13px;border-radius:12px;background:rgba(1,7,20,.72);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(7px)}
+.hs b{display:block;font-size:13px;font-weight:700;color:#fff;line-height:1.15}
+.hs small{display:block;font-size:11px;color:var(--fg3);margin-top:2px}
+.slide.on .hs{animation:aFade .7s linear both;animation-delay:calc(var(--d,0)*260ms + 900ms)}
+/* etiqueta da marca no ar */
+.cine-mk{position:absolute;left:14px;bottom:18px;z-index:6;width:300px;height:28px}
+.cine-mk b{position:absolute;left:0;top:0;display:flex;align-items:center;gap:9px;
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2)}
+.cine-mk b::before{content:"";width:22px;height:1px;background:var(--teal)}
 .cine-mk .cb{opacity:0}
-.slide.on .cine-mk .ca{animation:cineA 12s steps(1,end) infinite}
-.slide.on .cine-mk .cb{animation:cineB 12s steps(1,end) infinite}
-/* título e palavras que entram e saem */
-.cine-h{font-size:60px;line-height:1.02}
-.pwx{position:relative;height:250px;margin-top:38px}
-.pwx>div{position:absolute;left:0;top:0;width:100%;opacity:0}
-.pwx b{display:block;font-family:'Exo 2',Inter,sans-serif;font-weight:800;font-size:76px;line-height:.98;letter-spacing:-.03em;color:#fff}
-.pwx small{display:block;font-size:16px;line-height:1.4;color:var(--fg2);margin-top:14px;max-width:34ch}
-.slide.on .pwx>div{animation:pwCycle 12s var(--ease) infinite;animation-delay:calc(var(--k)*2s + .4s)}
-@keyframes pwCycle{
-  0%{opacity:0;transform:translateY(34px) scale(.965);filter:blur(7px)}
-  3%{opacity:1;transform:none;filter:blur(0)}
-  15%{opacity:1;transform:none;filter:blur(0)}
-  17.5%{opacity:0;transform:translateY(-26px) scale(1.03);filter:blur(7px)}
-  100%{opacity:0;transform:translateY(34px) scale(.965);filter:blur(7px)}}
-.cine-ft{display:flex;align-items:center;gap:18px;margin-top:26px}
+.slide.on .cine-mk .ca{animation:cineA 14s steps(1,end) infinite}
+.slide.on .cine-mk .cb{animation:cineB 14s steps(1,end) infinite}
+/* coluna de texto */
+.cine-col{position:absolute;left:1000px;right:64px;top:96px;bottom:74px;z-index:6;display:flex;flex-direction:column}
+.cine-col h2{font-size:56px;line-height:1.03;letter-spacing:-.018em}
+.pwx{position:relative;flex:1;margin-top:30px}
+.pwx>div{position:absolute;left:0;top:50%;margin-top:-88px;width:100%;opacity:0}
+.pwx b{display:block;font-family:'Exo 2',Inter,sans-serif;font-weight:800;font-size:64px;line-height:1;letter-spacing:-.03em;color:#fff}
+.pwx small{display:block;font-size:16.5px;line-height:1.45;color:var(--fg2);margin-top:16px;max-width:30ch}
+.slide.on .pwx>div{animation:pwCycle 14s var(--ease) infinite;animation-delay:calc(var(--k)*2.333s + .5s)}
+@keyframes pwCycle{0%{opacity:0;transform:translateY(30px);filter:blur(6px)}
+  2.6%{opacity:1;transform:none;filter:blur(0)}
+  13%{opacity:1;transform:none;filter:blur(0)}
+  15.4%{opacity:0;transform:translateY(-24px);filter:blur(6px)}
+  100%{opacity:0;transform:translateY(30px);filter:blur(6px)}}
+/* ritmo: um traço por palavra */
+.pwd{display:flex;gap:6px;margin-bottom:22px}
+.pwd i{width:30px;height:2px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden;position:relative}
+.pwd i::after{content:"";position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:left}
+.slide.on .pwd i::after{animation:pwdFill 14s linear infinite;animation-delay:calc(var(--k)*2.333s + .5s)}
+@keyframes pwdFill{0%{transform:scaleX(0)}16.6%{transform:scaleX(1)}16.7%,100%{transform:scaleX(0)}}
+.cine-ft{display:flex;align-items:center;gap:20px}
+.cine-ft .note{flex:1;max-width:none}
 
 /* ---------- Atributos de design da 75 LAB (slide do grupo) ---------- */
 .dts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
@@ -769,8 +785,8 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 
 @media print{
   .cine-zoom .cb,.cine-mk .cb{opacity:0}
+  .pwx>div:not(:first-child){display:none}
   .pwx>div{position:relative;opacity:1}
-  .pwx{height:auto}
   .fx-steps i::after{transform:none!important}
   .mth i{transform:none!important}
   html,body{overflow:visible;height:auto}
@@ -1223,34 +1239,25 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
 
   <!-- ═══ TROQUE A MARCA, NÃO O MÓVEL (cinematográfico) ═══ -->
   <section class="slide cine" data-tr="iris" data-tone="dark">
+    <span class="bg"></span>
     <div class="cine-stage">
-      <span class="glow"></span>
+      <span class="spot"></span>
       <span class="floor"></span>
       <div class="cine-zoom">
         <img class="ca" src="assets/marca-lacta.webp" alt="Display Universal Códice com a comunicação da Lacta">
         <img class="cb" src="assets/marca-bis.webp" alt="O mesmo display com a comunicação do Bis">
       </div>
-      <!-- setas para as partes do display -->
-      <svg class="cine-ar" viewBox="0 0 960 918" aria-hidden="true">
-        <path class="draw" style="--len:330;--d:4" d="M322 124 H452 L556 152"/>
-        <path class="draw" style="--len:240;--d:6" d="M322 458 H418 L512 400"/>
-        <path class="draw" style="--len:330;--d:8" d="M322 848 H516 L612 812"/>
-        <circle class="pt" style="--d:5" cx="556" cy="152" r="5.5"/><circle class="pr" style="--d:5" cx="556" cy="152" r="11"/>
-        <circle class="pt" style="--d:7" cx="512" cy="400" r="5.5"/><circle class="pr" style="--d:7" cx="512" cy="400" r="11"/>
-        <circle class="pt" style="--d:9" cx="612" cy="812" r="5.5"/><circle class="pr" style="--d:9" cx="612" cy="812" r="11"/>
-      </svg>
-      <div class="cine-lb" style="left:112px;top:100px" data-a="left"><b>Testeira iluminada</b><small>a marca vista do fim do corredor</small></div>
-      <div class="cine-lb" style="left:112px;top:430px" data-a="left"><b>Régua de preço</b><small>troca junto com a campanha</small></div>
-      <div class="cine-lb" style="left:112px;top:820px" data-a="left"><b>Módulo inteligente</b><small>sensor e conexão na base</small></div>
-      <span class="cine-mk"><b class="ca">Lacta</b><b class="cb">Bis</b></span>
-      <span class="cine-vig"></span>
+      <span class="cine-flash"></span>
+      <div class="hs" style="left:45.5%;top:10.5%;--d:0"><i></i><span><b>Testeira iluminada</b><small>a marca vista do fim do corredor</small></span></div>
+      <div class="hs" style="left:44.5%;top:47.5%;--d:1"><i></i><span><b>Régua de preço</b><small>troca junto com a campanha</small></span></div>
+      <div class="hs" style="left:44%;top:92.5%;--d:2"><i></i><span><b>Módulo inteligente</b><small>sensor e conexão na base</small></span></div>
     </div>
+    <span class="cine-mk"><b class="ca">Comunicação Lacta</b><b class="cb">Comunicação Bis</b></span>
+    <span class="vig"></span>
     <div class="pad">
-      <div class="hd">
+      <div class="cine-col">
         <div class="eyebrow" data-a style="--d:0"><svg class="mb"><use href="#mb"/></svg>O produto</div>
-        <h2 class="cine-h" data-a style="--d:1">Troque a marca.<br><em>Não troque o móvel.</em></h2>
-      </div>
-      <div class="body" style="justify-content:flex-start;gap:0">
+        <h2 data-a style="--d:1;margin-top:16px">Troque a marca.<br><em>Não troque o móvel.</em></h2>
         <div class="pwx">
           <div style="--k:0"><b>MODULAR</b><small>um chassi, sete formatos de loja</small></div>
           <div style="--k:1"><b>CAMBIÁVEL</b><small>a comunicação troca a cada semana, o móvel fica</small></div>
@@ -1259,8 +1266,9 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
           <div style="--k:4"><b>INTELIGENTE</b><small>cada semana no ar vira dado de audiência</small></div>
           <div style="--k:5"><b>COMPLETO</b><small>móvel, manutenção, tecnologia e gestão</small></div>
         </div>
-        <div class="cine-ft" data-a style="--d:10">
-          <div class="note" style="flex:1;max-width:none">A marca envia só a arte. O display, a instalação e a manutenção são da Códice.</div>
+        <div class="pwd" data-a="fade" style="--d:8"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></div>
+        <div class="cine-ft" data-a style="--d:9">
+          <div class="note">A marca envia só a arte. O display, a instalação e a manutenção são da Códice.</div>
           <button class="btn pri" data-go="9">Ver os sete formatos <svg><use href="#i-r"/></svg></button>
         </div>
       </div>

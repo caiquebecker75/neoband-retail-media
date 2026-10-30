@@ -776,7 +776,72 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   .draw{stroke-dashoffset:0!important}.fadein{opacity:1!important}
   @page{size:1600px 900px;margin:0}
 }
+
+/* ---------- Cadastro de entrada: a apresentação só abre depois dele ---------- */
+#gate{position:fixed;inset:0;z-index:9998;display:none;align-items:center;justify-content:center;padding:24px 16px;overflow-y:auto;
+  background:rgba(3,14,40,.66);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1)}
+html.gated #gate{display:flex}
+#gate.saindo{animation:gtOut .5s var(--ease) forwards}
+@keyframes gtOut{to{opacity:0;visibility:hidden}}
+@keyframes gtIn{from{opacity:0;transform:translateY(18px)}}
+.gt-card{position:relative;width:100%;max-width:468px;margin:auto;background:#fff;color:var(--navy);border-radius:22px;padding:34px 34px 28px;
+  box-shadow:0 30px 80px rgba(3,14,40,.45);animation:gtIn .7s var(--ease-out) both}
+#gate.saindo .gt-card{transition:transform .5s var(--ease);transform:translateY(-14px) scale(.98)}
+.gt-logo{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.gt-logo .s{height:40px;width:auto}.gt-logo .w{height:22px;width:auto}
+.gt-logo i{width:1px;height:22px;background:rgba(6,27,73,.16)}
+.gt-logo .l{height:15px;width:auto;opacity:.75}
+.gt-card h1{font-family:'Exo 2';font-weight:700;font-size:28px;line-height:1.12;letter-spacing:-.01em}
+.gt-card .sub{margin-top:8px;font-size:15px;line-height:1.5;color:#58627A}
+.gt-form{margin-top:22px;display:grid;gap:14px}
+.gt-f label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.02em;color:#3A4560;margin-bottom:6px}
+.gt-f input{width:100%;height:48px;border:1.5px solid #D9DEE8;border-radius:12px;padding:0 14px;font:500 16px Inter,system-ui,sans-serif;color:var(--navy);
+  background:#F8F9FC;outline:none;transition:border-color .2s,background .2s,box-shadow .2s;cursor:none}
+.gt-f input::placeholder{color:#A3ABBD;font-weight:400}
+.gt-f input:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(47,115,255,.12)}
+.gt-f.err input{border-color:#D93A3A;background:#FFF7F7}
+.gt-f small,.gt-ck small{display:none;margin-top:5px;font-size:12.5px;color:#C62F2F}
+.gt-f.err small,.gt-ck.err small{display:block}
+.gt-isca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.gt-ck{margin-top:2px}
+.gt-ck label{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.45;color:#3A4560;cursor:none}
+.gt-ck input{appearance:none;-webkit-appearance:none;flex:0 0 20px;width:20px;height:20px;margin-top:1px;border:1.5px solid #B9C1D2;border-radius:6px;
+  background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s;cursor:none}
+.gt-ck input::after{content:"";width:10px;height:6px;border:2.2px solid #fff;border-top:0;border-right:0;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .2s var(--ease)}
+.gt-ck input:checked{background:var(--blue);border-color:var(--blue)}
+.gt-ck input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.gt-ck.err input{border-color:#D93A3A}
+.gt-link{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px;display:inline;text-align:inherit}
+.gt-btn{margin-top:6px;height:54px;border-radius:14px;background:var(--navy);color:#fff;font:700 16px 'Exo 2',sans-serif;letter-spacing:.02em;
+  display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;transition:background .2s,transform .2s}
+.gt-btn:hover{background:#0A2A6E}
+.gt-btn svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.gt-btn[disabled]{opacity:.7}
+.gt-msg{display:none;font-size:13px;color:#C62F2F;text-align:center}
+.gt-msg.on{display:block}
+.gt-pe{margin-top:16px;display:flex;gap:8px;align-items:center;justify-content:center;font-size:12.5px;color:#8A93A7}
+.gt-pe svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex:0 0 14px}
+#gtTermos{display:none}
+.gt-card.termos #gtCad{display:none}
+.gt-card.termos #gtTermos{display:block}
+#gtTermos h1{font-size:24px}
+#gtTermos .ver{margin-top:4px;font-size:12.5px;color:#8A93A7}
+#gtTermos ol{list-style:none;margin-top:18px;display:grid;gap:12px;max-height:min(52vh,420px);overflow-y:auto;padding-right:6px}
+#gtTermos li{font-size:13.5px;line-height:1.5;color:#3A4560}
+#gtTermos li b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:2px}
+.gt-acts{margin-top:20px;display:grid;grid-template-columns:1fr 1.3fr;gap:10px}
+.gt-acts .gt-btn{margin-top:0;height:48px;font-size:15px}
+.gt-sec{background:#EEF1F6;color:var(--navy)}
+.gt-sec:hover{background:#E3E8F0}
+@media (hover:none){.gt-f input,.gt-ck label,.gt-ck input{cursor:auto}}
+@media (max-width:520px){.gt-card{padding:26px 20px 22px;border-radius:18px}.gt-card h1{font-size:24px}.gt-acts{grid-template-columns:1fr}}
+@media print{#gate{display:none!important}}
 </style>
+<script>
+// cadastro de entrada: quem já se identificou neste navegador não vê o formulário de novo
+(function(){var ok=false;try{ok=!!localStorage.getItem("codice_acesso_v1")}catch(e){}
+  if(!ok)document.documentElement.classList.add("gated")})();
+</script>
 </head>
 <body data-tone="dark">
 
@@ -1398,6 +1463,61 @@ em{font-style:normal;background:linear-gradient(90deg,#1DD4C8 0%,#2F73FF 100%);-
   <b>Gire o celular</b>
   <span>Esta apresentação foi feita em tela cheia horizontal. Vire o aparelho para ver tudo.</span>
 </div>
+
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gtTit">
+  <div class="gt-card" id="gtCard">
+    <div class="gt-logo">
+      <img class="s" src="assets/codice-simbolo.png" alt="">
+      <img class="w" src="assets/codice-logotipo.png" alt="Códice">
+      <i></i>
+      <img class="l" src="assets/75lab-wordmark-black.png" alt="75 LAB">
+    </div>
+
+    <div id="gtCad">
+      <h1 id="gtTit">A sua proposta está pronta.</h1>
+      <p class="sub">Diga quem é você para abrir a apresentação.</p>
+      <form class="gt-form" id="gtForm" novalidate>
+        <div class="gt-f" data-c="nome"><label for="gtNome">Nome completo</label>
+          <input id="gtNome" name="nome" autocomplete="name" maxlength="120" placeholder="Seu nome"><small>Escreva o seu nome.</small></div>
+        <div class="gt-f" data-c="email"><label for="gtEmail">E-mail</label>
+          <input id="gtEmail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="voce@empresa.com.br"><small>Confira o e-mail.</small></div>
+        <div class="gt-f" data-c="telefone"><label for="gtTel">Telefone ou WhatsApp</label>
+          <input id="gtTel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(11) 90000-0000"><small>Coloque o DDD e o número.</small></div>
+        <div class="gt-f" data-c="quem"><label for="gtQuem">Quem te enviou o link?</label>
+          <input id="gtQuem" name="quem" maxlength="120" placeholder="Nome de quem te enviou"><small>Conte quem te enviou o link.</small></div>
+        <div class="gt-isca" aria-hidden="true"><label for="gtSite">Site</label><input id="gtSite" name="site" tabindex="-1" autocomplete="off"></div>
+        <div class="gt-ck" data-c="aceite">
+          <label for="gtAceite"><input type="checkbox" id="gtAceite" name="aceite">
+            <span>Li e concordo com os <button type="button" class="gt-link" id="gtVerTermos">termos de privacidade</button>.</span></label>
+          <small>Para abrir a apresentação, aceite os termos.</small>
+        </div>
+        <p class="gt-msg" id="gtMsg"></p>
+        <button type="submit" class="gt-btn" id="gtBtn"><span>Abrir a apresentação</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+      <p class="gt-pe"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Seus dados não são vendidos nem repassados a terceiros.</p>
+    </div>
+
+    <div id="gtTermos">
+      <h1>Termos de privacidade</h1>
+      <p class="ver">Versão de 30 de outubro de 2026</p>
+      <ol>
+        <li><b>Quem cuida dos dados</b>75 LAB Estratégia, Design e Produção Ltda, CNPJ 55.470.982/0001-77, parceira da NEOBAND na Códice.</li>
+        <li><b>O que coletamos</b>Nome, e-mail, telefone, quem te enviou o link e a data e hora do acesso.</li>
+        <li><b>Para que usamos</b>Saber quem abriu a proposta, retornar o contato comercial sobre a Códice e reconhecer quem fez a indicação.</li>
+        <li><b>Base legal</b>O seu consentimento, dado ao marcar a caixa de aceite (LGPD, art. 7º, I).</li>
+        <li><b>Com quem compartilhamos</b>Só entre a 75 LAB e a NEOBAND, para o atendimento comercial da Códice. Nada é vendido ou cedido a terceiros.</li>
+        <li><b>Onde e por quanto tempo</b>Em servidores de nuvem protegidos, com acesso restrito à equipe comercial, por até 2 anos depois do último contato ou até você pedir a exclusão.</li>
+        <li><b>Seus direitos</b>Pedir acesso, correção ou exclusão dos dados e retirar o consentimento quando quiser, pelo e-mail contato@75lab.com.br (LGPD, art. 18).</li>
+        <li><b>Nesta página</b>Não usamos cookies de rastreamento. O navegador guarda só um aviso de que você já se identificou, para não pedir de novo.</li>
+      </ol>
+      <div class="gt-acts">
+        <button type="button" class="gt-btn gt-sec" id="gtVoltar">Voltar</button>
+        <button type="button" class="gt-btn" id="gtConcordo">Li e concordo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="cur"><i></i><i></i><i></i><i></i></div>
 <div id="curDot"></div>
 
@@ -1418,7 +1538,7 @@ addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;document.body
 addEventListener("mouseleave",function(){document.body.classList.add("hidecur")});
 (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform="translate3d("+cx+"px,"+cy+"px,0)";requestAnimationFrame(loop)})();
 addEventListener("mouseover",function(e){
-  document.body.classList.toggle("hot",!!e.target.closest("button,a,input,[data-go],.card,[data-g],[data-orb],model-viewer,#sisView"))});
+  document.body.classList.toggle("hot",!!e.target.closest("button,a,input,label,[data-go],.card,[data-g],[data-orb],model-viewer,#sisView"))});
 
 /* ─────── Palco ─────── */
 var stage=$("#stage"),deck=$("#deck");
@@ -1857,6 +1977,7 @@ $("#next").addEventListener("click",function(){go(i+1)});
 
 /* ─────── Teclado e toque ─────── */
 addEventListener("keydown",function(e){
+  if(document.documentElement.classList.contains("gated"))return;
   if(lbOpen){
     if(e.key==="Escape")lbHide(); else if(e.key==="ArrowRight"||e.key===" ")lbStep(1); else if(e.key==="ArrowLeft")lbStep(-1);
     if(/^(Escape|ArrowRight|ArrowLeft| )$/.test(e.key))e.preventDefault(); return;
@@ -1869,7 +1990,7 @@ addEventListener("keydown",function(e){
   else if(e.key==="Escape"){closeMenu()}});
 var sx=0,sy=0;
 addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
-addEventListener("touchend",function(e){if(lbOpen||(e.target.closest&&e.target.closest("input,model-viewer")))return; var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+addEventListener("touchend",function(e){if(document.documentElement.classList.contains("gated")||lbOpen||(e.target.closest&&e.target.closest("input,model-viewer")))return; var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
   if(Math.abs(dx)>56&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1)},{passive:true});
 
 /* ─────── Boot ─────── */
@@ -1878,7 +1999,84 @@ addEventListener("beforeprint",function(){
   $$(".wbar").forEach(function(b){b.style.width=b.dataset.w+"%"});
   $$("[data-cu]").forEach(function(e2){e2.dataset.done="1"; e2.textContent=e2.dataset.fmt?BR(+e2.dataset.cu):e2.dataset.cu})});
 slides[0].classList.add("on"); setChrome(); onEnter(slides[0]);
+// cadastro liberado: a capa entra de novo, agora sem o véu por cima
+addEventListener("codice:liberado",function(){var s=slides[i]; s.classList.remove("on"); void s.offsetWidth; s.classList.add("on"); onEnter(s)});
 if(location.hash){var h=parseInt(location.hash.slice(1),10); if(h>0&&h<=N)go(h-1,true)}
+})();
+</script>
+<script>
+/* ─────── Cadastro de entrada ───────
+   Nome, e-mail, telefone, quem enviou o link e aceite dos termos. Vai para a função
+   leadApresentacao da Códice (planilha no Drive + aviso no celular). Se o servidor
+   não responder, a pessoa entra mesmo assim e o envio fica guardado para a próxima visita.
+   ?de=Nome no link já preenche "Quem te enviou o link?". */
+(function(){
+"use strict";
+var URL_LEAD="https://southamerica-east1-rental-display.cloudfunctions.net/leadApresentacao";
+var CHAVE="codice_acesso_v1",PENDENTE="codice_acesso_pendente",VERSAO="2026-10-30";
+var ler=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var gravar=function(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
+function enviar(dados,ms){
+  var ctl=window.AbortController?new AbortController():null,t=ctl&&setTimeout(function(){ctl.abort()},ms||10000);
+  return fetch(URL_LEAD,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(dados),signal:ctl&&ctl.signal})
+    .then(function(r){return r.json().catch(function(){return{}}).then(function(j){j.status=r.status;return j})})
+    .finally(function(){t&&clearTimeout(t)});
+}
+
+// envio que ficou para trás numa visita sem rede
+var pend=ler(PENDENTE);
+if(pend){try{enviar(JSON.parse(pend)).then(function(j){if(j.ok||j.status===400)gravar(PENDENTE,null)}).catch(function(){})}catch(e){gravar(PENDENTE,null)}}
+
+var html=document.documentElement;
+if(!html.classList.contains("gated"))return;
+
+var $=function(s){return document.getElementById(s)};
+var gate=$("gate"),card=$("gtCard"),form=$("gtForm"),btn=$("gtBtn"),msg=$("gtMsg"),aceite=$("gtAceite");
+var de=new URLSearchParams(location.search).get("de");
+if(de)$("gtQuem").value=de.slice(0,120);
+if(!matchMedia("(hover:none)").matches)setTimeout(function(){$("gtNome").focus()},450);
+
+// telefone com máscara (11) 90000-0000
+$("gtTel").addEventListener("input",function(){
+  var d=this.value.replace(/\D/g,"");
+  if(d.length>11&&d.indexOf("55")===0)d=d.slice(2);
+  d=d.slice(0,11);
+  var f=d.length>10?"("+d.slice(0,2)+") "+d.slice(2,7)+"-"+d.slice(7):d.length>6?"("+d.slice(0,2)+") "+d.slice(2,6)+"-"+d.slice(6):d.length>2?"("+d.slice(0,2)+") "+d.slice(2):d.length?"("+d:"";
+  this.value=f});
+
+function campo(c){return form.querySelector('[data-c="'+c+'"]')}
+function marcar(c,ruim){campo(c).classList.toggle("err",ruim)}
+form.addEventListener("input",function(e){var c=e.target.closest("[data-c]");if(c)c.classList.remove("err");msg.classList.remove("on")});
+aceite.addEventListener("change",function(){campo("aceite").classList.remove("err")});
+
+// termos dentro do próprio cartão
+$("gtVerTermos").addEventListener("click",function(e){e.preventDefault();card.classList.add("termos")});
+$("gtVoltar").addEventListener("click",function(){card.classList.remove("termos")});
+$("gtConcordo").addEventListener("click",function(){aceite.checked=true;campo("aceite").classList.remove("err");card.classList.remove("termos")});
+
+function liberar(nome){
+  gravar(CHAVE,JSON.stringify({nome:nome,em:new Date().toISOString(),termos:VERSAO}));
+  gate.classList.add("saindo");
+  setTimeout(function(){html.classList.remove("gated");gate.remove();dispatchEvent(new Event("codice:liberado"))},480);
+}
+
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  var d={nome:$("gtNome").value.trim(),email:$("gtEmail").value.trim(),telefone:$("gtTel").value.trim(),quem:$("gtQuem").value.trim(),
+    site:$("gtSite").value,aceite:aceite.checked,versaoTermos:VERSAO,pagina:location.href.split("#")[0],origem:document.referrer||""};
+  var ruins={nome:d.nome.length<2,email:!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(d.email),telefone:d.telefone.replace(/\D/g,"").length<10,quem:d.quem.length<2,aceite:!d.aceite};
+  var algum=false;
+  for(var c in ruins){marcar(c,ruins[c]);if(ruins[c]&&!algum){algum=true;var inp=campo(c).querySelector("input");inp&&inp.focus()}}
+  if(algum)return;
+  btn.disabled=true;btn.querySelector("span").textContent="Abrindo...";
+  enviar(d).then(function(j){
+    if(j.ok){gravar(PENDENTE,null);liberar(d.nome);return}
+    if(j.status===400&&j.campos){j.campos.forEach(function(c){if(campo(c))marcar(c,true)})}
+    else if(j.status===429){msg.textContent="Muitas tentativas seguidas. Espere um minuto e tente de novo.";msg.classList.add("on")}
+    else{gravar(PENDENTE,JSON.stringify(d));liberar(d.nome);return}
+    btn.disabled=false;btn.querySelector("span").textContent="Abrir a apresentação";
+  }).catch(function(){gravar(PENDENTE,JSON.stringify(d));liberar(d.nome)});
+});
 })();
 </script>
 </body>
